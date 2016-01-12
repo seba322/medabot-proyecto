@@ -18,6 +18,7 @@ public class VistaPreparacionBPj extends javax.swing.JPanel {
      */
     public VistaPreparacionBPj() {
         initComponents();
+        this.btComenzar.setEnabled(false);
     }
 
     public JButton getBtADM1() {
