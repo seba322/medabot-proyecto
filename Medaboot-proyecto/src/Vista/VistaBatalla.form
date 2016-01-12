@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jpBrazoIZ1" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="jpCabeza1" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jpBrazoDE1" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jpPiernaIZ1" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jpPiernaDE1" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jpPlayer2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="txAcciones" min="-2" pref="277" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jpVida1" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jtBrazoDE1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jtBrazoIZ1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtEsquivar1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jtCabeza1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jtDefensa1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtPasar" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btListo" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jpVida2" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jpPlayer1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jpBrazoIZ2" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="jpCabeza2" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="jpBrazoDE2" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="jpPiernaIZ2" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="jpPiernaDE2" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="jtBrazoDE2" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jtBrazoIZ2" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jtPiernaIZ2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jtEsquivar2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="jtCabeza2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="jtDefender2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jtPiernaDE2" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jtPasar2" min="-2" pref="84" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <Component id="lbMedafuerza1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lbMedafuerza2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="jScrollPane5" min="-2" pref="213" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <Component id="lbVs" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane6" min="-2" pref="217" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jpVida1" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jpVida2" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="lbVs" min="-2" pref="83" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jpCabeza2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jpBrazoIZ2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jpBrazoDE2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jpPiernaIZ2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jpPiernaDE2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jpPlayer2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jpPlayer1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txAcciones" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbMedafuerza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbMedafuerza2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jpCabeza1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jpBrazoIZ1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jpBrazoDE1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jpPiernaIZ1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jpPiernaDE1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtBrazoIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtCabeza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtBrazoDE1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtEsquivar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtPiernaIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtDefensa1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jtPasar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtPiernaDE1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="btListo" min="-2" pref="64" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtBrazoIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtCabeza2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtBrazoDE2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtEsquivar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtPiernaIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jtPasar2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtPiernaDE2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jpPlayer1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="155" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="185" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jpPlayer2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="155" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="185" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Component class="javax.swing.JTextField" name="txAcciones">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Texto"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtBrazoIZ1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BrazoIZ"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtCabeza1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cabeza"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtEsquivar1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Esquivar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtBrazoDE1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BrazoDE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPiernaIZ1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PiernaIZ"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtDefensa1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Defender"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btListo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPiernaDE1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PiernaDE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPasar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pasar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpVida1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpVida2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpCabeza2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpBrazoIZ2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpBrazoDE2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpPiernaIZ2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpPiernaDE2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpCabeza1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpBrazoIZ1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpBrazoDE1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpPiernaIZ1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="jpPiernaDE1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="txtPhabilidad1">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="txtPhabilidad2">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JToggleButton" name="jtBrazoIZ2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BrazoIZ"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtCabeza2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cabeza"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtEsquivar2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Esquivar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtBrazoDE2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BrazoDE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPiernaIZ2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PiernaIZ"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtDefender2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Defender"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPiernaDE2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PiernaDE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jtPasar2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pasar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbVs">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="36" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="VS"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbMedafuerza1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="33" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Medafuerza Activada"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbMedafuerza2">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="33" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Medafuerza Activada"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txtDatos1">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txtDatos2">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
