@@ -52,13 +52,13 @@ public class Medaparte {
 
     public String getNombre() {
         return this.nombre;
-        }
+    }
     public void setNombre(String nombre){ 
         this.nombre=nombre;
-        
-     
-     
-     }  
+    }  
+    public int getSalud() {
+        return salud;
+    }
 }
 
     

@@ -12,15 +12,16 @@ import java.util.logging.Logger;
 import Vista.VistaMenuB;
 import Vista.VistaPreparacionBPj;
 import Vista.VistaBatalla;
+import Vista.VistaRegistro1;
 import java.awt.BorderLayout;
 
 public class ControladorMenu implements ActionListener {
     
-    VistaMenu vm;
+    private VistaMenu vm;
+    private String nombreUsuario;
+    private String contraseña;
     
-    //VistaAdmin vta;
-    String nombreUsuario;
-    String contraseña;
+    
     
    
     public ControladorMenu(VistaMenu vm,String nombreUsuario ,String contraseña) {
@@ -36,6 +37,7 @@ public class ControladorMenu implements ActionListener {
     
 
 }
+   
 
     ControladorMenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -47,12 +49,13 @@ public class ControladorMenu implements ActionListener {
             VistaMenuB vmb= new VistaMenuB();
             VistaBatalla vb= new VistaBatalla();
             VistaPreparacionBPj vtp= new VistaPreparacionBPj();
+           
             vmb.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(vmb,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm);
+            ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña);
         }
         else if (e.getSource().equals(this.vm.getBtTorneo())){
             //llamar al torneo

@@ -22,6 +22,8 @@ public class Medaboot {
     private Medaparte cabeza;
     private Medaparte piernaIz;
     private Medaparte piernaDe;
+    private int esquive;
+    private int defensa;
   //  private Medaparte modificador;
     
     public Medaboot (String nombre) throws SQLException{
@@ -83,6 +85,19 @@ public class Medaboot {
         return this.medalla;
         
     }
+
+    public int getEsquive() {
+        return esquive;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
+    
 
     public void setMedaparte(Medaparte medaparte, String cambio , String tipo) throws SQLException{
       medaparte = new Medaparte(cambio);

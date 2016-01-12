@@ -17,23 +17,34 @@ import Vista.VistaMenu;
 
 public class ControladorRegistro implements ActionListener  {
     
-    VistaRegistro1 vt1;
-    VistaRegistro2 vt2;
-    Usuario user;
-    VistaMenu vm;
-    String modalidad;
+    private VistaRegistro1 vt1;
+    private VistaRegistro2 vt2;
+    private Usuario user;
+    private VistaMenu vm;
+    private String modalidad;
+    
     public ControladorRegistro( VistaRegistro1 vt1, VistaRegistro2 vt2, String modalidad){
         this.modalidad=modalidad;
+        this.user= new Usuario();
         this.vt1=vt1;
-        this.vt2=vt2;
         this.vt1.getBtEntrar().addActionListener(this);
+        this.vt2=vt2;
         this.vt1.getBtRegistrarse().addActionListener(this);
         this.vt2.getBtAtras().addActionListener(this);
         this.vt2.getBtCrear().addActionListener(this);
-        
-        
-        
+      
+    } 
+
+    public VistaRegistro1 getVt1() {
+        return vt1;
     }
+    
+    
+   
+    
+    
+    
+    
     
 
     @Override
@@ -42,8 +53,6 @@ public class ControladorRegistro implements ActionListener  {
       if(e.getSource().equals(this.vt1.getBtRegistrarse())){
           
           this.vt2.setSize(535, 563);
-          
-          
           this.vt1.getContentPane().removeAll();
           this.vt1.getContentPane().add(this.vt2);
           this.vt1.getContentPane().revalidate();
@@ -53,41 +62,40 @@ public class ControladorRegistro implements ActionListener  {
           this.vt2.getTxtUsuario2().setText("");
           this.vt1.getContentPane().repaint();
           
-          
-          
-   
         }
       else if(e.getSource().equals(this.vt1.getBtEntrar())){
           String nombreUsuario,contraseña;
           nombreUsuario= this.vt1.getTxtUsuario().getText();
           contraseña=this.vt1.getTxtContraseña().getText();
-          this.user= new Usuario();
+          System.out.println("kimbo");
           try {
               if((this.user.validarUsuario(nombreUsuario, contraseña))){
                   this.vt1.dispose();
+                  
                   if(this.modalidad.equals("Ingreso")){
                         this.vm= new VistaMenu();
                         ControladorMenu cm= new ControladorMenu(this.vm,nombreUsuario,contraseña);
                     }
+                 
+                  }
+              
+              else{
+                  this.vt1.getIngError().setVisible(true);
+                }    
+                  
+                  
                   
                        
                   
-                }
-              else{
-                  this.vt1.getIngError().setVisible(true);
-                  
-                  
-                  
-              } } catch (SQLException ex) {
+              
+              
+               
+                
+                } catch (SQLException ex) {
                   Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
               }
           
-          
-          
-          
-         
-        
-      }
+        }
       else if(e.getSource().equals(this.vt2.getBtAtras())){
           
           
@@ -110,7 +118,7 @@ public class ControladorRegistro implements ActionListener  {
               if(!(contraseñaC.equals(contraseña))){
                   this.vt2.getLbError().setVisible(true);
                   
-              } this.user= new Usuario();
+              } 
               if((this.user.validarUsuario(nombreUsuario, contraseña,nombreMedabot)==true)){
                  
                 
@@ -130,6 +138,8 @@ public class ControladorRegistro implements ActionListener  {
           
         }
     }
+        
+        
 }
    
    

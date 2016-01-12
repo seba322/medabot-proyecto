@@ -116,6 +116,11 @@ public class Usuario {
     public ArrayList getMedapartes() {
         return medapartes;
     }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+    
     
     
     
