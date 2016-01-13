@@ -119,13 +119,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  int index = this.user.getMedapartes().indexOf(cambio);
                  System.out.println(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoDer().getNombre());
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoDer().getNombre(),null);
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 Medaparte brazoDer = this.user.getPersonajes()[indexPersonaje].getBrazoDer();
+                 
                  try {
-                     this.user.getPersonajes()[indexPersonaje].setMedaparte(brazoDer,cambio,"BRAZODER");
+                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cambio,"BRAZODER");
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -135,13 +135,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcBrazoIZ().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoIzq().getNombre() );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoIzq().getNombre(),null );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Medaparte brazoIzq = this.user.getPersonajes()[indexPersonaje].getBrazoIzq();
+                
                  try {
-                     this.user.getPersonajes()[indexPersonaje].setMedaparte(brazoIzq,cambio,"BRAZOIZQ");
+                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cambio,"BRAZOIZQ");
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -153,13 +153,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcPiernaDE().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaDer().getNombre() );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaDer().getNombre(),null);
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                  Medaparte piernaDer = this.user.getPersonajes()[indexPersonaje].getPiernaDer();
+                  
                  try {
-                     this.user.getPersonajes()[indexPersonaje].setMedaparte(piernaDer,cambio,"PIERNADER");
+                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cambio,"PIERNADER");
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -169,13 +169,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcPiernaIZ().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaIzq().getNombre() );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaIzq().getNombre(),null );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                  Medaparte piernaIzq = this.user.getPersonajes()[indexPersonaje].getPiernaIzq();
+                  
                  try {
-                     this.user.getPersonajes()[indexPersonaje].setMedaparte(piernaIzq,cambio,"PIERNAIZQ");
+                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cambio,"PIERNAIZQ");
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -185,13 +185,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcCabeza().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getCabeza().getNombre() );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getCabeza().getNombre(),null );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                  Medaparte cabeza = this.user.getPersonajes()[indexPersonaje].getCabeza();
+                  
                  try {
-                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cabeza,cambio,"CABEZA");
+                     this.user.getPersonajes()[indexPersonaje].setMedaparte(cambio,"CABEZA");
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -200,9 +200,9 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  try {
                      String cambio =(String) this.vta.getJcMedalla().getSelectedItem();
                      int index = this.user.getMedallas().indexOf(cambio);
-                     this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getMedalla().getNombre() );
-                     Medalla parte = this.user.getPersonajes()[indexPersonaje].getMedalla();
-                     this.user.getPersonajes()[indexPersonaje].setMedalla(parte,cambio);
+                     this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getMedalla().getNombre(),"MEDALLA" );
+                     
+                     this.user.getPersonajes()[indexPersonaje].setMedalla(cambio);
                  } catch (SQLException ex) {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }

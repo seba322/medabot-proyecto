@@ -99,8 +99,23 @@ public class Medaboot {
     }
     
 
-    public void setMedaparte(Medaparte medaparte, String cambio , String tipo) throws SQLException{
-      medaparte = new Medaparte(cambio);
+    public void setMedaparte( String cambio , String tipo) throws SQLException{
+      
+      switch (tipo){
+          case "BRAZOIZQ" : this.brazoIz= new Medaparte (cambio);
+          break;
+          case "BRAZODER" : this.brazoDe= new Medaparte (cambio);
+          break;
+          case "PIERNAIZQ" : this.piernaIz= new Medaparte (cambio);
+          break;
+          case "PIERNADER" : this.piernaDe= new Medaparte (cambio);
+          break;
+          case "CABEZA" : this.cabeza= new Medaparte (cambio);
+          break;
+          default :System.out.println("error");
+          
+      }
+      
       System.out.println("estas es"+this.piernaIz.getNombre());
       
         DBConection conexion =new DBConection();
@@ -113,13 +128,13 @@ public class Medaboot {
     }
     //agregar contenido
 
-    public void setMedalla(Medalla medalla, String cambio) throws SQLException {
-      medalla= new Medalla(cambio);
+    public void setMedalla(String cambio) throws SQLException {
+      this.medalla= new Medalla("'"+cambio+"'");
       
       DBConection conexion =new DBConection();
       if(conexion.conectar()){
       Statement consulta = conexion.consultar();
-      String modificar = "UPDATE MEDABOT SET MEDALLA='"+cambio+"' WHERE NOMBRE ="+this.nombre;
+      String modificar = "UPDATE MEDABOT SET MEDALLA="+"'"+cambio+"'"+" WHERE NOMBRE ="+this.nombre;
       int actualizar=consulta.executeUpdate(modificar);
      conexion.desconectar();
       }

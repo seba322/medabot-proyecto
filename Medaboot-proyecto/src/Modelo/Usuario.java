@@ -187,24 +187,36 @@ public class Usuario {
                  
     }
 
-    public void setArrays(int index, String nombre) throws SQLException {
+    public void setArrays(int index, String nombre,String medalla) throws SQLException {
         System.out.println(index);
-        this.medapartes.set(index, nombre);
         String modificador ="";
-        System.out.println(medapartes.get(index));
-                System.out.println(medapartes);
-               
+        String comando ="";
+      
+        
+        System.out.println(modificador);
+        DBConection conexion =new DBConection();
+        if(conexion.conectar()){
+             if( medalla.equals("MEDALLA")){
+        this.medallas.set(index,nombre);
+        for (Object elemento:this.medallas){
+            modificador= modificador+elemento+",";
+        
+        }
+         String instruccion1 = "UPDATE MEDALLAUSUARIO SET MEDAPARTE='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
+           Statement consulta = conexion.consultar();  
+         int actu=consulta.executeUpdate(instruccion1);       
+        }
+        else{
+        this.medapartes.set(index, nombre);
         for (Object elemento:this.medapartes){
             modificador= modificador+elemento+",";
         
         }
-        System.out.println(modificador);
-        DBConection conexion =new DBConection();
-        if(conexion.conectar()){
-        Statement consulta = conexion.consultar();
-        String instruccion = "UPDATE MEDAPARTEUSUARIO SET MEDAPARTE='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
-        int actu=consulta.executeUpdate(instruccion);
-        System.out.println(actu);
+         String instruccion= "UPDATE MEDAPARTEUSUARIO SET MEDAPARTE='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
+         Statement consulta = conexion.consultar();  
+         int actu=consulta.executeUpdate(instruccion);
+           
+        }
         conexion.desconectar();
        }
     
