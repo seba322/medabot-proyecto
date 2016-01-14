@@ -91,6 +91,7 @@ public class Usuario {
         medalla.close();
         conexion.desconectar();
          System.out.println("aca tambien12");
+         System.out.println("AQUI TERMINA USUARIOOOOOOOOOOOOOOOOOOOOOOOOOO");
          
     
         }

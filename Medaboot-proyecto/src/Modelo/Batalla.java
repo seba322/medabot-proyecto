@@ -7,11 +7,12 @@ import java.util.ArrayList;
 public class Batalla {
    private Medaboot jugador1;
    private Medaboot jugador2;
+   private ArrayList<Medaboot> personajes;
     
     public Batalla (Medaboot jugador1,Medaboot jugador2){
         this.jugador1= jugador1;
         this.jugador2=jugador2;
-        ArrayList personajes=new ArrayList();
+        this.personajes=new ArrayList();
         personajes.add(this.jugador1);
         personajes.add(this.jugador2);
         
@@ -26,7 +27,11 @@ public class Batalla {
     }
     
     public ArrayList definirPrimero(ArrayList personajes){
+        
         return personajes;
+    }
+    public ArrayList<Medaboot> getPersonajes(){
+        return this.personajes;
     }
         
         

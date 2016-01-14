@@ -38,6 +38,7 @@ public class Medaparte {
           this.habilidad=re.getString(5);
           this.ataque=re.getInt(4);
           this.salud = re.getInt(2);
+          
           this.defensa = re.getInt(6);
           this.precision = re.getInt(7);
           this.ph=re.getInt(10);
@@ -47,7 +48,11 @@ public class Medaparte {
          this.nombre=nombre;
    
           System.out.println(this.nombre);
+          
+        System.out.println(""+this.salud);
+       System.out.println("AQUI TERMINA MEDAPARTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         }
+        
     }
 
     public String getNombre() {
@@ -57,6 +62,7 @@ public class Medaparte {
         this.nombre=nombre;
     }  
     public int getSalud() {
+        System.out.println("Sludd"+this.salud);
         return salud;
     }
 }

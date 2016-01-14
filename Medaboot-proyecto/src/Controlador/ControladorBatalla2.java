@@ -2,6 +2,7 @@
 package Controlador;
 
 import Modelo.Batalla;
+import Modelo.*;
 import Vista.VistaBatalla;
 import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
@@ -27,13 +28,15 @@ public class ControladorBatalla2 implements ActionListener {
         
         this.batalla=b;
         this.vb=vb;
+        
         this.vb.getBtConfirmarA().addActionListener(this);
         this.vb.getBtListo().addActionListener(this);
         this.vb.getJtBrazoIZ1().addActionListener(this);
-        this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
+       /* this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
         this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
         this.vb.getJpVida1().setMaximum(this.batalla.getJugador1().getSalud());
         this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
+        
         this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
         this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
         this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
@@ -53,7 +56,8 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getJpBrazoIZ2().setMaximum(this.batalla.getJugador2().getBrazoIzq().getSalud());
         this.vb.getJpPiernaIZ2().setMaximum(this.batalla.getJugador2().getPiernaIzq().getSalud());
         this.vb.getJpPiernaDE2().setMaximum(this.batalla.getJugador2().getPiernaDer().getSalud());
-        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSalud());
+        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSalud());*/
+        
         
         this.vb.getTxtPhabilidad1().setText("10");
         this.vb.getTxtPhabilidad2().setText("10");
@@ -86,6 +90,15 @@ public class ControladorBatalla2 implements ActionListener {
     }
     
     public void realizarBatalla(){
+        while(this.batalla.getJugador1().getSalud()>0 && this.batalla.getJugador2().getSalud()>0){
+            for(Medaboot jugador:this.batalla.getPersonajes()){
+                while(jugador.getPh()>0){
+                    
+                
+                }
+            }
+        }
+        
         System.out.println("coenzar ");
     }
     
@@ -93,6 +106,7 @@ public class ControladorBatalla2 implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         int parte =1;
        botonDisabled (this.acciones1, (JToggleButton) ae.getSource());// se selecciona un boton, se deshabilitan los demas
        for(JToggleButton elementos : this.acciones1){// se busca el numero del boton sleeionado en el array
@@ -103,6 +117,12 @@ public class ControladorBatalla2 implements ActionListener {
            parte+=1;
        }
        }
+       if (ae.getSource().equals(this.vb.getJtBrazoIZ1())){
+           System.out.println("kimbo");
+    }
+           
+           
+      
         
       switch(parte){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 

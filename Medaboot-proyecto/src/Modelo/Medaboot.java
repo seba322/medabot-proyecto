@@ -17,6 +17,7 @@ public class Medaboot {
     private String nombre;
     private Medalla medalla;
     private int salud;
+    private int ph;
     private Medaparte brazoIz;
     private Medaparte brazoDe;
     private Medaparte cabeza;
@@ -41,11 +42,14 @@ public class Medaboot {
          this.piernaIz= new Medaparte(re.getString(7));
          this.piernaDe= new Medaparte(re.getString(8));
          this.cabeza= new Medaparte(re.getString(4));
+          
          this.salud= re.getInt (1);
-         
+         System.out.println("AQUI SALUD"+this.salud);
+                
          }
         // this.modificador= null;
          System.out.println(this.nombre);
+         System.out.println("MEDABOTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
         }
     
     
@@ -97,6 +101,11 @@ public class Medaboot {
     public int getSalud() {
         return salud;
     }
+
+    public int getPh() {
+        return ph;
+    }
+    
     
 
     public void setMedaparte( String cambio , String tipo) throws SQLException{

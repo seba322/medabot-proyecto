@@ -76,6 +76,7 @@ public class ControladorBatalla implements ActionListener {
                 Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
                 System.out.println(this.user2.getNombreUsuario()+"FUNCIONOOOOOOOOOOOOOO");
                 Medaboot pj1= user1.getPersonajes()[0];
+                System.out.println("aqui"+pj1.getSalud());
                 Medaboot pj2= this.user2.getPersonajes()[0];
                 Batalla batalla= new Batalla(pj1,pj2);
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb);
