@@ -119,7 +119,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  int index = this.user.getMedapartes().indexOf(cambio);
                  System.out.println(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoDer().getNombre(),null);
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoDer().getNombre(),"parte");
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -135,7 +135,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcBrazoIZ().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoIzq().getNombre(),null );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getBrazoIzq().getNombre(),"parte" );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -153,7 +153,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcPiernaDE().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaDer().getNombre(),null);
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaDer().getNombre(),"parte");
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -169,7 +169,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcPiernaIZ().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaIzq().getNombre(),null );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getPiernaIzq().getNombre(),"parte" );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -185,7 +185,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  String cambio =(String) this.vta.getJcCabeza().getSelectedItem();
                  int index = this.user.getMedapartes().indexOf(cambio);
                 try {
-                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getCabeza().getNombre(),null );
+                    this.user.setArrays(index,this.user.getPersonajes()[indexPersonaje].getCabeza().getNombre(),"parte" );
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                 }
