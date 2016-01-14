@@ -1,0 +1,79 @@
+SELECT * FROM KIMBO.MEDABOT;
+SELECT * FROM KIMBO.USUARIO;
+SELECT * FROM KIMBO.MEDAPARTEUSUARIO;
+SELECT * FROM KIMBO.MEDALLAUSUARIO;
+SELECT USUARIO FROM KIMBO.MEDALLAUSUARIO;
+SELECT * FROM KIMBO.MEDALLA;
+SELECT * FROM KIMBO.MEDAPARTE;
+SELECT USUARIO FROM KIMBO.MEDAPARTEUSUARIO;
+SELECT MEDABOT FROM KIMBO.USUARIO;
+insert into medalla (nombre,potenciador,cantidad,tipocarga,medafuerza) values ('Mono','ataqueCercano',50,'racha','Poder');
+insert into medalla (nombre,potenciador,cantidad,tipocarga,medafuerza) values ('Escarabajo','precision',50,'venganza','Poder');
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Pierna Generica (PI)',200,'PiernaIzq',5,'Cuerpo a cuerpo',20,40,0,5,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Pierna Generica (PD)',200,'PiernaDer',5,'Cuerpo a cuerpo',20,40,0,5,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Pierna Veloz (PI)',500,'PiernaIzq',10,'Cuerpo a cuerpo',30,35,0,15,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Pierna Veloz (PD)',500,'PiernaDer',10,'Cuerpo a cuerpo',30,35,0,15,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Generico (BD)',200,'BrazoDer',5,'Cuerpo a cuerpo',20,50,0,0,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Generico (BI)',200,'BrazoIzq',5,'Cuerpo a cuerpo',20,50,0,0,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Noqueador (BI)',500,'BrazoIzq',10,'Cuerpo a cuerpo',50,30,0,0,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Noqueador (BD)',500,'BrazoDer',10,'Cuerpo a cuerpo',50,45,0,0,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Canon (BI)',500,'BrazoIzq',40,'Disparo',50,30,0,0,2);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Brazo Canon (BD)',500,'BrazoDer',40,'Disparo',50,20,0,0,2);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Cabeza Generica (C)',300,'Cabeza',10,'Cuerpo a cuerpo',20,50,0,0,1);
+insert into medaparte (nombre,saludmaxima,tipo,ataque,habilidad,defensa,precisio,recuperacion,esquive,puntoshabilidad) values ('Cabeza Cohete (C)',500,'Cabeza',250,'Mísiles rastreadores',50,50,0,0,5);
+create table USUARIO
+(
+	NOMBRE VARCHAR(64) not null primary key,
+	PASS VARCHAR(64) not null,
+	TIPO VARCHAR(16) default 'CPU' not null,
+	VICTORIAS INTEGER default 0 not null,
+	DERROTAS INTEGER default 0 not null,
+	TORNEOS INTEGER default 0 not null
+);
+create table MEDAPARTEUSUARIO
+(
+	USUARIO VARCHAR(64) not null,
+	MEDAPARTE VARCHAR(64) not null,
+	primary key (USUARIO, MEDAPARTE)
+);
+create table MEDAPARTE
+(
+	NOMBRE VARCHAR(64) not null primary key,
+	SALUDMAXIMA INTEGER not null,
+	TIPO VARCHAR(64) not null,
+	ATAQUE INTEGER not null,
+	HABILIDAD VARCHAR(64) not null,
+	DEFENSA INTEGER not null,
+	PRECISIO INTEGER not null,
+	RECUPERACION INTEGER not null,
+	ESQUIVE INTEGER not null,
+	PUNTOSHABILIDAD INTEGER not null
+);
+create table MEDALLAUSUARIO
+(
+	USUARIO VARCHAR(64) not null,
+	MEDALLA VARCHAR(64) not null,
+	primary key (USUARIO, MEDALLA)
+);
+create table MEDALLA
+(
+	NOMBRE VARCHAR(64) not null primary key,
+	POTENCIADOR VARCHAR(64) not null,
+	CANTIDAD INTEGER not null,
+	TIPOCARGA VARCHAR(64) not null,
+	MEDAFUERZA VARCHAR(64) default 'Poder' not null
+);
+create table MEDABOT
+(
+	SALUDMAXIMA INTEGER not null,
+	NOMBRE VARCHAR(64) not null,
+	USUARIO VARCHAR(64) not null,
+	CABEZA VARCHAR(64) not null,
+	BRAZOIZQ VARCHAR(64) not null,
+	BRAZODER VARCHAR(64) not null,
+	PIERNAIZQ VARCHAR(64) not null,
+	PIERNADER VARCHAR(64) not null,
+	MEDALLA VARCHAR(64) not null,
+	IMAGEN INTEGER default 1 not null
+);
+SELECT * FROM KIMBO.MEDABOT;
