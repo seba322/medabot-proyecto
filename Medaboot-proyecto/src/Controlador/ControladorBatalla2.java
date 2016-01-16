@@ -23,6 +23,7 @@ import java.util.List;
 
 
 public class ControladorBatalla2 implements ActionListener {
+    
     private VistaBatalla vb;
     private Batalla batalla;
     private ArrayList <ArrayList>  ataques=new <ArrayList> ArrayList();// lista que guardara todos los ataques de un turno
@@ -37,6 +38,7 @@ public class ControladorBatalla2 implements ActionListener {
        
         
         this.batalla=b;
+        
         this.turno =this.batalla.getJugador1();
         this.vb=vb;
         this.vb.getJtBrazoIZ1().addActionListener(this);
@@ -121,6 +123,9 @@ public class ControladorBatalla2 implements ActionListener {
         botonDisabled(this.acciones2,null);
 //        realizarBatalla();
           
+    }
+    public void agregarTexto(String mensaje){
+        this.vb.getTxAcciones().append(mensaje);
     }
     
     

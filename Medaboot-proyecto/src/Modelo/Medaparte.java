@@ -65,6 +65,19 @@ public class Medaparte {
         System.out.println("Sludd"+this.salud);
         return salud;
     }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public void setSalud(int daño,int def) {
+        this.salud =salud- (daño-def);
+    }
+    
 }
 
     

@@ -105,6 +105,11 @@ public class Medaboot {
     public int getPh() {
         return ph;
     }
+
+    public void setSalud(int dañoTotal) {
+        this.salud = salud-dañoTotal;
+    }
+    
     
     
 
