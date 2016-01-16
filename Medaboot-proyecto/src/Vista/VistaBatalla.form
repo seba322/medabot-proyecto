@@ -378,7 +378,7 @@
     <Component class="javax.swing.JProgressBar" name="jpCabeza2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -386,7 +386,7 @@
     <Component class="javax.swing.JProgressBar" name="jpBrazoIZ2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -394,7 +394,7 @@
     <Component class="javax.swing.JProgressBar" name="jpBrazoDE2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -402,7 +402,7 @@
     <Component class="javax.swing.JProgressBar" name="jpPiernaIZ2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -410,7 +410,7 @@
     <Component class="javax.swing.JProgressBar" name="jpPiernaDE2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -418,7 +418,7 @@
     <Component class="javax.swing.JProgressBar" name="jpCabeza1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -426,7 +426,7 @@
     <Component class="javax.swing.JProgressBar" name="jpBrazoIZ1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -434,7 +434,7 @@
     <Component class="javax.swing.JProgressBar" name="jpBrazoDE1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -442,7 +442,7 @@
     <Component class="javax.swing.JProgressBar" name="jpPiernaIZ1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>
@@ -450,7 +450,7 @@
     <Component class="javax.swing.JProgressBar" name="jpPiernaDE1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="stringPainted" type="boolean" value="true"/>
       </Properties>

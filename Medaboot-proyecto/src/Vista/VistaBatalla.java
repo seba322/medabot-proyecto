@@ -286,34 +286,34 @@ public class VistaBatalla extends javax.swing.JPanel {
         jpVida2.setBackground(new java.awt.Color(255, 51, 51));
         jpVida2.setStringPainted(true);
 
-        jpCabeza2.setBackground(new java.awt.Color(255, 153, 0));
+        jpCabeza2.setBackground(new java.awt.Color(204, 0, 0));
         jpCabeza2.setStringPainted(true);
 
-        jpBrazoIZ2.setBackground(new java.awt.Color(255, 153, 0));
+        jpBrazoIZ2.setBackground(new java.awt.Color(204, 0, 0));
         jpBrazoIZ2.setStringPainted(true);
 
-        jpBrazoDE2.setBackground(new java.awt.Color(255, 153, 0));
+        jpBrazoDE2.setBackground(new java.awt.Color(204, 0, 0));
         jpBrazoDE2.setStringPainted(true);
 
-        jpPiernaIZ2.setBackground(new java.awt.Color(255, 153, 0));
+        jpPiernaIZ2.setBackground(new java.awt.Color(204, 0, 0));
         jpPiernaIZ2.setStringPainted(true);
 
-        jpPiernaDE2.setBackground(new java.awt.Color(255, 153, 0));
+        jpPiernaDE2.setBackground(new java.awt.Color(204, 0, 0));
         jpPiernaDE2.setStringPainted(true);
 
-        jpCabeza1.setBackground(new java.awt.Color(255, 153, 0));
+        jpCabeza1.setBackground(new java.awt.Color(204, 0, 0));
         jpCabeza1.setStringPainted(true);
 
-        jpBrazoIZ1.setBackground(new java.awt.Color(255, 153, 0));
+        jpBrazoIZ1.setBackground(new java.awt.Color(204, 0, 0));
         jpBrazoIZ1.setStringPainted(true);
 
-        jpBrazoDE1.setBackground(new java.awt.Color(255, 153, 0));
+        jpBrazoDE1.setBackground(new java.awt.Color(204, 0, 0));
         jpBrazoDE1.setStringPainted(true);
 
-        jpPiernaIZ1.setBackground(new java.awt.Color(255, 153, 0));
+        jpPiernaIZ1.setBackground(new java.awt.Color(204, 0, 0));
         jpPiernaIZ1.setStringPainted(true);
 
-        jpPiernaDE1.setBackground(new java.awt.Color(255, 153, 0));
+        jpPiernaDE1.setBackground(new java.awt.Color(204, 0, 0));
         jpPiernaDE1.setStringPainted(true);
 
         txtPhabilidad1.setEditable(false);

@@ -164,10 +164,10 @@ public class Usuario {
         if(conexion.conectar()){
             Statement stm=conexion.consultar();
             String insertar= "INSERT INTO USUARIO(NOMBRE,PASS,PERSONAJE) VALUES ('"+nombreUsuario+"','"+contraseña+"','"+nombreMedabot+"')";
-            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+"default"+"',"+"'"+"Cabeza Generica(C)"+"',"+"'"+"Brazo Generico(BI)"+"',"+"'"+"Brazo Generico(BD)"+"',"+"'"+"Pierna Generica(PI)"+"',"+"'"+"Pierna Generica(PD)"+"',"+"'"+"Escarabajo"+"',"+"10)"; 
-            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+"default"+"',"+"'"+"Cabeza Generica(C)"+"',"+"'"+"Brazo Generico(BI)"+"',"+"'"+"Brazo Generico(BD)"+"',"+"'"+"Pierna Generica(PI)"+"',"+"'"+"Pierna Generica(PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
+            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)"; 
+            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
                     
-            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+"default"+"',"+"'"+"Cabeza Generica(C)"+"',"+"'"+"Brazo Generico(BI)"+"',"+"'"+"Brazo Generico(BD)"+"',"+"'"+"Pierna Generica(PI)"+"',"+"'"+"Pierna Generica(PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
+            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
                     
             int respuesta=stm.executeUpdate(insertar);
             int creacionA=stm.executeUpdate(insertarMedabotA);

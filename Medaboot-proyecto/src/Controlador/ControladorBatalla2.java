@@ -20,17 +20,18 @@ import java.lang.reflect.Array.*;
 // la idea es en ataque guardar el ataque de una medaparte a otr , y luego y juntando estos en lista ataques
 
 
-public class ControladorBatalla2 implements ActionListener, FocusListener,ItemListener {
+public class ControladorBatalla2 implements ActionListener {
     private VistaBatalla vb;
     private Batalla batalla;
     private ArrayList ataques;// lista que guardara todos los ataques de un turno
-    private ArrayList ataque;// lista que guardara ataque de una medaparte a otra
+   // private ArrayList ataque;// lista que guardara ataque de una medaparte a otra
     private JToggleButton[] acciones1= new JToggleButton[5];// guardara los botones del jugador 1
     private JToggleButton[] acciones2= new JToggleButton[5];// guardara botones del jugador 2 
-    
+    private Medaboot turno ;
     public ControladorBatalla2(Batalla b ,VistaBatalla vb){
         
         this.batalla=b;
+        this.turno =this.batalla.getJugador1();
         this.vb=vb;
         this.acciones1[0]=this.vb.getJtBrazoIZ1();
         this.acciones1[1]=this.vb.getJtBrazoDE1();
@@ -44,22 +45,7 @@ public class ControladorBatalla2 implements ActionListener, FocusListener,ItemLi
         this.acciones2[4]=this.vb.getJtCabeza2();
         this.vb.getBtConfirmarA().addActionListener(this);
         this.vb.getBtListo().isSelected();
-        this.vb.getJtBrazoIZ1().addActionListener(this);
-       /* this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
-        this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
-        this.vb.getJpVida1().setMaximum(this.batalla.getJugador1().getSalud());
-        this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
         
-        this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
-        this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
-        this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
-        this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
-        this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
-        this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());
-        this.vb.getJpPiernaIZ2().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
-        this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
-        this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
-        this.vb.getJpVida2().setMaximum(this.batalla.getJugador2().getSalud());
         this.vb.getJpBrazoDE1().setMaximum(this.batalla.getJugador1().getBrazoDer().getSalud());
         this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSalud());
         this.vb.getJpPiernaIZ1().setMaximum(this.batalla.getJugador1().getPiernaIzq().getSalud());
@@ -69,7 +55,25 @@ public class ControladorBatalla2 implements ActionListener, FocusListener,ItemLi
         this.vb.getJpBrazoIZ2().setMaximum(this.batalla.getJugador2().getBrazoIzq().getSalud());
         this.vb.getJpPiernaIZ2().setMaximum(this.batalla.getJugador2().getPiernaIzq().getSalud());
         this.vb.getJpPiernaDE2().setMaximum(this.batalla.getJugador2().getPiernaDer().getSalud());
-        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSalud());*/
+        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSalud());
+        this.vb.getJpVida1().setMaximum(this.batalla.getJugador1().getSalud());
+        
+        this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSalud());
+        this.vb.getJpVida2().setMaximum(this.batalla.getJugador2().getSalud());
+         this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud()); 
+        this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
+        this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
+        this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
+        this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
+        this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
+        this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
+        this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
+        this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());
+        this.vb.getJpPiernaIZ2().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
+        this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
+        this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
+      
+        
         
         
         this.vb.getTxtPhabilidad1().setText("10");
@@ -98,29 +102,38 @@ public class ControladorBatalla2 implements ActionListener, FocusListener,ItemLi
         this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
         this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
         
-        realizarBatalla();
+//        realizarBatalla();
     
     }
     
-    public void realizarBatalla(){
-        while(this.batalla.getJugador1().getSalud()>0 && this.batalla.getJugador2().getSalud()>0){
-            for(Medaboot jugador:this.batalla.getPersonajes()){
-               if(jugador.equals(this.batalla.getJugador1())){
-                   botonDisabled(acciones2, null);
-                }
-               else{
-                   botonDisabled(acciones2, null);
-               }
-            }
-        }
-        
-        System.out.println("coenzar ");
-    }
-    
+//    public void realizarBatalla(){
+//        while(this.batalla.getJugador1().getSalud()>0 && this.batalla.getJugador2().getSalud()>0){
+//            for(Medaboot jugador:this.batalla.getPersonajes()){
+//               if(jugador.equals(this.batalla.getJugador1())){
+//                   botonDisabled(acciones2, null);
+//                }
+//               else{
+//                   botonDisabled(acciones2, null);
+//               }
+//            }
+//        }
+//        
+//        System.out.println("coenzar ");
+//    }
+//    
     
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        if (this.turno.equals(this.batalla.getJugador1())){
+        for (JToggleButton boton :this.acciones1){
+            if (boton.isSelected()){
+            botonDisabled(this.acciones1,boton);
+            
+            }
+        }
+        
+        }
         
        /* int parte =1;
        botonDisabled (this.acciones1, (JToggleButton) ae.getSource());// se selecciona un boton, se deshabilitan los demas
@@ -133,7 +146,7 @@ public class ControladorBatalla2 implements ActionListener, FocusListener,ItemLi
            parte+=1;
        }
        }*/
-       if(ae.getSource().equals(this.vb.getJtBrazoIZ1))){
+       if(ae.getSource().equals(this.vb.getJtBrazoIZ1())){
            if((this.vb.getJtBrazoIZ1().isSelected())){ 
                 System.out.println("kimbo");
            }
@@ -180,25 +193,7 @@ public class ControladorBatalla2 implements ActionListener, FocusListener,ItemLi
     
     }
 
-    @Override
-    public void focusGained(FocusEvent fe) {
-       //if(fe.getSource().equals(this.vb.getJtBrazoIZ1())){
-           //System.out.println("kimbo");
-       
-    }
-
-    @Override
-    public void focusLost(FocusEvent fe) {
-        this.vb.addFocusListener(this);
-    }
-
-    @Override
-    public void itemStateChanged(ItemEvent ie) {
-        if((this.vb.getJtBrazoIZ1().isSelected())){ 
-            System.out.println("kimbo");
-        
-           
-    }
- }
+     
+   
 }
         
