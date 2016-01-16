@@ -25,15 +25,17 @@ import java.util.List;
 public class ControladorBatalla2 implements ActionListener {
     private VistaBatalla vb;
     private Batalla batalla;
-    private ArrayList ataques;// lista que guardara todos los ataques de un turno
-   // private ArrayList ataque;// lista que guardara ataque de una medaparte a otra
-    private JToggleButton[] acciones1= new JToggleButton[5];// guardara los botones del jugador 1
-    private JToggleButton[] acciones2= new JToggleButton[5];// guardara botones del jugador 2 
+    private ArrayList <ArrayList>  ataques=new <ArrayList> ArrayList();// lista que guardara todos los ataques de un turno
+    private ArrayList<ArrayList> ataques2=new <ArrayList> ArrayList();;
+    private ArrayList<JToggleButton> acciones1= new ArrayList<JToggleButton>();// guardara los botones del jugador 1
+    private ArrayList<JToggleButton> acciones2=new ArrayList<JToggleButton>();// guardara botones del jugador 2 
     private Medaboot turno ;
+    private JToggleButton seleccionador1=null;
+    private JToggleButton seleecionador2=null;
     public ControladorBatalla2(Batalla b ,VistaBatalla vb){
         
        
-        this.ataques=new ArrayList();
+        
         this.batalla=b;
         this.turno =this.batalla.getJugador1();
         this.vb=vb;
@@ -48,16 +50,16 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getJtPiernaDE2().addActionListener(this);
         this.vb.getJtCabeza2().addActionListener(this);
         
-        this.acciones1[0]=this.vb.getJtBrazoIZ1();
-        this.acciones1[1]=this.vb.getJtBrazoDE1();
-        this.acciones1[2]=this.vb.getJtPiernaIZ1();
-        this.acciones1[3]=this.vb.getJtPiernaDE1();
-        this.acciones1[4]=this.vb.getJtCabeza1();
-        this.acciones2[0]=this.vb.getJtBrazoIZ2();
-        this.acciones2[1]=this.vb.getJtBrazoDE2();
-        this.acciones2[2]=this.vb.getJtPiernaIZ2();
-        this.acciones2[3]=this.vb.getJtPiernaDE2();
-        this.acciones2[4]=this.vb.getJtCabeza2();
+        this.acciones1.add(this.vb.getJtBrazoIZ1());
+        this.acciones1.add(this.vb.getJtBrazoDE1());
+        this.acciones1.add(this.vb.getJtPiernaIZ1());
+        this.acciones1.add(this.vb.getJtPiernaDE1());
+        this.acciones1.add(this.vb.getJtCabeza1());
+        this.acciones2.add(this.vb.getJtBrazoIZ2());
+        this.acciones2.add(this.vb.getJtBrazoDE2());
+        this.acciones2.add(this.vb.getJtPiernaIZ2());
+        this.acciones2.add(this.vb.getJtPiernaDE2());
+        this.acciones2.add(this.vb.getJtCabeza2());
         this.vb.getBtConfirmarA().addActionListener(this);
         this.vb.getBtListo().isSelected();
         
@@ -141,57 +143,101 @@ public class ControladorBatalla2 implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        int parte =0;
-        if (this.turno.equals(this.batalla.getJugador1())){
-           
-        for (JToggleButton boton :this.acciones1){
-            if (boton.isSelected()){
-            botonDisabled(this.acciones1,boton);
-            switch(parte){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
+      if (ae.getSource().equals(this.vb.getBtConfirmarA())){
+            int parte = this.acciones1.indexOf(this.seleccionador1);
+            int parte2= this.acciones2.indexOf(this.seleecionador2);
+        switch(parte){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
             case 0: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoIzq(),null)));
+            System.out.println(this.ataques);
                   break;
-            case 1: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoDer().getNombre(),null)) );
+            case 1: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoDer(),null)) );
                   break;
-            case 2: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaDer())) );
+            case 2: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaIzq(),null)) );
                   break;
-            case 3: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaIzq().getNombre(),null)) );
+            case 3: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaDer(),null)) );
                   break;   
-            case 4:this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getCabeza().getNombre(),null)) );
+            case 4:this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getCabeza(),null)) );
+                  break;   
+            default: System.out.println("error");
+                 }
+
+            
+             System.out.println(this.ataques);
+            
+        switch(parte2){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
+                     // y se guardara en una lista , definida en atributo 
+            case 0: this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getBrazoIzq());
+            System.out.println(this.ataques);
+                  break;
+            case 1:this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getBrazoDer());
+                  break;
+            case 2: this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getPiernaIzq());
+                  break;
+            case 3: this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getPiernaDer());
+                  break;   
+            case 4:this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getCabeza());
                   break;   
             default: System.out.println("error");
             
+             System.out.println(this.ataques);
             
             
-         }
-          botonEnabled(this.acciones2);
+            
+              }
+            
+            botonEnabled(this.acciones1);
+            botonEnabled(this.acciones2);
+        
+        }
+        
+     if (!ae.getSource().equals(this.vb.getBtConfirmarA())){
+        
+        if (this.turno.equals(this.batalla.getJugador1())){
+         
+           
+        for (JToggleButton boton :this.acciones1){
+            if (boton.isSelected()){
+                this.seleccionador1=boton;
+                botonDisabled(this.acciones1,boton);
+                botonEnabled(this.acciones2);
+                
+                 for(JToggleButton boton2 :this.acciones2){
+                      if (boton2.isSelected()){
+                         this.seleecionador2=boton2;
+                         botonDisabled(this.acciones2,boton2);
+                            break;
+               
+                             }
+              
+              }
             break;
             }
             
             else if (!boton.isSelected()) { 
             botonDisabled(this.acciones2,null);
             botonEnabled(this.acciones1);}
-            parte+=1;
+            
             
         }
         
         }
-        System.out.println(parte);
+        
+     }
    
-   
-         System.out.println(this.ataques);
+       
     }
     
     //metodos que deshablita botones pertenicientes a un array compuesto por botones ( se usara el array de botones definidos en atributos)
     //deshabilita todos los bototnes del array , menos el seleccionado
-    public void botonEnabled( JToggleButton[] botones){
+    public void botonEnabled( ArrayList<JToggleButton> botones){
         for (JToggleButton boton : botones){
                     boton.setEnabled(true);
                 }
      }
     
     // metodo que re habilita los botones del array
-    public void botonDisabled (JToggleButton[] botones,JToggleButton seleccionado){
+    public void botonDisabled (ArrayList<JToggleButton> botones,JToggleButton seleccionado){
         for (JToggleButton boton : botones){
             if (!boton.equals(seleccionado)){
                  boton.setEnabled(false);
