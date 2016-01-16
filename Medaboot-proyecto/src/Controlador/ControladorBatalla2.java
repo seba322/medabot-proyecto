@@ -127,6 +127,18 @@ public class ControladorBatalla2 implements ActionListener {
     public void agregarTexto(String mensaje){
         this.vb.getTxAcciones().append(mensaje);
     }
+    public void setPH1(int coste){
+       int phActual=Integer.parseInt(this.vb.getTxtPhabilidad1().getText());
+       int phNuevo=phActual-coste;
+       this.vb.getTxtPhabilidad1().setText(Integer.toString(phNuevo));
+        
+    }
+    public void setPH2(int coste){
+       int phActual=Integer.parseInt(this.vb.getTxtPhabilidad2().getText());
+       int phNuevo=phActual-coste;
+       this.vb.getTxtPhabilidad2().setText(Integer.toString(phNuevo));
+        
+    }
     
     
 //    public void realizarBatalla(){
