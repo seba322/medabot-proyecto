@@ -1,10 +1,12 @@
 package Controlador;
 
 import Modelo.*;
+import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.VistaAdmin;
 import Modelo.Usuario;
+import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
@@ -17,10 +19,12 @@ import java.util.logging.Logger;
 public class ControladorAdministracion implements ActionListener,ItemListener {
     VistaAdmin vta;
     Usuario user;
+    VistaMenu vm;
     
     
-    public ControladorAdministracion(VistaAdmin vta,Usuario user){
+    public ControladorAdministracion(VistaAdmin vta,Usuario user,VistaMenu vm){
         this.vta=vta;
+        this.vm=vm;
         this.user=user;
         for(int i=0;i<this.user.getPersonajes().length;i++){
             this.vta.getJcPersonaje().addItem(this.user.getPersonajes()[i].getNombre());
@@ -38,6 +42,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
         this.vta.getJcPersonaje().addItemListener(this);
         this.vta.getBtSeleccionar().addActionListener(this);
         this.vta.getBtGuardar().addActionListener(this);
+        this.vta.getBtAtras().addActionListener(this);
     }
     
     
@@ -45,6 +50,14 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+          if(ae.getSource().equals(this.vta.getBtAtras())){
+              
+          this.vm.getContentPane().removeAll();
+          this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
+          this.vm.getContentPane().revalidate();
+          this.vm.getContentPane().repaint();
+          }
 
          if (ae.getSource().equals(this.vta.getBtSeleccionar())) {
          this.vta.getJcPiernaDE().removeAllItems();
