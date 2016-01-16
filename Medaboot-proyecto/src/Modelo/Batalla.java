@@ -73,11 +73,11 @@ public class Batalla {
             if(daño>def){
                 accion.get(1).setSalud(daño,def);
                 this.partes.add(accion.get(1));
-                this.mensajes.add(personaje.getNombre()+"causa"+Integer.toString(daño-def)+"de daño con"+accion.get(1).getNombre()+"a"+accion.get(0).getNombre());
+                this.mensajes.add(personaje.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
             }
             else{
                 this.partes.add(accion.get(1));
-                this.mensajes.add("nO RECIBE DAÑO");
+                this.mensajes.add("NO RECIBE DAÑO");
              
                 
             dañoTotal+=daño;

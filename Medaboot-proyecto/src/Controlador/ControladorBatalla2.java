@@ -27,12 +27,13 @@ public class ControladorBatalla2 implements ActionListener {
     private VistaBatalla vb;
     private Batalla batalla;
     private ArrayList <ArrayList>  ataques=new <ArrayList> ArrayList();// lista que guardara todos los ataques de un turno
-    private ArrayList<ArrayList> ataques2=new <ArrayList> ArrayList();;
+    private ArrayList<ArrayList> ataques2=new <ArrayList> ArrayList();
     private ArrayList<JToggleButton> acciones1= new ArrayList<JToggleButton>();// guardara los botones del jugador 1
     private ArrayList<JToggleButton> acciones2=new ArrayList<JToggleButton>();// guardara botones del jugador 2 
     private Medaboot turno ;
     private JToggleButton seleccionador1=null;
     private JToggleButton seleecionador2=null;
+    private int contador =0;
     public ControladorBatalla2(Batalla b ,VistaBatalla vb){
         
        
@@ -120,7 +121,11 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
         this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
         this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
-        botonDisabled(this.acciones2,null);
+        
+        
+       botonDisabled(this.acciones2,null);
+        
+       
 //        realizarBatalla();
           
     }
@@ -129,21 +134,21 @@ public class ControladorBatalla2 implements ActionListener {
         
         int i=0;
         for( String texto: msj){
-            this.vb.getTxAcciones().append(texto);
+            this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
-                if(parte.get(i).getNombre().endsWith("PD")){
+                if(parte.get(i).getNombre().endsWith("(PD)")){
                     this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("PI")){
+                else if(parte.get(i).getNombre().endsWith("(PI)")){
                     this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("BD")){
+                else if(parte.get(i).getNombre().endsWith("(BD)")){
                     this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("BI")){
+                else if(parte.get(i).getNombre().endsWith("(BI)")){
                     this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("C")){
+                else if(parte.get(i).getNombre().endsWith("(C)")){
                     this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
                 }
             }
@@ -157,21 +162,21 @@ public class ControladorBatalla2 implements ActionListener {
         
         int i=0;
         for( String texto: msj){
-            this.vb.getTxAcciones().append(texto);
+            this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
-                if(parte.get(i).getNombre().endsWith("PD")){
+                if(parte.get(i).getNombre().endsWith("(PD)")){
                     this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("PI")){
+                else if(parte.get(i).getNombre().endsWith("(PI)")){
                     this.vb.getJpPiernaIZ2().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("BD")){
+                else if(parte.get(i).getNombre().endsWith("(BD)")){
                     this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("BI")){
+                else if(parte.get(i).getNombre().endsWith("(BI)")){
                     this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());
                 }
-                else if(parte.get(i).getNombre().endsWith("C")){
+                else if(parte.get(i).getNombre().endsWith("(C)")){
                     this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
                 }
             }
@@ -189,7 +194,7 @@ public class ControladorBatalla2 implements ActionListener {
             int phNuevo=phActual-coste;
             this.vb.getTxtPhabilidad1().setText(Integer.toString(phNuevo));
         }
-        else{
+        else if (jugador.equals(this.batalla.getJugador2())) {
             int phActual=Integer.parseInt(this.vb.getTxtPhabilidad2().getText());
             int phNuevo=phActual-coste;
             this.vb.getTxtPhabilidad2().setText(Integer.toString(phNuevo));
@@ -220,6 +225,38 @@ public class ControladorBatalla2 implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         
       if  (ae.getSource().equals(this.vb.getBtListo())){
+          if (this.contador==0){
+          System.out.println("EL CONTADOR ES"+this.contador);
+          this.turno=this.batalla.getJugador2();
+          this.contador+=1;
+          System.out.println("EL CONTADOR ES"+this.contador);
+           botonDisabled(this.acciones1,null);
+              botonEnabled(acciones2);
+          
+         }
+          else if (this.contador==1){
+              System.out.println("EL CONTADOR ES"+this.contador);
+          this.turno=this.batalla.getJugador1();
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),"nada","nada");
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador2(),"nada","nada");
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());
+          this.ataques.clear();
+          this.ataques2.clear();
+              
+         
+          this.contador=0;
+          
+           System.out.println("EL CONTADOR ES"+this.contador);
+           botonDisabled(this.acciones2,null);
+           botonEnabled(acciones1);
+          
+          }    
+          
     }
       if (ae.getSource().equals(this.vb.getBtConfirmarA())){
           
@@ -228,8 +265,7 @@ public class ControladorBatalla2 implements ActionListener {
             int parte2= this.acciones2.indexOf(this.seleecionador2);
             if (this.turno.equals(this.batalla.getJugador1())){
             confirmador(parte ,parte2,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2());
-//            this.seleccionador1.setSelected(false);
-//            this.seleecionador2.setSelected(false);
+//          
             }
             
             else{
@@ -238,17 +274,15 @@ public class ControladorBatalla2 implements ActionListener {
             }
         }
         
-     if (!ae.getSource().equals(this.vb.getBtConfirmarA())){
+     if (!ae.getSource().equals(this.vb.getBtConfirmarA()) && !ae.getSource().equals(this.vb.getBtListo())){
         
         if (this.turno.equals(this.batalla.getJugador1())){
             habilitador(this.acciones1,this.acciones2);
-            this.seleccionador1.setSelected(false);
-            this.seleecionador2.setSelected(false);
+           
        }
         else {
             habilitador(this.acciones2,this.acciones1);
-            this.seleccionador1.setSelected(false);
-            this.seleecionador2.setSelected(false);
+          
         
         
         } 
@@ -280,19 +314,34 @@ public class ControladorBatalla2 implements ActionListener {
    public void habilitador(ArrayList<JToggleButton> bAtacantes,ArrayList<JToggleButton> bAtacados){
     for (JToggleButton boton :bAtacantes){
             if (boton.isSelected()){
+                if (bAtacantes.equals(this.acciones1)){
                 this.seleccionador1=boton;
+                }
+                else{
+                this.seleecionador2=boton;
+                }
+                
+                
+                
                 botonDisabled(bAtacantes,boton);
                 botonEnabled( bAtacados);
-                
+    
                  for(JToggleButton boton2 : bAtacados){
                       if (boton2.isSelected()){
-                          this.seleecionador2=boton2;
+                         if (bAtacantes.equals(this.acciones1)){
+                             this.seleecionador2=boton2;
+                                }
+                             else{
+                                 this.seleccionador1=boton2;
+                         }
                          botonDisabled( bAtacados,boton2);
                             break;
                
-                             }
-                    }
+                             
+               }
+                 }
             break;
+                 
             }
             
             else if (!boton.isSelected()) { 
@@ -343,8 +392,9 @@ public class ControladorBatalla2 implements ActionListener {
             
                 }
             System.out.println(this.ataques);
-//            this.seleccionador1.setSelected(false);
-//            this.seleecionador2.setSelected(false);
+             System.out.println(this.ataques2);
+            this.seleccionador1.setSelected(false);
+           this.seleecionador2.setSelected(false);
             botonEnabled(bAtacantes);
             botonDisabled(bAtacado,null);
    
