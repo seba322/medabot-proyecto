@@ -129,7 +129,12 @@ public class ControladorRegistro implements ActionListener  {
                   }
                   
                   
-                  this.vt1.dispose();
+                  this.vt1.getContentPane().removeAll();
+                  this.vt1.getContentPane().add(this.vt1.getjPanel1(),BorderLayout.CENTER);
+                  this.vt1.getContentPane().revalidate();
+                  this.vt1.getTxtUsuario().setText("");
+                  this.vt1.getTxtContraseña().setText("");
+                  this.vt1.getContentPane().repaint();
                   
               }
               else{
