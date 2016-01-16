@@ -124,21 +124,79 @@ public class ControladorBatalla2 implements ActionListener {
 //        realizarBatalla();
           
     }
-    public void agregarTexto(String mensaje){
-        this.vb.getTxAcciones().append(mensaje);
-    }
-    public void setPH1(int coste){
-       int phActual=Integer.parseInt(this.vb.getTxtPhabilidad1().getText());
-       int phNuevo=phActual-coste;
-       this.vb.getTxtPhabilidad1().setText(Integer.toString(phNuevo));
+    //Mpdofia las barras de vida y imprime el historial de acciones
+    public void setEscenario(ArrayList<String> msj,ArrayList<Medaparte> parte){
+        
+        int i=0;
+        for( String texto: msj){
+            this.vb.getTxAcciones().append(texto);
+            if(i<parte.size()){
+                if(parte.get(i).getNombre().endsWith("PD")){
+                    this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("PI")){
+                    this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("BD")){
+                    this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("BI")){
+                    this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("C")){
+                    this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
+                }
+            }
+        }
+        this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
+        this.batalla.setMensajes();
+        this.batalla.setPartes();
         
     }
-    public void setPH2(int coste){
-       int phActual=Integer.parseInt(this.vb.getTxtPhabilidad2().getText());
-       int phNuevo=phActual-coste;
-       this.vb.getTxtPhabilidad2().setText(Integer.toString(phNuevo));
+    public void setEscenario2(ArrayList<String> msj,ArrayList<Medaparte> parte){
+        
+        int i=0;
+        for( String texto: msj){
+            this.vb.getTxAcciones().append(texto);
+            if(i<parte.size()){
+                if(parte.get(i).getNombre().endsWith("PD")){
+                    this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("PI")){
+                    this.vb.getJpPiernaIZ2().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("BD")){
+                    this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("BI")){
+                    this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());
+                }
+                else if(parte.get(i).getNombre().endsWith("C")){
+                    this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
+                }
+            }
+        }
+        this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
+        this.batalla.setMensajes();
+        this.batalla.setPartes();
         
     }
+    //Modifica los puntos de habilidad del jugador 1 y 2
+    public void setPH1(int coste,Medaboot jugador){
+        
+        if(jugador.equals(this.batalla.getJugador1())){
+            int phActual=Integer.parseInt(this.vb.getTxtPhabilidad1().getText());
+            int phNuevo=phActual-coste;
+            this.vb.getTxtPhabilidad1().setText(Integer.toString(phNuevo));
+        }
+        else{
+            int phActual=Integer.parseInt(this.vb.getTxtPhabilidad2().getText());
+            int phNuevo=phActual-coste;
+            this.vb.getTxtPhabilidad2().setText(Integer.toString(phNuevo));
+        }
+    }
+    
+   
     
     
 //    public void realizarBatalla(){

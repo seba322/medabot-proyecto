@@ -112,6 +112,7 @@ public class Medaboot {
     
     
     
+    
 
     public void setMedaparte( String cambio , String tipo) throws SQLException{
       

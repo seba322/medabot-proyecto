@@ -9,10 +9,15 @@ public class Batalla {
    private Medaboot jugador1;
    private Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
-   private ControladorBatalla2 ctb2;
-   private ArrayList mensajes;
+   
+   private ArrayList<Medaparte> partes;
+   private ArrayList<String> mensajes;
+  
     
     public Batalla (Medaboot jugador1,Medaboot jugador2){
+        this.partes=new ArrayList<Medaparte>();
+        this.mensajes=new ArrayList<String>();
+        
         this.jugador1= jugador1;
         this.jugador2=jugador2;
         this.personajes=new ArrayList();
@@ -20,9 +25,7 @@ public class Batalla {
         personajes.add(this.jugador2);
         
     }
-    public Batalla(ControladorBatalla2 ctb2){
-        this.ctb2=ctb2;
-    }
+    
 
     public Medaboot getJugador1() {
         return jugador1;
@@ -33,11 +36,24 @@ public class Batalla {
         
     }
 
-    public ArrayList getMensajes() {
+    public ArrayList<Medaparte> getPartes() {
+        return partes;
+    }
+
+    public ArrayList<String> getMensajes() {
         return mensajes;
     }
+
+    public void setPartes() {
+        this.partes.clear();
+    }
+
+    public void setMensajes() {
+        this.mensajes.clear();
+    }
     
-    
+
+  
     public ArrayList definirPrimero(ArrayList personajes){
         
         return personajes;
@@ -53,13 +69,16 @@ public class Batalla {
         for(ArrayList<Medaparte> accion:ataques){
             int daño= accion.get(0).getAtaque();
             int def=accion.get(1).getDefensa();
-            this.mensajes.add(accion.get(1));
+           
             if(daño>def){
                 accion.get(1).setSalud(daño,def);
+                this.partes.add(accion.get(1));
+                this.mensajes.add(personaje.getNombre()+"causa"+Integer.toString(daño-def)+"de daño con"+accion.get(1).getNombre()+"a"+accion.get(0).getNombre());
             }
             else{
-                String mensaje="La defense evita que el jugador reciba daño";
-                this.mensajes.add(mensaje);
+                this.partes.add(accion.get(1));
+                this.mensajes.add("nO RECIBE DAÑO");
+             
                 
             dañoTotal+=daño;
             
@@ -68,7 +87,7 @@ public class Batalla {
                int dafTotal=personaje.getDefensa();
                 if(defTotal>dañoTotal){
                     String mensaje2="No recibe daño";
-                    this.mensajes.add(mensaje2);
+                  
                 }
                 else{
                   dañoTotal-=defTotal;
