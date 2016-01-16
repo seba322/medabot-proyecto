@@ -74,6 +74,11 @@ public class Medaparte {
         return defensa;
     }
 
+    public int getPh() {
+        return ph;
+    }
+    
+
     public void setSalud(int daño,int def) {
         this.salud =salud- (daño-def);
     }
