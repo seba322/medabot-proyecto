@@ -63,7 +63,7 @@ public class ControladorBatalla2 implements ActionListener {
         this.acciones2.add(this.vb.getJtPiernaDE2());
         this.acciones2.add(this.vb.getJtCabeza2());
         this.vb.getBtConfirmarA().addActionListener(this);
-        this.vb.getBtListo().isSelected();
+        this.vb.getBtListo().addActionListener(this);
         
         this.vb.getJpBrazoDE1().setMaximum(this.batalla.getJugador1().getBrazoDer().getSalud());
         this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSalud());
@@ -160,21 +160,28 @@ public class ControladorBatalla2 implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+      if  (ae.getSource().equals(this.vb.getBtListo())){
+    }
       if (ae.getSource().equals(this.vb.getBtConfirmarA())){
             int parte = this.acciones1.indexOf(this.seleccionador1);
             int parte2= this.acciones2.indexOf(this.seleecionador2);
         switch(parte){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
             case 0: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoIzq(),null)));
-            
+                  setPH1(this.batalla.getJugador1().getBrazoIzq().getPh());
                   break;
             case 1: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoDer(),null)) );
+                  setPH1(this.batalla.getJugador1().getBrazoDer().getPh());
                   break;
             case 2: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaIzq(),null)) );
+                  setPH1(this.batalla.getJugador1().getPiernaIzq().getPh());
                   break;
             case 3: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getPiernaDer(),null)) );
+                  setPH1(this.batalla.getJugador1().getPiernaDer().getPh());
                   break;   
             case 4:this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getCabeza(),null)) );
+                  setPH1(this.batalla.getJugador1().getCabeza().getPh());
                   break;   
             default: System.out.println("error");
                  }
@@ -215,30 +222,7 @@ public class ControladorBatalla2 implements ActionListener {
         if (this.turno.equals(this.batalla.getJugador1())){
          
            
-        for (JToggleButton boton :this.acciones1){
-            if (boton.isSelected()){
-                this.seleccionador1=boton;
-                botonDisabled(this.acciones1,boton);
-                botonEnabled(this.acciones2);
-                
-                 for(JToggleButton boton2 :this.acciones2){
-                      if (boton2.isSelected()){
-                         this.seleecionador2=boton2;
-                         botonDisabled(this.acciones2,boton2);
-                            break;
-               
-                             }
-              
-              }
-            break;
-            }
-            
-            else if (!boton.isSelected()) { 
-            botonDisabled(this.acciones2,null);
-            botonEnabled(this.acciones1);}
-            
-            
-        }
+       
         
         }
         
@@ -267,6 +251,75 @@ public class ControladorBatalla2 implements ActionListener {
     }
 
      
+   public void habilitador(ArrayList<JToggleButton> bAtacantes,ArrayList<JToggleButton> bAtacados,JToggleButton selec1,JToggleButton selec2){
+    for (JToggleButton boton :bAtacantes){
+            if (boton.isSelected()){
+                selec1=boton;
+                botonDisabled(bAtacantes,boton);
+                botonEnabled( bAtacados);
+                
+                 for(JToggleButton boton2 : bAtacados){
+                      if (boton2.isSelected()){
+                          selec2=boton2;
+                         botonDisabled( bAtacados,boton2);
+                            break;
+               
+                             }
+                    }
+            break;
+            }
+            
+            else if (!boton.isSelected()) { 
+            botonDisabled( bAtacados,null);
+            botonEnabled(bAtacantes);}
+            
+            
+        }
    
+   
+   }
+   public void confirmador(int parteAtacante ,int parteAtacado,ArrayList <ArrayList> lista,ArrayList<JToggleButton> bAtacantes,ArrayList<JToggleButton>bAtacado,Medaboot ataca ,Medaboot atacado){
+        switch(parteAtacante){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
+                     // y se guardara en una lista , definida en atributo 
+            case 0: lista.add(new ArrayList(Arrays.asList(ataca.getBrazoIzq(),null)));
+                  setPH1( ataca.getBrazoIzq().getPh());
+                  break;
+            case 1: lista.add(new ArrayList(Arrays.asList(ataca.getBrazoDer(),null)) );
+                  setPH1( ataca.getBrazoDer().getPh());
+                  break;
+            case 2: lista.add(new ArrayList(Arrays.asList(ataca.getPiernaIzq(),null)) );
+                  setPH1( ataca.getPiernaIzq().getPh());
+                  break;
+            case 3: lista.add(new ArrayList(Arrays.asList(ataca.getPiernaDer(),null)) );
+                  setPH1( ataca.getPiernaDer().getPh());
+                  break;   
+            case 4:lista.add(new ArrayList(Arrays.asList(ataca.getCabeza(),null)) );
+                  setPH1( ataca.getCabeza().getPh());
+                  break;   
+            default: System.out.println("error");
+                 }
+         switch(parteAtacado){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
+                     // y se guardara en una lista , definida en atributo 
+            case 0: lista.get(lista.size()-1).set(1, atacado.getBrazoIzq());
+            
+                  break;
+            case 1:lista.get(lista.size()-1).set(1, atacado.getBrazoDer());
+                  break;
+            case 2: lista.get(lista.size()-1).set(1, atacado.getPiernaIzq());
+                  break;
+            case 3: lista.get(lista.size()-1).set(1, atacado.getPiernaDer());
+                  break;   
+            case 4:lista.get(lista.size()-1).set(1, atacado.getCabeza());
+                  break;   
+            default: System.out.println("error");
+            
+                }
+            System.out.println(this.ataques);
+            this.seleccionador1.setSelected(false);
+            this.seleecionador2.setSelected(false);
+            botonEnabled(bAtacantes);
+            botonDisabled(bAtacado,null);
+   
+   }
 }
         
