@@ -154,7 +154,7 @@ public class ControladorBatalla2 implements ActionListener {
         switch(parte){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
             case 0: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoIzq(),null)));
-            System.out.println(this.ataques);
+            
                   break;
             case 1: this.ataques.add(new ArrayList(Arrays.asList(this.batalla.getJugador1().getBrazoDer(),null)) );
                   break;
@@ -168,12 +168,12 @@ public class ControladorBatalla2 implements ActionListener {
                  }
 
             
-             System.out.println(this.ataques);
+            
             
         switch(parte2){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
             case 0: this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getBrazoIzq());
-            System.out.println(this.ataques);
+            
                   break;
             case 1:this.ataques.get(this.ataques.size()-1).set(1, this.batalla.getJugador2().getBrazoDer());
                   break;
@@ -185,14 +185,16 @@ public class ControladorBatalla2 implements ActionListener {
                   break;   
             default: System.out.println("error");
             
-             System.out.println(this.ataques);
+            
             
             
             
               }
-            
+            System.out.println(this.ataques);
+            this.seleccionador1.setSelected(false);
+            this.seleecionador2.setSelected(false);
             botonEnabled(this.acciones1);
-            botonEnabled(this.acciones2);
+            botonDisabled(this.acciones2,null);
         
         }
         
