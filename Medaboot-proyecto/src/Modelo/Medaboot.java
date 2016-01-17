@@ -107,7 +107,7 @@ public class Medaboot {
     }
 
     public void setSalud(int dañoTotal) {
-        this.salud = salud-dañoTotal;
+        this.salud = this.salud-dañoTotal;
     }
     
     

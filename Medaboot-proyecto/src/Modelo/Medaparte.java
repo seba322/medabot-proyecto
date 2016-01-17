@@ -80,7 +80,7 @@ public class Medaparte {
     
 
     public void setSalud(int daño,int def) {
-        this.salud =salud- (daño-def);
+        this.salud =this.salud - (daño-def);
     }
     
 }

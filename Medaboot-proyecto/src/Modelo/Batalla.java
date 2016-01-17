@@ -80,9 +80,9 @@ public class Batalla {
                 this.mensajes.add("NO RECIBE DAÑO");
              
                 
-            dañoTotal+=daño;
             
-        }
+            }
+            dañoTotal+=daño;
            if(Adef.equals("si")){
                int dafTotal=personaje.getDefensa();
                 if(defTotal>dañoTotal){
