@@ -51,6 +51,25 @@ public class Batalla {
     public void setMensajes() {
         this.mensajes.clear();
     }
+     public int getPorcent(Medaboot personaje){
+        int porcent=(personaje.getSalud()*100)/personaje.getSaludMax();
+        return porcent;
+    
+    }
+     public void restablecerAtaque(Medaboot personaje){
+               personaje.getBrazoDer().setAtaque(-10);
+               personaje.getBrazoIzq().setAtaque(-10);
+               personaje.getPiernaDer().setAtaque(-10);
+               personaje.getPiernaIzq().setAtaque(-10);
+               personaje.getCabeza().setAtaque(-10);
+     }
+     public void restablecerEsquive(Medaboot personaje){
+         int EsquiveA=personaje.getEsquive();
+          personaje.setEsquive((EsquiveA+-100));
+     }
+     public void restablecerPh(Medaboot personaje){
+         personaje.setPh(10);
+     }
     
 
   
@@ -61,6 +80,88 @@ public class Batalla {
     public ArrayList getPersonajes(){
         return this.personajes;
     }
+    public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno){
+        System.out.println("MEDALLA"+personaje.getMedalla().getCarga());
+        System.out.println("MEDALLA"+personaje.getMedalla().getPotenciador());
+        if(personaje.getMedalla().getCarga().equals("Venganza")){
+           if(personaje.getMedalla().getMedaFuerza().equals("Velocidad")){
+                if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
+                    int EsquiveA=personaje.getEsquive();
+                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setLlamadoMeda();
+                }
+                else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
+                    int EsquiveA=personaje.getEsquive();
+                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setLlamadoMeda(); 
+                }
+                else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
+                    int EsquiveA=personaje.getEsquive();
+                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setLlamadoMeda(); 
+                }
+            }
+           else{
+                if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
+                    personaje.setPh(20);
+                    personaje.setLlamadoMeda();
+                }
+                else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
+                    personaje.setPh(20);
+                    personaje.setLlamadoMeda(); 
+                }
+                else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
+                    personaje.setPh(20);
+                    personaje.setLlamadoMeda(); 
+                }
+           }
+            
+            
+            
+        }
+        else if(personaje.getMedalla().getCarga().equals("Racha")){
+            if(getPorcent(personaje2)<=75 &&getPorcent(personaje2)>50 && personaje2.getLlamadoMeda() <=1 ){
+               personaje.getBrazoDer().setAtaque(10);
+               personaje.getBrazoIzq().setAtaque(10);
+               personaje.getPiernaDer().setAtaque(10);
+               personaje.getPiernaIzq().setAtaque(10);
+               personaje.getCabeza().setAtaque(10);
+               personaje2.setLlamadoMeda();
+            }
+            else if(getPorcent(personaje2)<=50 &&getPorcent(personaje2)>25 && personaje2.getLlamadoMeda() <=2){
+               personaje.getBrazoDer().setAtaque(10);
+               personaje.getBrazoIzq().setAtaque(10);
+               personaje.getPiernaDer().setAtaque(10);
+               personaje.getPiernaIzq().setAtaque(10);
+               personaje.getCabeza().setAtaque(10);
+                personaje2.setLlamadoMeda(); 
+            }
+            else if(getPorcent(personaje2)<=25 &&getPorcent(personaje2)>0 && personaje2.getLlamadoMeda() <=3){
+               personaje.getBrazoDer().setAtaque(10);
+               personaje.getBrazoIzq().setAtaque(10);
+               personaje.getPiernaDer().setAtaque(10);
+               personaje.getPiernaIzq().setAtaque(10);
+               personaje.getCabeza().setAtaque(10);
+               personaje.setLlamadoMeda(); 
+            }
+        }
+        
+        else if(personaje.getMedalla().getCarga().equals("Concentracion")){
+            if(turno==15){
+                personaje.masSalud((personaje.getSaludMax()*100)/25);
+                personaje.getBrazoDer().masSalud((personaje.getBrazoDer().getSaludMax()*100)/25);
+                personaje.getBrazoIzq().masSalud((personaje.getBrazoIzq().getSaludMax()*100)/25);
+                personaje.getPiernaIzq().masSalud((personaje.getPiernaIzq().getSaludMax()*100)/25);
+                personaje.getPiernaDer().masSalud((personaje.getPiernaDer().getSaludMax()*100)/25);
+                personaje.getCabeza().masSalud((personaje.getCabeza().getSaludMax()*100)/25);
+                
+            }
+        }
+        
+    }
+    
+        
+    
     // Metodo que ejecuta las acciones de cada personaje, tales como atacar , con cada medaparte 
     // y modificar sus puntos de vida, dependiendo de la defensa
     public void ejecutarAcciones(ArrayList<ArrayList> ataques,Medaboot personaje,String Adef,String Aesquive){

@@ -45,5 +45,18 @@ public class Medalla {
         this.nombre=nombre;
     
     }
+
+    public String getPotenciador() {
+        return potenciador;
+    }
+
+    public String getCarga() {
+        return carga;
+    }
+
+    public String getMedaFuerza() {
+        return medaFuerza;
+    }
+    
 }
 

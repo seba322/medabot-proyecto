@@ -24,6 +24,7 @@ public class Medaparte {
     private int defensa;
     private int esquive;
     private int ph ;
+    private int saludMax;
     
     public Medaparte (String nombre) throws SQLException{
         DBConection conexion=new DBConection();
@@ -38,6 +39,7 @@ public class Medaparte {
           this.habilidad=re.getString(5);
           this.ataque=re.getInt(4);
           this.salud = re.getInt(2);
+          this.saludMax=re.getInt(2);
           
           this.defensa = re.getInt(6);
           this.precision = re.getInt(7);
@@ -77,11 +79,25 @@ public class Medaparte {
     public int getPh() {
         return ph;
     }
+
+    public int getSaludMax() {
+        return saludMax;
+    }
+    
     
 
     public void setSalud(int daño,int def) {
         this.salud =this.salud - (daño-def);
     }
+
+    public void setAtaque(int suma) {
+        this.ataque += suma;
+    }
+    public void masSalud(int suma){
+        this.salud+=suma;
+    
+    }
+    
     
 }
 

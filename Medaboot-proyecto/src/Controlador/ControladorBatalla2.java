@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 // falta instanciar acciones 1 y acciones 2 
 // ordenar funcionamiento de lista ataques y ataque
 // la idea es en ataque guardar el ataque de una medaparte a otr , y luego y juntando estos en lista ataques
@@ -138,11 +139,7 @@ public class ControladorBatalla2 implements ActionListener {
         System.out.println(msj);
         System.out.println(parte);
         for( String texto: msj){
-            try {
-                  Thread.sleep(500);
-              } catch (InterruptedException ex) {
-                  Logger.getLogger(ControladorBatalla2.class.getName()).log(Level.SEVERE, null, ex);
-              }
+            
             this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
                 if(parte.get(i).getNombre().endsWith("(PD)")){
@@ -166,9 +163,12 @@ public class ControladorBatalla2 implements ActionListener {
                     this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
                     System.out.println("ESTOY AQUI!!5");
                 }
-            }
-            i=i+1;
+            
         }
+            }
+            
+            i=i+1;
+             
         this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
         System.out.println("ESTOY AQUI!!");
         this.batalla.setMensajes();
@@ -181,11 +181,8 @@ public class ControladorBatalla2 implements ActionListener {
         System.out.println(msj);
         System.out.println(parte);
         for( String texto: msj){
-            try {
-                  Thread.sleep(500);
-              } catch (InterruptedException ex) {
-                  Logger.getLogger(ControladorBatalla2.class.getName()).log(Level.SEVERE, null, ex);
-              }
+            
+                  
             this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
                 if(parte.get(i).getNombre().endsWith("(PD)")){
@@ -203,8 +200,10 @@ public class ControladorBatalla2 implements ActionListener {
                  if(parte.get(i).getNombre().endsWith("(C)")){
                     this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
                 }
+            
             }
             i=i+1;
+             
         }
         this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
         
@@ -227,7 +226,6 @@ public class ControladorBatalla2 implements ActionListener {
         }
     }
     
-   
     
     
 //    public void realizarBatalla(){
@@ -266,6 +264,7 @@ public class ControladorBatalla2 implements ActionListener {
               System.out.println(this.batalla.getJugador1().getPiernaDer().getNombre());
               System.out.println(this.batalla.getJugador1().getBrazoIzq().getNombre());
               System.out.println(this.batalla.getJugador1().getCabeza().getNombre());
+              
               System.out.println("EL CONTADOR ES"+this.contador);
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());

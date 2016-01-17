@@ -17,7 +17,9 @@ public class Medaboot {
     private String nombre;
     private Medalla medalla;
     private int salud;
+    private int saludMax;
     private int ph;
+    private int llamadoMeda;
     private Medaparte brazoIz;
     private Medaparte brazoDe;
     private Medaparte cabeza;
@@ -28,6 +30,7 @@ public class Medaboot {
   //  private Medaparte modificador;
     
     public Medaboot (String nombre) throws SQLException{
+        this.llamadoMeda=1;
         DBConection conexion=new DBConection();
         if(conexion.conectar()){
          Statement stm=conexion.consultar();
@@ -44,6 +47,7 @@ public class Medaboot {
          this.cabeza= new Medaparte(re.getString(4));
           
          this.salud= re.getInt (1);
+         this.saludMax=re.getInt (1);
          System.out.println("AQUI SALUD"+this.salud);
                 
          }
@@ -109,6 +113,35 @@ public class Medaboot {
     public void setSalud(int dañoTotal) {
         this.salud = this.salud-dañoTotal;
     }
+
+    public int getSaludMax() {
+        return saludMax;
+    }
+
+    public int getLlamadoMeda() {
+        return llamadoMeda;
+    }
+
+    public void setEsquive(int esquive) {
+        this.esquive = esquive;
+    }
+
+    public void setLlamadoMeda() {
+        this.llamadoMeda += 1;
+    }
+    public void masSalud(int suma){
+        this.salud+=suma;
+    }
+
+    public void setPh(int ph) {
+        this.ph = ph;
+    }
+    
+   
+
+   
+    
+   
     
     
     
