@@ -79,7 +79,7 @@ public class ControladorBatalla implements ActionListener {
                 System.out.println("aqui"+pj1.getSalud());
                 Medaboot pj2= this.user2.getPersonajes()[0];
                 Batalla batalla= new Batalla(pj1,pj2);
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm);
                 
                 this.vb.setSize(844, 584);
                 this.vm.getContentPane().removeAll();

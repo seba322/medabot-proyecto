@@ -136,6 +136,9 @@ public class Medaboot {
     public void setPh(int ph) {
         this.ph = ph;
     }
+    public void setSaludF(){
+        this.salud=saludMax;
+    }
     
    
 

@@ -97,6 +97,11 @@ public class Medaparte {
         this.salud+=suma;
     
     }
+
+    public void setSalud() {
+        this.salud = saludMax;
+    }
+    
     
     
 }

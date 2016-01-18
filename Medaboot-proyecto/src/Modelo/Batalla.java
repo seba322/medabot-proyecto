@@ -3,13 +3,15 @@ package Modelo;
 
 import java.util.ArrayList;
 import Controlador.*;
+import java.lang.Math.*;
 
 
 public class Batalla {
    private Medaboot jugador1;
    private Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
-   
+   private String ganador;
+   private String perdedor;
    private ArrayList<Medaparte> partes;
    private ArrayList<String> mensajes;
   
@@ -44,12 +46,33 @@ public class Batalla {
         return mensajes;
     }
 
+    public String getGanador() {
+        return ganador;
+    }
+
+    public String getPerdedor() {
+        return perdedor;
+    }
+
+    public void setPerdedor(String perdedor) {
+        this.perdedor = perdedor;
+    }
+
+    public void setGanador(String ganador) {
+        this.ganador = ganador;
+    }
+    
+
     public void setPartes() {
         this.partes.clear();
     }
 
     public void setMensajes() {
         this.mensajes.clear();
+    }
+    public void asignarMedaparte(){
+        int valorEntero = (int) Math.floor(Math.random()*(5-1+1)+1);// Valor entre M y N, ambos incluidos.
+        System.out.println("ESTE ES EL NUM"+valorEntero);
     }
      public int getPorcent(Medaboot personaje){
         int porcent=(personaje.getSalud()*100)/personaje.getSaludMax();
@@ -70,6 +93,18 @@ public class Batalla {
      public void restablecerPh(Medaboot personaje){
          personaje.setPh(10);
      }
+     public void restablecerVida(Medaboot personaje){
+         personaje.setSaludF();
+         personaje.getBrazoDer().setSalud();
+               personaje.getBrazoIzq().setSalud();
+               personaje.getPiernaDer().setSalud();
+               personaje.getPiernaIzq().setSalud();
+               personaje.getCabeza().setSalud();
+         
+         
+     }
+     
+     
     
 
   
