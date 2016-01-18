@@ -43,7 +43,7 @@ public class Usuario {
          
          String crear= "SELECT NOMBRE,PERSONAJE FROM USUARIO WHERE NOMBRE ="+nmU;
          System.out.println("aca tambien3");
-         String inventario1="SELECT USUARIO,MEDAPARTE FROM MEDAPARTEUSUARIO WHERE USUARIO="+nmU ;
+         String inventario1="SELECT USUARIO,MEDAPARTEES FROM MEDAPARTEUSUARIO WHERE USUARIO="+nmU ;
          String inventario2="SELECT USUARIO,MEDALLA FROM MEDALLAUSUARIO WHERE USUARIO="+nmU;
          System.out.println("aca tambien4");
          ResultSet informacion=stm.executeQuery(crear);
@@ -164,16 +164,18 @@ public class Usuario {
         if(conexion.conectar()){
             Statement stm=conexion.consultar();
             String insertar= "INSERT INTO USUARIO(NOMBRE,PASS,PERSONAJE) VALUES ('"+nombreUsuario+"','"+contraseña+"','"+nombreMedabot+"')";
-            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)"; 
-            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
-                    
-            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Escarabajo"+"',"+"10)";
-                    
+            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)"; 
+            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
+            String insetarMedapartes="INSERT INTO MEDAPARTEUSUARIO( USUARIO ) VALUES('"+nombreUsuario+"')" ;       
+            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
+            String insertarMedallas="INSERT INTO MEDALLAUSUARIO(USUARIO,MEDALLA) VALUES ('"+nombreUsuario+"','Gato,Toro,Aguila') ";        
             int respuesta=stm.executeUpdate(insertar);
             int creacionA=stm.executeUpdate(insertarMedabotA);
             int creacionB=stm.executeUpdate(insertarMedabotB);
             int creacionC=stm.executeUpdate(insertarMedabotC);
-            if (respuesta==1 && creacionA==1 && creacionB==1 && creacionC==1){
+            int creacionMedalla= stm.executeUpdate(insertarMedallas);
+            int creacionMedapartes=stm.executeUpdate(insetarMedapartes);
+            if (respuesta==1 && creacionA==1 && creacionB==1 && creacionC==1 && creacionMedalla==1 && creacionMedapartes==1){
                 System.out.println("Correcto");
             }
             
@@ -203,7 +205,7 @@ public class Usuario {
             modificador= modificador+elemento+",";
         
         }
-         String instruccion1 = "UPDATE MEDALLAUSUARIO SET MEDAPARTE='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
+         String instruccion1 = "UPDATE MEDALLAUSUARIO SET MEDALLA='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
            Statement consulta = conexion.consultar();  
          int actu=consulta.executeUpdate(instruccion1);       
         }
@@ -213,7 +215,7 @@ public class Usuario {
             modificador= modificador+elemento+",";
         
         }
-         String instruccion= "UPDATE MEDAPARTEUSUARIO SET MEDAPARTE='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
+         String instruccion= "UPDATE MEDAPARTEUSUARIO SET MEDAPARTEES='"+modificador+"' WHERE USUARIO="+this.nombreUsuario;
          Statement consulta = conexion.consultar();  
          int actu=consulta.executeUpdate(instruccion);
            

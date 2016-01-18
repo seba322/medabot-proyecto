@@ -30,40 +30,31 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btConfirmarA" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Component id="jtBrazoDE1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
-                                              <Component id="jtBrazoIZ1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jtEsquivar1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Component id="jtCabeza1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Component id="jtDefensa1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jtBrazoDE1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jtBrazoIZ1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jtPasar" min="-2" pref="84" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="107" max="32767" attributes="0"/>
-                              <Component id="btListo" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtEsquivar1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jtCabeza1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jtDefensa1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btListo" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="btConfirmarA" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
@@ -108,11 +99,7 @@
                               <Component id="jtDefender2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jtPiernaDE2" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jtPasar2" min="-2" pref="84" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -219,10 +206,7 @@
                           <Component id="jtDefensa1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtPasar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtPiernaDE1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -244,10 +228,7 @@
                           <Component id="jtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtPasar2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtPiernaDE2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -348,11 +329,6 @@
     <Component class="javax.swing.JToggleButton" name="jtPiernaDE1">
       <Properties>
         <Property name="text" type="java.lang.String" value="PiernaDE"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jtPasar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pasar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jpVida1">
@@ -534,11 +510,6 @@
     <Component class="javax.swing.JToggleButton" name="jtPiernaDE2">
       <Properties>
         <Property name="text" type="java.lang.String" value="PiernaDE"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jtPasar2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pasar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbVs">
