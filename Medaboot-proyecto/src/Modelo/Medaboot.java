@@ -187,6 +187,10 @@ public class Medaboot {
      conexion.desconectar();
       }
     }
+//
+//    public void setPh(int i) {
+//        this.ph = i ;
+//    }
 
     
 }
