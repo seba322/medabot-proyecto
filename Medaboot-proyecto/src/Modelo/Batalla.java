@@ -115,6 +115,8 @@ public class Batalla {
     public ArrayList getPersonajes(){
         return this.personajes;
     }
+    //Metodo que se encarga de verificar la  medafuerza de los persoanjes
+    // De ser el caso, este se encarga de activarla
     public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno){
         System.out.println("MEDALLA"+personaje.getMedalla().getCarga());
         System.out.println("MEDALLA"+personaje.getMedalla().getPotenciador());
@@ -199,7 +201,7 @@ public class Batalla {
     
     // Metodo que ejecuta las acciones de cada personaje, tales como atacar , con cada medaparte 
     // y modificar sus puntos de vida, dependiendo de la defensa
-    public void ejecutarAcciones(ArrayList<ArrayList> ataques,Medaboot personaje,String Adef,String Aesquive){
+    public void ejecutarAcciones(ArrayList<ArrayList> ataques,Medaboot personajeO,Medaboot personajeA,String Adef,String Aesquive){
         int dañoTotal=0;
         int defTotal=0;
         for(ArrayList<Medaparte> accion:ataques){
@@ -207,9 +209,18 @@ public class Batalla {
             int def=accion.get(1).getDefensa();
            
             if(daño>def){
+                //Misiles rastreadores
+                 if(accion.get(0).getHabilidad().equals("Misiles rastreadores")){
+                     accion.get(1).setSalud(daño, def);
+                     for(Medaparte parte:personajeO.getArmadura()){
+                         if(!parte.equals(accion.get(1))){
+                             parte.setSalud((daño*30)/100, parte.getDefensa());
+                         }
+                     }
+                }   
                 accion.get(1).setSalud(daño,def);
                 this.partes.add(accion.get(1));
-                this.mensajes.add(personaje.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
+                this.mensajes.add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
             }
             else{
                 this.partes.add(accion.get(1));
@@ -220,7 +231,7 @@ public class Batalla {
             }
             dañoTotal+=daño;
            if(Adef.equals("si")){
-               int dafTotal=personaje.getDefensa();
+               int dafTotal=personajeO.getDefensa();
                 if(defTotal>dañoTotal){
                     String mensaje2="No recibe daño";
                   
@@ -230,7 +241,7 @@ public class Batalla {
                   
                 }
             }
-           personaje.setSalud(dañoTotal);
+           personajeO.setSalud(dañoTotal);
         }
         
         

@@ -101,6 +101,11 @@ public class Medaparte {
     public void setSalud() {
         this.salud = saludMax;
     }
+
+    public String getHabilidad() {
+        return habilidad;
+    }
+    
     
     
     

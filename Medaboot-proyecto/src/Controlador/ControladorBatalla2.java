@@ -397,11 +397,11 @@ public class ControladorBatalla2 implements ActionListener {
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),this.defender2,this.esquivar2);
+          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),this.batalla.getJugador1(),this.defender2,this.esquivar2);
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador1(),this.defender1,this.esquivar1);
+          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador1(),this.batalla.getJugador2(),this.defender1,this.esquivar1);
               
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());

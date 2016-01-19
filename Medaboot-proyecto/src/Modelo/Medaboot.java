@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.util.*;
+
 /**
  *
  * @author sebastian
@@ -20,6 +22,7 @@ public class Medaboot {
     private int saludMax;
     private int ph;
     private int llamadoMeda;
+    private ArrayList<Medaparte> armadura;
     private Medaparte brazoIz;
     private Medaparte brazoDe;
     private Medaparte cabeza;
@@ -45,6 +48,12 @@ public class Medaboot {
          this.piernaIz= new Medaparte(re.getString(7));
          this.piernaDe= new Medaparte(re.getString(8));
          this.cabeza= new Medaparte(re.getString(4));
+         this.armadura=new ArrayList<Medaparte> ();
+         this.armadura.add(this.cabeza);
+         this.armadura.add(this.piernaDe);
+         this.armadura.add(this.piernaIz);
+         this.armadura.add(this.brazoDe);
+         this.armadura.add(this.brazoIz);
           
          this.salud= re.getInt (1);
          this.saludMax=re.getInt (1);
@@ -138,6 +147,10 @@ public class Medaboot {
     }
     public void setSaludF(){
         this.salud=saludMax;
+    }
+
+    public ArrayList<Medaparte> getArmadura() {
+        return armadura;
     }
     
    
