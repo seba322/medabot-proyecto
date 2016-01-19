@@ -44,6 +44,7 @@ public class ControladorBatalla2 implements ActionListener {
     private String esquivar2="";
     private String defender1="";
     private String defender2="";
+    private int numeroTurno=0;
     public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm){
         
        
@@ -145,6 +146,8 @@ public class ControladorBatalla2 implements ActionListener {
         
        botonDisabled(this.acciones2,null);
        this.vb.getBtConfirmarA().setEnabled(false);
+       this.vb.getJtEsquivar2().setEnabled(false);
+       this.vb.getJtDefender2().setEnabled(false);
         
        
 //        realizarBatalla();
@@ -288,15 +291,52 @@ public class ControladorBatalla2 implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-       if(ae.getSource().equals(this.vb.getJtEsquivar1())){
+         if(!this.vb.getJtEsquivar1().isSelected()){
+             botonEnabled(this.acciones1);
+            if (!this.defender1.equals("si")){
+            this.vb.getJtDefensa1().setEnabled(true);
+            } 
+           
+//            this.vb.getBtConfirmarA().doClick();
+           }
+       
+       
+       if(!this.vb.getJtEsquivar2().isSelected()){
+            botonEnabled(this.acciones2);
+            if (!this.defender2.equals("si")){
+            this.vb.getJtDefender2().setEnabled(true);
+            } 
+           
+           
+           
+       }
+           
+        
+         if(this.vb.getJtDefensa1().isSelected()){
+          botonEnabled(this.acciones1);
+            if (!this.esquivar1.equals("si")){
+            this.vb.getJtEsquivar1().setEnabled(true);
+            } 
+           
+       }
+           
+        if(!this.vb.getJtDefender2().isSelected())  {
+           botonEnabled(this.acciones1);
+            if (!this.esquivar2.equals("si")){
+            this.vb.getJtEsquivar2().setEnabled(true);
+            } 
+           
+       }
+       
+        
+         if(ae.getSource().equals(this.vb.getJtEsquivar1())){
            botonDisabled(this.acciones1,null);
            botonDisabled(this.acciones2, null);
            this.vb.getJtDefensa1().setEnabled(false);
            this.seleccionador1=this.vb.getJtEsquivar1();
            this.vb.getBtConfirmarA().setEnabled(true);
 //            this.vb.getBtConfirmarA().doClick();
-            
-      }
+           }
        
        
       else if(ae.getSource().equals(this.vb.getJtEsquivar2())){
@@ -340,6 +380,9 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("EL CONTADOR ES"+this.contador);
           botonDisabled(this.acciones1,null);
           botonEnabled(acciones2);
+         this.vb.getJtEsquivar2().setEnabled(false);
+       this.vb.getJtDefender2().setEnabled(false);
+       this.numeroTurno +=1;
         
           
          }
@@ -354,11 +397,11 @@ public class ControladorBatalla2 implements ActionListener {
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),"nada","nada");
+          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),this.defender2,this.esquivar2);
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador1(),"nada","nada");
+          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador1(),this.defender1,this.esquivar1);
               
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());
@@ -378,11 +421,20 @@ public class ControladorBatalla2 implements ActionListener {
           this.esquivar1="";
           this.vb.getJtDefensa1().setEnabled(true);
           this.defender1="";
-          this.vb.getJtEsquivar2().setEnabled(true);
+          this.vb.getJtEsquivar2().setEnabled(false);
           this.esquivar2="";
-          this.vb.getJtDefender2().setEnabled(true);
+          this.vb.getJtDefender2().setEnabled(false);
           this.defender2="";
+          this.numeroTurno +=1;
+          this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
+          if (this.batalla.getJugador1().getSalud() <= 0 ){
+              finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
           
+          }
+          else   if (this.batalla.getJugador2().getSalud() <= 0 ){
+              finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
+          
+          }
           
           }    
           
