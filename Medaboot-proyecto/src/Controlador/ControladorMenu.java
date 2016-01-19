@@ -4,7 +4,7 @@ package Controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.VistaMenu;
-import Vista.VistaAdmin;
+import Vista.*;
 import Modelo.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import Vista.VistaMenuB;
 import Vista.VistaPreparacionBPj;
 import Vista.VistaBatalla;
+import Vista.VistaMenuTorneo;
+import Vista.VistaPreparacionTorneo;
 import Vista.VistaRegistro1;
 import java.awt.BorderLayout;
 
@@ -58,7 +60,15 @@ public class ControladorMenu implements ActionListener {
             ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña);
         }
         else if (e.getSource().equals(this.vm.getBtTorneo())){
-            //llamar al torneo
+            VistaMenuTorneo vmt=new VistaMenuTorneo();
+            VistaPreparacionTorneo vpt=new VistaPreparacionTorneo();
+            VistaTranscursoTorneo vtt= new VistaTranscursoTorneo();
+            vmt.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(vmt,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorTorneo ctt=new ControladorTorneo(vmt,vpt,vtt,this.vm);
         }
         else if (e.getSource().equals(this.vm.getBtAdministracion())){
             
