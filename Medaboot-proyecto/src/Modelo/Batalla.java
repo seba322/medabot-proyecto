@@ -3,9 +3,15 @@ package Modelo;
 
 import java.util.ArrayList;
 import Controlador.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
 
 
 public class Batalla {
+   private String nombreUsuario;
+   private String contraseña;        
    private Medaboot jugador1;
    private Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
@@ -200,6 +206,90 @@ public class Batalla {
         
         
     }
+    //metodo que permite identificar a los usuario antes de una batalla antes de una batalla 
+    public void preparacionBatalla(String nombreUsuario,String contraseña){
+        DBConection conexion=new DBConection();
+        System.out.println("aca tambien");
+        if(conexion.conectar()){
+         nmU="'"+nmU+"'";
+         System.out.println("aca tambien1");
+         Statement stm=conexion.consultar();
+         System.out.println("aca tambien2");
+         
+         String crear= "SELECT NOMBRE,PERSONAJE FROM USUARIO WHERE NOMBRE ="+nmU;
+         System.out.println("aca tambien3");
+         String inventario1="SELECT USUARIO,MEDAPARTEES FROM MEDAPARTEUSUARIO WHERE USUARIO="+nmU ;
+         String inventario2="SELECT USUARIO,MEDALLA FROM MEDALLAUSUARIO WHERE USUARIO="+nmU;
+         System.out.println("aca tambien4");
+         ResultSet informacion=stm.executeQuery(crear);
+         while( informacion.next()){
+         System.out.println("aca tambien5");
+         String prueba = "'"+informacion.getString(2);
+         
+         System.out.println(prueba);
+         System.out.println("aca tambien6");
+         this.personajes=new Medaboot[3];
+         System.out.println("aca tambien7");
+         this.personajes[0]= new Medaboot(prueba+"A'");
+         
+         this.personajes[1]= new Medaboot(prueba+"B'");
+         this.personajes[2]= new Medaboot(prueba+"C'");
+         System.out.println("aca tambien8");
+         }
+         informacion.close();
+         Statement stm2=conexion.consultar();
+         
+         ResultSet medapar=stm2.executeQuery(inventario1);
+         while(medapar.next()){
+         this.medapartes = new ArrayList(Arrays.asList(medapar.getString(2).split(",")));
+         System.out.println("aca tambien9");
+         System.out.println(medapartes);
+         }
+         medapar.close();
+         Statement stm3=conexion.consultar();
+         ResultSet medalla=stm3.executeQuery(inventario2);
+         
+         while(medalla.next()){
+         System.out.println("aca tambien10");
+         this.medallas= new ArrayList(Arrays.asList(medalla.getString(2).split(",")));
+                 System.out.println("aca tambien11");
+         }
+         medalla.close();
+         this.nombreUsuario= nmU;
+         this.contraseña=contra;
         
-        
+        medalla.close();
+        conexion.desconectar();
+         System.out.println("aca tambien12");
+         System.out.println("AQUI TERMINA USUARIOOOOOOOOOOOOOOOOOOOOOOOOOO");
+         
+    
+        }
+    }
+    //metodo que permite mostrar informacion durrante ls batallas
+    public void mostrarInformacion(Medaboot jugador1,Medaboot jugador2, int turno,  ){
+     if(Medaboot jugador1= SELECT*FROM Medabot){
+      String medaparte1= SELECT*,cabeza FROM MEBABOT;
+      String medaparte2= SELECT*,brazoIzquierdo FROM MEBABOT;
+      String medaparte3= SELECT*,brazoDerecho FROM MEBABOT;
+      String medaparte4= SELECT*,piernaIzquierda FROM MEBABOT;
+      String medaparte5= SELECT*,piernaDerecha FROM MEBABOT;
+      System.out.printIn("SELECT MEDAPARTE1,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE2,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE3,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE4,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE5,SALUD FROM MEDAPARTE");
+     }
+     if(Medabootjugador2=SElECT*FROM Medabot){String medaparte1= SELECT*,cabeza FROM MEBABOT;
+      String medaparte2= SELECT*,brazoIzquierdo FROM MEBABOT;
+      String medaparte3= SELECT*,brazoDerecho FROM MEBABOT;
+      String medaparte4= SELECT*,piernaIzquierda FROM MEBABOT;
+      String medaparte5= SELECT*,piernaDerecha FROM MEBABOT;
+      System.out.printIn("SELECT MEDAPARTE1,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE2,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE3,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE4,SALUD FROM MEDAPARTE");
+      System.out.printIn("SELECT MEDAPARTE5,SALUD FROM MEDAPARTE");
+     }   
+   }
 }
