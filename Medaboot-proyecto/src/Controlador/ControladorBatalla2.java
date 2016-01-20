@@ -153,35 +153,35 @@ public class ControladorBatalla2 implements ActionListener {
 //        realizarBatalla();
           
     }
-    
+    //Metodo que se encarga de finalizarla batala, restableciendo datos
+    // recompensando al ganador y guardando ls resultados en el historial
     public void finalizarBatalla(Medaboot ganador,Medaboot perdedor){
         VistaFinalB vf=new VistaFinalB();
         vf.setSize(844, 584);
-            this.vm.getContentPane().removeAll();
-            this.vm.getContentPane().add(vf,BorderLayout.CENTER);
-            this.vm.getContentPane().revalidate();
-            this.vm.getContentPane().repaint();
-            this.batalla.restablecerVida(ganador);
-             this.batalla.restablecerVida(perdedor);
-             vf.getTxGanador().setText(this.batalla.getGanador());
-             vf.getTxPerdedor().setText(this.batalla.getPerdedor()); 
-             this.batalla.asignarMedaparte();
+        this.vm.getContentPane().removeAll();
+        this.vm.getContentPane().add(vf,BorderLayout.CENTER);
+        this.vm.getContentPane().revalidate();
+        this.vm.getContentPane().repaint();
+        this.batalla.restablecerVida(ganador);
+        this.batalla.restablecerVida(perdedor);
+        vf.getTxGanador().setText(this.batalla.getGanador());
+        vf.getTxPerdedor().setText(this.batalla.getPerdedor()); 
+        this.batalla.asignarMedaparte(ganador,perdedor);
              //guardarHistorial;
             
     }
     
-    //Mpdofia las barras de vida y imprime el historial de acciones
+   //Metodo que se encarga de imprimir las acciones del jugador2
+    //y modificar su barra de vida
     public void setEscenario(ArrayList<String> msj,ArrayList<Medaparte> parte){
         
         int i=0;
         System.out.println(msj);
         System.out.println(parte);
         for( String texto: msj){
-//<<<<<<< Upstream, based on origin/master
+
             
-//=======
-           
-//>>>>>>> 7625933 ya esta listo en funcionamineto basico de la batalla , se modifica la vida y se pueden selecionar acciones de ataque en cada turno , falta agregar esquive , defensa , la activacion de medafuerza y las habilidades .Por otro ldo se deben modificar los numeros de las caracteristicas en la base de datos ya que esta desproporcionados .
+
             this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
                 if(parte.get(i).getNombre().endsWith("(PD)")){
@@ -217,15 +217,14 @@ public class ControladorBatalla2 implements ActionListener {
         this.batalla.setPartes();
         
     }
+    //Metodo que se encarga de imprimir las acciones del jugador2
+    //y modificar su barra de vida
     public void setEscenario2(ArrayList<String> msj,ArrayList<Medaparte> parte){
         
         int i=0;
         System.out.println(msj);
         System.out.println(parte);
         for( String texto: msj){
-            
-                  
-
             this.vb.getTxAcciones().append(texto+"\n");
             if(i<parte.size()){
                 if(parte.get(i).getNombre().endsWith("(PD)")){
@@ -329,11 +328,11 @@ public class ControladorBatalla2 implements ActionListener {
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques,this.batalla.getJugador2(),this.defender2,this.esquivar2);
+          this.batalla.ejecutarAcciones(this.ataques,this.ataques2,this.batalla.getJugador2(),this.batalla.getJugador1(),this.defender2,this.esquivar2);
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          this.batalla.ejecutarAcciones(this.ataques2,this.batalla.getJugador1(),this.defender1,this.esquivar1);
+          this.batalla.ejecutarAcciones(this.ataques2,this.ataques,this.batalla.getJugador1(),this.batalla.getJugador2(),this.defender1,this.esquivar1);
               
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());

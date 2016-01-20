@@ -70,9 +70,11 @@ public class Batalla {
     public void setMensajes() {
         this.mensajes.clear();
     }
-    public void asignarMedaparte(){
+    //Se encarga de asignar una medaparte al azar al ganador
+    public void asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
         int valorEntero = (int) Math.floor(Math.random()*(5-1+1)+1);// Valor entre M y N, ambos incluidos.
-        System.out.println("ESTE ES EL NUM"+valorEntero);
+        Medaparte parte=personajeP.getArmadura().get(valorEntero);
+        
     }
      public int getPorcent(Medaboot personaje){
         int porcent=(personaje.getSalud()*100)/personaje.getSaludMax();
@@ -115,6 +117,8 @@ public class Batalla {
     public ArrayList getPersonajes(){
         return this.personajes;
     }
+    //Metodo que se encarga de verificar la  medafuerza de los persoanjes
+    // De ser el caso, este se encarga de activarla
     public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno){
         System.out.println("MEDALLA"+personaje.getMedalla().getCarga());
         System.out.println("MEDALLA"+personaje.getMedalla().getPotenciador());
@@ -199,7 +203,7 @@ public class Batalla {
     
     // Metodo que ejecuta las acciones de cada personaje, tales como atacar , con cada medaparte 
     // y modificar sus puntos de vida, dependiendo de la defensa
-    public void ejecutarAcciones(ArrayList<ArrayList> ataques,Medaboot personaje,String Adef,String Aesquive){
+    public void ejecutarAcciones(ArrayList<ArrayList> ataques,ArrayList<ArrayList> contraAtaques,Medaboot personajeO,Medaboot personajeA,String Adef,String Aesquive){
         int dañoTotal=0;
         int defTotal=0;
         for(ArrayList<Medaparte> accion:ataques){
@@ -207,20 +211,53 @@ public class Batalla {
             int def=accion.get(1).getDefensa();
            
             if(daño>def){
-                accion.get(1).setSalud(daño,def);
-                this.partes.add(accion.get(1));
-                this.mensajes.add(personaje.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
+                //Misiles rastreadores
+                if(accion.get(0).getHabilidad().equals("Misiles rastreadores")){
+                     accion.get(1).setSalud(daño, def);
+                     for(Medaparte parte:personajeO.getArmadura()){
+                         if(!parte.equals(accion.get(1))){
+                             parte.setSalud((daño*30)/100, parte.getDefensa());
+                         }
+                     }
+                     dañoTotal+=daño;
+                } 
+                //Regeneracion
+                else if(accion.get(0).getHabilidad().equals("Regeneracion")){
+                    accion.get(1).setSalud(daño, def);
+                    personajeA.masSalud((5*personajeA.getSaludMax())/100);
+                    for(Medaparte parte: personajeA.getArmadura()){
+                        parte.masSalud((5*parte.getSaludMax())/100);
+                    }
+                    dañoTotal+=daño;
+                }
+                //Anti aeros que cancelan el ataque de misiles rastreadores y develven su daño
+                else if(accion.get(0).getHabilidad().equals("Anti aereos")){
+                    for(ArrayList<Medaparte> contraAtaque:contraAtaques){
+                        if(contraAtaque.get(0).getHabilidad().equals("Misiles Rastreadores")){
+                            accion.get(1).setSalud(contraAtaque.get(0).getAtaque(), def);
+                            contraAtaque.remove(0);
+                            contraAtaque.remove(1);
+                            dañoTotal+=contraAtaque.get(0).getAtaque();
+                        }
+                    }
+                }
+                //Cuerpo a cuerpo o Disparo
+                else{
+                    accion.get(1).setSalud(daño,def);
+                    this.partes.add(accion.get(1));
+                    this.mensajes.add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
+                     dañoTotal+=daño;
+                }
             }
             else{
                 this.partes.add(accion.get(1));
                 this.mensajes.add("NO RECIBE DAÑO");
-             
-                
-            
             }
-            dañoTotal+=daño;
+           
+           
+        }
            if(Adef.equals("si")){
-               int dafTotal=personaje.getDefensa();
+               int dafTotal=personajeO.getDefensa();
                 if(defTotal>dañoTotal){
                     String mensaje2="No recibe daño";
                   
@@ -230,8 +267,8 @@ public class Batalla {
                   
                 }
             }
-           personaje.setSalud(dañoTotal);
-        }
+        personajeO.setSalud(dañoTotal);
+        
         
         
     }
