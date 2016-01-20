@@ -90,7 +90,7 @@ public class ControladorBatalla implements ActionListener {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        // Volver al menu principal desde menu de batalla
         else if(ae.getSource().equals(this.vmb.getBtAtras())){
           this.vm.getContentPane().removeAll();
           this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
@@ -98,6 +98,7 @@ public class ControladorBatalla implements ActionListener {
           this.vm.getContentPane().repaint();
            
         }
+        //Volver a menu de batalla, desde preparacion de batalla
         else if(ae.getSource().equals(this.vtp.getBtAtras())){
           
             vmb.setSize(844, 584);

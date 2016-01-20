@@ -16,6 +16,7 @@ import Vista.VistaMenuTorneo;
 import Vista.VistaPreparacionTorneo;
 import Vista.VistaRegistro1;
 import java.awt.BorderLayout;
+import Modelo.*;
 
 public class ControladorMenu implements ActionListener {
     
@@ -60,15 +61,23 @@ public class ControladorMenu implements ActionListener {
             ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña);
         }
         else if (e.getSource().equals(this.vm.getBtTorneo())){
+            Usuario user=null;
+            try {
+                user = new Usuario(this.nombreUsuario,this.contraseña);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
             VistaMenuTorneo vmt=new VistaMenuTorneo();
             VistaPreparacionTorneo vpt=new VistaPreparacionTorneo();
             VistaTranscursoTorneo vtt= new VistaTranscursoTorneo();
+            Torneo torneo= new Torneo(user);
             vmt.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(vmt,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            ControladorTorneo ctt=new ControladorTorneo(vmt,vpt,vtt,this.vm);
+            ControladorTorneo ctt=new ControladorTorneo(vmt,vpt,vtt,this.vm,torneo);
+            
         }
         else if (e.getSource().equals(this.vm.getBtAdministracion())){
             
