@@ -46,19 +46,15 @@
                                           <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jtEsquivar1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Component id="jtCabeza1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Component id="jtDefensa1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jtCabeza1" pref="84" max="32767" attributes="0"/>
+                                          <Component id="JtEsquivar1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="JtDefender1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jtPasar" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="107" max="32767" attributes="0"/>
@@ -74,7 +70,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -102,17 +98,13 @@
                               <Component id="jtPiernaIZ2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtEsquivar2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="jtCabeza2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="jtDefender2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jtCabeza2" max="32767" attributes="0"/>
+                              <Component id="JtEsquivar2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="JtDefender2" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jtPiernaDE2" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jtPasar2" min="-2" pref="84" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE2" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -211,18 +203,15 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtBrazoDE1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtEsquivar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtEsquivar1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtPiernaIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtDefensa1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtDefender1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtPasar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtPiernaDE1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -236,18 +225,15 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtBrazoDE2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtEsquivar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtEsquivar2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtPiernaIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtPasar2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtPiernaDE2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jtPiernaDE2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -319,11 +305,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cabeza"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jtEsquivar1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Esquivar"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtCabeza1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jtBrazoDE1">
       <Properties>
@@ -335,11 +319,6 @@
         <Property name="text" type="java.lang.String" value="PiernaIZ"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jtDefensa1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Defender"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btListo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listo"/>
@@ -349,11 +328,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="PiernaDE"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jtPasar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pasar"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtPiernaDE1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jpVida1">
       <Properties>
@@ -511,11 +488,6 @@
         <Property name="text" type="java.lang.String" value="Cabeza"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jtEsquivar2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Esquivar"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JToggleButton" name="jtBrazoDE2">
       <Properties>
         <Property name="text" type="java.lang.String" value="BrazoDE"/>
@@ -526,19 +498,9 @@
         <Property name="text" type="java.lang.String" value="PiernaIZ"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jtDefender2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Defender"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JToggleButton" name="jtPiernaDE2">
       <Properties>
         <Property name="text" type="java.lang.String" value="PiernaDE"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jtPasar2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pasar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbVs">
@@ -627,5 +589,38 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="JtEsquivar1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Esquivar"/>
+        <Property name="actionCommand" type="java.lang.String" value="Esquivar1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtEsquivar1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JtDefender1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Defender"/>
+        <Property name="actionCommand" type="java.lang.String" value="Defender1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtDefender1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JtEsquivar2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Esquivar"/>
+        <Property name="actionCommand" type="java.lang.String" value="Esquivar2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtEsquivar2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JtDefender2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" Defender"/>
+        <Property name="actionCommand" type="java.lang.String" value=" Defender2"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

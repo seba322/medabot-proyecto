@@ -55,31 +55,23 @@ public class VistaBatalla extends javax.swing.JPanel {
     public JToggleButton getJtCabeza2() {
         return jtCabeza2;
     }
-
-    public JToggleButton getJtDefender2() {
-        return jtDefender2;
+ public JButton getJtDefender1() {
+        return JtDefender1;
     }
 
-    public JToggleButton getJtDefensa1() {
-        return jtDefensa1;
+
+    public JButton getJtDefender2(){
+        return JtDefender2; 
+    }
+    public JButton getJtEsquivar1() {
+        return JtEsquivar1;
     }
 
-    public JToggleButton getJtEsquivar1() {
-        return jtEsquivar1;
+    public JButton getJtEsquivar2() {
+        return JtEsquivar2;
     }
 
-    public JToggleButton getJtEsquivar2() {
-        return jtEsquivar2;
-    }
-
-    public JToggleButton getJtPasar() {
-        return jtPasar;
-    }
-
-    public JToggleButton getJtPasar2() {
-        return jtPasar2;
-    }
-
+  
     public JToggleButton getJtPiernaDE1() {
         return jtPiernaDE1;
     }
@@ -193,13 +185,10 @@ public class VistaBatalla extends javax.swing.JPanel {
         jpPlayer2 = new javax.swing.JPanel();
         jtBrazoIZ1 = new javax.swing.JToggleButton();
         jtCabeza1 = new javax.swing.JToggleButton();
-        jtEsquivar1 = new javax.swing.JToggleButton();
         jtBrazoDE1 = new javax.swing.JToggleButton();
         jtPiernaIZ1 = new javax.swing.JToggleButton();
-        jtDefensa1 = new javax.swing.JToggleButton();
         btListo = new javax.swing.JButton();
         jtPiernaDE1 = new javax.swing.JToggleButton();
-        jtPasar = new javax.swing.JToggleButton();
         jpVida1 = new javax.swing.JProgressBar();
         jpVida2 = new javax.swing.JProgressBar();
         jpCabeza2 = new javax.swing.JProgressBar();
@@ -218,12 +207,9 @@ public class VistaBatalla extends javax.swing.JPanel {
         txtPhabilidad2 = new javax.swing.JTextPane();
         jtBrazoIZ2 = new javax.swing.JToggleButton();
         jtCabeza2 = new javax.swing.JToggleButton();
-        jtEsquivar2 = new javax.swing.JToggleButton();
         jtBrazoDE2 = new javax.swing.JToggleButton();
         jtPiernaIZ2 = new javax.swing.JToggleButton();
-        jtDefender2 = new javax.swing.JToggleButton();
         jtPiernaDE2 = new javax.swing.JToggleButton();
-        jtPasar2 = new javax.swing.JToggleButton();
         lbVs = new javax.swing.JLabel();
         lbMedafuerza1 = new javax.swing.JLabel();
         lbMedafuerza2 = new javax.swing.JLabel();
@@ -234,6 +220,10 @@ public class VistaBatalla extends javax.swing.JPanel {
         btConfirmarA = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txAcciones = new javax.swing.JTextArea();
+        JtEsquivar1 = new javax.swing.JButton();
+        JtDefender1 = new javax.swing.JButton();
+        JtEsquivar2 = new javax.swing.JButton();
+        JtDefender2 = new javax.swing.JButton();
 
         jpPlayer1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -264,20 +254,24 @@ public class VistaBatalla extends javax.swing.JPanel {
         jtBrazoIZ1.setText("BrazoIZ");
 
         jtCabeza1.setText("Cabeza");
-
-        jtEsquivar1.setText("Esquivar");
+        jtCabeza1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCabeza1ActionPerformed(evt);
+            }
+        });
 
         jtBrazoDE1.setText("BrazoDE");
 
         jtPiernaIZ1.setText("PiernaIZ");
 
-        jtDefensa1.setText("Defender");
-
         btListo.setText("Listo");
 
         jtPiernaDE1.setText("PiernaDE");
-
-        jtPasar.setText("Pasar");
+        jtPiernaDE1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtPiernaDE1ActionPerformed(evt);
+            }
+        });
 
         jpVida1.setBackground(new java.awt.Color(255, 51, 51));
         jpVida1.setRequestFocusEnabled(false);
@@ -332,17 +326,11 @@ public class VistaBatalla extends javax.swing.JPanel {
 
         jtCabeza2.setText("Cabeza");
 
-        jtEsquivar2.setText("Esquivar");
-
         jtBrazoDE2.setText("BrazoDE");
 
         jtPiernaIZ2.setText("PiernaIZ");
 
-        jtDefender2.setText("Defender");
-
         jtPiernaDE2.setText("PiernaDE");
-
-        jtPasar2.setText("Pasar");
 
         lbVs.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lbVs.setText("VS");
@@ -373,6 +361,33 @@ public class VistaBatalla extends javax.swing.JPanel {
         txAcciones.setRows(5);
         jScrollPane3.setViewportView(txAcciones);
 
+        JtEsquivar1.setText("Esquivar");
+        JtEsquivar1.setActionCommand("Esquivar1");
+        JtEsquivar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtEsquivar1ActionPerformed(evt);
+            }
+        });
+
+        JtDefender1.setText("Defender");
+        JtDefender1.setActionCommand("Defender1");
+        JtDefender1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtDefender1ActionPerformed(evt);
+            }
+        });
+
+        JtEsquivar2.setText("Esquivar");
+        JtEsquivar2.setActionCommand("Esquivar2");
+        JtEsquivar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtEsquivar2ActionPerformed(evt);
+            }
+        });
+
+        JtDefender2.setText(" Defender");
+        JtDefender2.setActionCommand(" Defender2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -402,16 +417,13 @@ public class VistaBatalla extends javax.swing.JPanel {
                                                 .addComponent(jtBrazoIZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jtPiernaIZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtEsquivar1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtCabeza1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtDefensa1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtPiernaDE1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtPasar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jtCabeza1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                            .addComponent(JtEsquivar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(JtDefender1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jtPiernaDE1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                                 .addComponent(btListo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(100, 100, 100))
@@ -421,7 +433,7 @@ public class VistaBatalla extends javax.swing.JPanel {
                             .addComponent(jpPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpVida2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -442,14 +454,11 @@ public class VistaBatalla extends javax.swing.JPanel {
                                     .addComponent(jtBrazoIZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jtPiernaIZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jtEsquivar2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtCabeza2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtDefender2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jtPiernaDE2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtPasar2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtCabeza2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JtEsquivar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JtDefender2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtPiernaDE2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -528,15 +537,13 @@ public class VistaBatalla extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtBrazoDE1)
-                            .addComponent(jtEsquivar1))
+                            .addComponent(JtEsquivar1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtPiernaIZ1)
-                            .addComponent(jtDefensa1))
+                            .addComponent(JtDefender1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtPasar)
-                            .addComponent(jtPiernaDE1)))
+                        .addComponent(jtPiernaDE1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btListo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -547,15 +554,13 @@ public class VistaBatalla extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtBrazoDE2)
-                            .addComponent(jtEsquivar2))
+                            .addComponent(JtEsquivar2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtPiernaIZ2)
-                            .addComponent(jtDefender2))
+                            .addComponent(JtDefender2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtPasar2)
-                            .addComponent(jtPiernaDE2))))
+                        .addComponent(jtPiernaDE2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -572,8 +577,32 @@ public class VistaBatalla extends javax.swing.JPanel {
         jpVida2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JtDefender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtDefender1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtDefender1ActionPerformed
+
+    private void JtEsquivar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtEsquivar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtEsquivar2ActionPerformed
+
+    private void JtEsquivar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtEsquivar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtEsquivar1ActionPerformed
+
+    private void jtCabeza1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCabeza1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCabeza1ActionPerformed
+
+    private void jtPiernaDE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPiernaDE1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtPiernaDE1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JtDefender1;
+    private javax.swing.JButton JtDefender2;
+    private javax.swing.JButton JtEsquivar1;
+    private javax.swing.JButton JtEsquivar2;
     private javax.swing.JButton btConfirmarA;
     private javax.swing.JButton btListo;
     private javax.swing.JScrollPane jScrollPane1;
@@ -601,12 +630,6 @@ public class VistaBatalla extends javax.swing.JPanel {
     private javax.swing.JToggleButton jtBrazoIZ2;
     private javax.swing.JToggleButton jtCabeza1;
     private javax.swing.JToggleButton jtCabeza2;
-    private javax.swing.JToggleButton jtDefender2;
-    private javax.swing.JToggleButton jtDefensa1;
-    private javax.swing.JToggleButton jtEsquivar1;
-    private javax.swing.JToggleButton jtEsquivar2;
-    private javax.swing.JToggleButton jtPasar;
-    private javax.swing.JToggleButton jtPasar2;
     private javax.swing.JToggleButton jtPiernaDE1;
     private javax.swing.JToggleButton jtPiernaDE2;
     private javax.swing.JToggleButton jtPiernaIZ1;
@@ -620,4 +643,6 @@ public class VistaBatalla extends javax.swing.JPanel {
     private javax.swing.JTextPane txtPhabilidad1;
     private javax.swing.JTextPane txtPhabilidad2;
     // End of variables declaration//GEN-END:variables
+
+   
 }
