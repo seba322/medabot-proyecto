@@ -7,6 +7,7 @@ package Modelo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -27,14 +28,21 @@ public class Cpumedaboot  extends Medaboot {
         
     }
     
-    
-public void menejarCpu1(String tipo, int turno){
-    if (turno == 1){
-      
-    
-    }
-    
-
+//    
+//public void menejarCpu1(String tipo, int turno){
+//    if (turno == 1){
+//     int minimo = Collections.min(this.ataques);
+//     int posicion = this.ataques.indexOf(minimo);
+//     switch(posicion){
+//          
+//         
+//     }
+//     }
+//        
+//    
+//    }
+//    
+//
 
 
 
