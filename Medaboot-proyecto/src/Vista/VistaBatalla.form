@@ -28,42 +28,8 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btConfirmarA" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Component id="jtBrazoDE1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
-                                              <Component id="jtBrazoIZ1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jtCabeza1" pref="84" max="32767" attributes="0"/>
-                                          <Component id="JtEsquivar1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JtDefender1" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="107" max="32767" attributes="0"/>
-                              <Component id="btListo" min="-2" pref="132" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jpVida1" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jpPlayer2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -71,6 +37,45 @@
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
                       <EmptySpace pref="42" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btConfirmarA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jtBrazoDE1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jtBrazoIZ1" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jtPiernaIZ1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtCabeza1" pref="84" max="32767" attributes="0"/>
+                                  <Component id="JtEsquivar1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JtDefender1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane1" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jtPiernaDE1" min="-2" pref="84" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btListo" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="JBContinuar" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -116,6 +121,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
               <Component id="lbMedafuerza1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+              <Component id="JMensajeF" min="-2" pref="225" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="lbMedafuerza2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
@@ -186,54 +193,63 @@
                               <Component id="jScrollPane3" min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbMedafuerza1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbMedafuerza2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbMedafuerza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbMedafuerza2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="JMensajeF" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtBrazoIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtCabeza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtBrazoIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jtCabeza1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtBrazoDE1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtEsquivar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtPiernaIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtDefender1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtPiernaDE1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtBrazoIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jtCabeza2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtBrazoDE2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtEsquivar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtPiernaIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtPiernaDE2" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtBrazoDE1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtEsquivar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtPiernaIZ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtDefender1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jtPiernaDE1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="JBContinuar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btListo" min="-2" pref="64" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtBrazoIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtCabeza2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtBrazoDE2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtEsquivar2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtPiernaIZ2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtDefender2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jtPiernaDE2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -620,6 +636,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value=" Defender"/>
         <Property name="actionCommand" type="java.lang.String" value=" Defender2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="JBContinuar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Continuar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JMensajeF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="LA BATALLA A FINALIZADO , PRESIONE COTINUAR"/>
       </Properties>
     </Component>
   </SubComponents>

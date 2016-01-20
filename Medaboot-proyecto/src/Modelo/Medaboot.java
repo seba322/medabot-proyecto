@@ -16,20 +16,20 @@ import java.util.*;
  * @author sebastian
  */
 public class Medaboot {
-    private String nombre;
-    private Medalla medalla;
-    private int salud;
-    private int saludMax;
-    private int ph;
-    private int llamadoMeda;
-    private ArrayList<Medaparte> armadura;
-    private Medaparte brazoIz;
-    private Medaparte brazoDe;
-    private Medaparte cabeza;
-    private Medaparte piernaIz;
-    private Medaparte piernaDe;
-    private int esquive;
-    private int defensa;
+    protected String nombre;
+    protected Medalla medalla;
+    protected int salud;
+    protected int saludMax;
+    protected int ph;
+    protected int llamadoMeda;
+    protected ArrayList<Medaparte> armadura;
+    protected Medaparte brazoIz;
+    protected Medaparte brazoDe;
+    protected Medaparte cabeza;
+    protected Medaparte piernaIz;
+    protected Medaparte piernaDe;
+    protected int esquive;
+    protected int defensa;
   //  private Medaparte modificador;
     
     public Medaboot (String nombre) throws SQLException{
@@ -54,7 +54,7 @@ public class Medaboot {
          this.armadura.add(this.piernaIz);
          this.armadura.add(this.brazoDe);
          this.armadura.add(this.brazoIz);
-          
+         this.defensa=this.brazoIz.getDefensa()+this.brazoDe.getDefensa()+this.piernaIz.getDefensa()+this.piernaDe.getDefensa()+this.cabeza.getDefensa();
          this.salud= re.getInt (1);
          this.saludMax=re.getInt (1);
          System.out.println("AQUI SALUD"+this.salud);
@@ -108,7 +108,7 @@ public class Medaboot {
     }
 
     public int getDefensa() {
-        return defensa;
+        return this.defensa;
     }
 
     public int getSalud() {
@@ -152,7 +152,9 @@ public class Medaboot {
     public ArrayList<Medaparte> getArmadura() {
         return armadura;
     }
-    
+     public void setDefensa(int i) {
+      this.defensa=i;
+    }
    
 
    
@@ -203,6 +205,8 @@ public class Medaboot {
      conexion.desconectar();
       }
     }
+
+   
 
     
 }

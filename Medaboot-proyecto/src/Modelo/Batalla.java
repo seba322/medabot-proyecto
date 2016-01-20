@@ -8,7 +8,7 @@ import java.lang.Math.*;
 
 public class Batalla {
    private Medaboot jugador1;
-   private Medaboot jugador2;
+   public Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
    private String ganador;
    private String perdedor;
@@ -74,6 +74,7 @@ public class Batalla {
     public void asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
         int valorEntero = (int) Math.floor(Math.random()*(5-1+1)+1);// Valor entre M y N, ambos incluidos.
         Medaparte parte=personajeP.getArmadura().get(valorEntero);
+        
         
     }
      public int getPorcent(Medaboot personaje){

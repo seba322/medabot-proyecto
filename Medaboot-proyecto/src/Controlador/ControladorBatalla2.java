@@ -111,6 +111,7 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
         
       
+        this.vb.getJBContinuar().addActionListener(this);
         
         
         
@@ -146,6 +147,8 @@ public class ControladorBatalla2 implements ActionListener {
        this.vb.getBtConfirmarA().setEnabled(false);
        this.vb.getJtEsquivar2().setEnabled(false);
        this.vb.getJtDefender2().setEnabled(false);
+       this.vb.getJBContinuar().setVisible(false);
+       this.vb.getJMensaje().setVisible(false);
         
        
 //        realizarBatalla();
@@ -272,8 +275,20 @@ public class ControladorBatalla2 implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+        if (ae.getSource().equals(this.vb.getJBContinuar())){
+           if (this.batalla.getJugador1().getSalud()<=0){
+            finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
+           }
+       else if (this.batalla.getJugador2().getSalud()<=0){
+            finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
+           }
+        }
+        
+        
+        
     // escuchador de evento de botones  enfocado a defensa y esquive 
-        if (ae.getSource().equals(this.vb.getJtEsquivar1())){// boton de esquivar , del jugador1
+        else if (ae.getSource().equals(this.vb.getJtEsquivar1())){// boton de esquivar , del jugador1
             if(Integer.parseInt(this.vb.getTxtPhabilidad1().getText())>=2){
             this.vb.getJtDefender1().setEnabled(false);
             this.vb.getJtEsquivar1().setEnabled(false);
@@ -282,7 +297,7 @@ public class ControladorBatalla2 implements ActionListener {
             }
         }
         
-        if (ae.getSource().equals(this.vb.getJtDefender2 ())){// boton de  defensa , del jugador1 
+        else if (ae.getSource().equals(this.vb.getJtDefender1())){// boton de  defensa , del jugador1 
             if(Integer.parseInt(this.vb.getTxtPhabilidad1().getText())>=2){ 
             this.vb.getJtEsquivar1().setEnabled(false);
              this.vb.getJtDefender1().setEnabled(false);
@@ -290,7 +305,7 @@ public class ControladorBatalla2 implements ActionListener {
              setPH1(2, this.batalla.getJugador1());
             }
         }
-         if (ae.getSource().equals(this.vb.getJtEsquivar2())){//boton de esquivar , del jugador2
+       else  if (ae.getSource().equals(this.vb.getJtEsquivar2())){//boton de esquivar , del jugador2
             if(Integer.parseInt(this.vb.getTxtPhabilidad2().getText())>=2){
              this.vb.getJtDefender2().setEnabled(false);
             this.vb.getJtEsquivar2().setEnabled(false);
@@ -298,7 +313,7 @@ public class ControladorBatalla2 implements ActionListener {
              setPH1(2, this.batalla.getJugador2());
             }
          }
-          if (ae.getSource().equals(this.vb.getJtDefender2())){// boton de defensa ,del jugador 2 
+        else  if (ae.getSource().equals(this.vb.getJtDefender2())){// boton de defensa ,del jugador 2 
             if(Integer.parseInt(this.vb.getTxtPhabilidad2().getText())>=2){
               this.vb.getJtEsquivar2().setEnabled(false);
             this.vb.getJtDefender2().setEnabled(false);
@@ -308,13 +323,15 @@ public class ControladorBatalla2 implements ActionListener {
             }
             
        
-       if  (ae.getSource().equals(this.vb.getBtListo())){ // aacion a realizar , al presionar boton listo 
+     else  if  (ae.getSource().equals(this.vb.getBtListo())){ // aacion a realizar , al presionar boton listo 
           
           if (this.contador==0){ // cuando es 0 el boton es porque se apreto por jugador 1 , pasa el turno a jugador 2
           
 //          finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
           this.turno=this.batalla.getJugador2();
           this.contador+=1;// contador que determina quien y en que orden de batalla se ejecuta este evento
+          this.vb.getJtDefender1().setEnabled(false);
+          this.vb.getJtEsquivar1().setEnabled(false);
           this.vb.getJtDefender2().setEnabled(true);
           this.vb.getJtEsquivar2().setEnabled(true);
 
@@ -325,7 +342,8 @@ public class ControladorBatalla2 implements ActionListener {
           
          }
           else if (this.contador==1){
-              
+          this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
+          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
@@ -356,14 +374,15 @@ public class ControladorBatalla2 implements ActionListener {
           this.defender2="";
           this.numeroTurno +=1;
           this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
-          if (this.batalla.getJugador1().getSalud() <= 0 ){
-              finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
-          
-          }
-          else   if (this.batalla.getJugador2().getSalud() <= 0 ){
-              finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
-          
-          } 
+          comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
+          comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ;       
+          if (this.batalla.getJugador1().getSalud() <= 0  ||this.batalla.getJugador2().getSalud() <= 0){
+              this.vb.getBtConfirmarA().setVisible(false);
+              this.vb.getBtListo().setVisible(false);
+              this.vb.getJMensaje().setVisible(true);
+              this.vb.getJBContinuar().setVisible(true);
+            }
+         
          
           this.contador=0;
           
@@ -375,7 +394,7 @@ public class ControladorBatalla2 implements ActionListener {
     }
 //       if(this.acciones1.contains(this.seleecionador2) /*&& this.acciones2.contains(this.seleecionador2)*/){
 //          this.vb.getBtConfirmarA().setEnabled(true);}
-       if (ae.getSource().equals(this.vb.getBtConfirmarA())){// areglar esto 
+     else  if (ae.getSource().equals(this.vb.getBtConfirmarA())){// areglar esto 
             
            
             
@@ -384,12 +403,12 @@ public class ControladorBatalla2 implements ActionListener {
             int parte2= this.acciones2.indexOf(this.seleecionador2);
             if (this.turno.equals(this.batalla.getJugador1())){
             confirmador(parte ,parte2,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2());
-            controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad1().getText()),this.batalla.getJugador1());
+            controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad1().getText()),this.batalla.getJugador1(),this.acciones1);
             }
             
             else{
             confirmador(parte2 ,parte,this.ataques2,this.acciones2,this.acciones1,this.batalla.getJugador2() ,this.batalla.getJugador1());    
-             controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad2().getText()),this.batalla.getJugador2());
+             controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad2().getText()),this.batalla.getJugador2(),this.acciones2);
             }
       
              this.vb.getBtConfirmarA().setEnabled(false);
@@ -536,21 +555,47 @@ public class ControladorBatalla2 implements ActionListener {
    
    }
 
-    private void controlarPH(int PhActual,Medaboot jugador) {
+   // este metodo pregunta despues de cada accion si el ph de cada medaparte es mayor al ph disponible
+   // asi se deshabilitan las que tiene ph mayor 
+    private void controlarPH(int PhActual,Medaboot jugador,ArrayList<JToggleButton> lista) {
+      
      if (jugador.getBrazoIzq().getPh()>PhActual){
-     this.acciones1.get(0).setEnabled(false);
+     lista.get(0).setEnabled(false);
      }  
      if (jugador.getBrazoDer().getPh()>PhActual){
-     this.acciones1.get(1).setEnabled(false);
+     lista.get(1).setEnabled(false);
      }   
      if (jugador.getPiernaIzq().getPh()>PhActual){
-     this.acciones1.get(2).setEnabled(false);
+     lista.get(2).setEnabled(false);
      }   
      if (jugador.getPiernaDer().getPh()>PhActual){
-     this.acciones1.get(3).setEnabled(false);
+     lista.get(3).setEnabled(false);
      }   
      if (jugador.getCabeza().getPh()>PhActual){
-     this.acciones1.get(4).setEnabled(false);
+     lista.get(4).setEnabled(false);
+     }   
+    }
+
+    private void comprobarMedapartes(Medaboot jugador, ArrayList<JToggleButton> lista) {
+     if (jugador.getBrazoIzq().getSalud()<=0){
+         jugador.setDefensa(jugador.getDefensa()-jugador.getBrazoIzq().getDefensa());
+         lista.get(0).setVisible(false);
+     }  
+     if (jugador.getBrazoDer().getSalud()<=0){
+         jugador.setDefensa(jugador.getDefensa()-jugador.getBrazoDer().getDefensa());
+         lista.get(1).setVisible(false);
+     }   
+     if (jugador.getPiernaIzq().getSalud()<=0){
+         jugador.setDefensa(jugador.getDefensa()-jugador.getPiernaIzq().getDefensa());
+         lista.get(2).setVisible(false);
+     }   
+     if (jugador.getPiernaDer().getSalud()<=0){
+         jugador.setDefensa(jugador.getDefensa()-jugador.getPiernaDer().getDefensa());
+         lista.get(3).setVisible(false);
+     }   
+     if (jugador.getCabeza().getPh()<=0){
+         jugador.setDefensa(jugador.getDefensa()-jugador.getCabeza().getDefensa());
+         lista.get(4).setVisible(false);
      }   
     }
 }
