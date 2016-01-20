@@ -72,15 +72,15 @@ public class ControladorBatalla2 implements ActionListener {
         this.acciones1.add(this.vb.getJtPiernaIZ1());
         this.acciones1.add(this.vb.getJtPiernaDE1());
         this.acciones1.add(this.vb.getJtCabeza1());
-//        this.acciones1.add(this.vb.getJtDefensa1());
-//        this.acciones1.add(this.vb.getJtEsquivar1());
+        this.acciones1.add(this.vb.getJtDefensa1());
+        this.acciones1.add(this.vb.getJtEsquivar1());
         this.acciones2.add(this.vb.getJtBrazoIZ2());
         this.acciones2.add(this.vb.getJtBrazoDE2());
         this.acciones2.add(this.vb.getJtPiernaIZ2());
         this.acciones2.add(this.vb.getJtPiernaDE2());
         this.acciones2.add(this.vb.getJtCabeza2());
-//        this.acciones2.add(this.vb.getJtDefender2());
-//        this.acciones2.add(this.vb.getJtEsquivar2());
+        this.acciones2.add(this.vb.getJtDefender2());
+        this.acciones2.add(this.vb.getJtEsquivar2());
         this.vb.getBtConfirmarA().addActionListener(this);
         this.vb.getBtListo().addActionListener(this);
         this.vb.getBtListo().setSelected(true);
@@ -291,86 +291,19 @@ public class ControladorBatalla2 implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-         if(!this.vb.getJtEsquivar1().isSelected()){
-             botonEnabled(this.acciones1);
-            if (!this.defender1.equals("si")){
-            this.vb.getJtDefensa1().setEnabled(true);
-            } 
-           
-//            this.vb.getBtConfirmarA().doClick();
-           }
+         
        
        
-       if(!this.vb.getJtEsquivar2().isSelected()){
-            botonEnabled(this.acciones2);
-            if (!this.defender2.equals("si")){
-            this.vb.getJtDefender2().setEnabled(true);
-            } 
-           
-           
-           
-       }
            
         
-         if(this.vb.getJtDefensa1().isSelected()){
-          botonEnabled(this.acciones1);
-            if (!this.esquivar1.equals("si")){
-            this.vb.getJtEsquivar1().setEnabled(true);
-            } 
-           
-       }
-           
-        if(!this.vb.getJtDefender2().isSelected())  {
-           botonEnabled(this.acciones1);
-            if (!this.esquivar2.equals("si")){
-            this.vb.getJtEsquivar2().setEnabled(true);
-            } 
-           
-       }
-       
         
-         if(ae.getSource().equals(this.vb.getJtEsquivar1())){
-           botonDisabled(this.acciones1,null);
-           botonDisabled(this.acciones2, null);
-           this.vb.getJtDefensa1().setEnabled(false);
-           this.seleccionador1=this.vb.getJtEsquivar1();
-           this.vb.getBtConfirmarA().setEnabled(true);
-//            this.vb.getBtConfirmarA().doClick();
-           }
-       
-       
-      else if(ae.getSource().equals(this.vb.getJtEsquivar2())){
-           botonDisabled(this.acciones2,null);
-           botonDisabled(this.acciones1, null);
-           this.vb.getJtDefender2().setEnabled(false);
-           this.seleccionador1=this.vb.getJtEsquivar2();
-           this.vb.getBtConfirmarA().setEnabled(true);
-           
-           
-       }
            
         
-       else  if(ae.getSource().equals(this.vb.getJtDefensa1())){
-           botonDisabled(this.acciones1,null);
-           botonDisabled(this.acciones2, null);
-           this.vb.getJtEsquivar1().setEnabled(false);
-           this.seleccionador1=this.vb.getJtDefensa1();
-           this.vb.getBtConfirmarA().setEnabled(true);
-           
-       }
-           
-       else  if(ae.getSource().equals(this.vb.getJtDefender2()))  {
-           botonDisabled(this.acciones2,null);
-           botonDisabled(this.acciones1, null);
-           this.vb.getJtEsquivar2().setEnabled(false);
-           this.seleccionador1=this.vb.getJtDefender2();
-           this.vb.getBtConfirmarA().setEnabled(true);
-       }
+        
+
        
        
-       
-       
-       else if  (ae.getSource().equals(this.vb.getBtListo())){
+       if  (ae.getSource().equals(this.vb.getBtListo())){
            System.out.println("APRETE EL BOTON");
           if (this.contador==0){
           System.out.println("EL CONTADOR ES"+this.contador);
@@ -380,8 +313,7 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("EL CONTADOR ES"+this.contador);
           botonDisabled(this.acciones1,null);
           botonEnabled(acciones2);
-         this.vb.getJtEsquivar2().setEnabled(false);
-       this.vb.getJtDefender2().setEnabled(false);
+         
        this.numeroTurno +=1;
         
           
@@ -441,57 +373,10 @@ public class ControladorBatalla2 implements ActionListener {
     }
 //       if(this.acciones1.contains(this.seleecionador2) /*&& this.acciones2.contains(this.seleecionador2)*/){
 //          this.vb.getBtConfirmarA().setEnabled(true);}
-       else if (ae.getSource().equals(this.vb.getBtConfirmarA())){// areglar esto 
-            if(this.seleccionador1.equals(this.vb.getJtEsquivar1())){
-            this.esquivar1="si";
-            this.vb.getJtEsquivar1().setEnabled(false);
-            this.vb.getJtEsquivar1().setSelected(false);
-            this.vb.getBtConfirmarA().setEnabled(false);
-            botonEnabled(this.acciones1);
-            if (!this.defender1.equals("si")){
-            this.vb.getJtDefensa1().setEnabled(true);
-                this.vb.getTxtPhabilidad1().setText(Integer.toString(Integer.parseInt(this.vb.getTxtPhabilidad1().getText())-2));
-            }
-                
-            }
-            else if(this.seleccionador1.equals(this.vb.getJtEsquivar2())){
-            this.esquivar2="si";
-            this.vb.getJtEsquivar2().setEnabled(false); 
-            this.vb.getJtEsquivar2().setSelected(false);
-            this.vb.getBtConfirmarA().setEnabled(false);
-            botonEnabled(this.acciones1);
-            if (!this.defender1.equals("si")){
-            this.vb.getJtDefender2().setEnabled(true);
-            this.vb.getTxtPhabilidad2().setText(Integer.toString(Integer.parseInt(this.vb.getTxtPhabilidad2().getText())-2));
-            }
-
-            }
-            else  if(this.seleccionador1.equals(this.vb.getJtDefensa1())){
-            this.defender1="si";
-            this.vb.getJtDefensa1().setEnabled(false);
-             this.vb.getJtDefensa1().setSelected(false);
-             this.vb.getBtConfirmarA().setEnabled(false);
-             botonEnabled(this.acciones1);
-             if (!this.defender1.equals("si")){
-            this.vb.getJtEsquivar1().setEnabled(true);
-            this.vb.getTxtPhabilidad1().setText(Integer.toString(Integer.parseInt(this.vb.getTxtPhabilidad1().getText())-2));
-            }
-
-            }
-            else if(this.seleccionador1.equals(this.vb.getJtDefender2())){
-            this.defender2="si";
-            this.vb.getJtDefender2().setEnabled(false);
-            this.vb.getJtDefensa1().setSelected(false);
-            this.vb.getBtConfirmarA().setEnabled(false);
-            botonEnabled(this.acciones1);
-            if (!this.defender1.equals("si")){
-            this.vb.getJtEsquivar2().setEnabled(true);
-            this.vb.getTxtPhabilidad2().setText(Integer.toString(Integer.parseInt(this.vb.getTxtPhabilidad2().getText())-2));
-            }
-
+       if (ae.getSource().equals(this.vb.getBtConfirmarA())){// areglar esto 
             
-            }
-            else{
+           
+            
             int parte = this.acciones1.indexOf(this.seleccionador1);
             System.out.println(parte);
             int parte2= this.acciones2.indexOf(this.seleecionador2);
@@ -514,7 +399,7 @@ public class ControladorBatalla2 implements ActionListener {
             botonDisabled(this.acciones2, null);
             }
       }
-        }
+        
         
         else if (!ae.getSource().equals(this.vb.getBtConfirmarA()) && !ae.getSource().equals(this.vb.getBtListo()) ){
         
@@ -557,6 +442,10 @@ public class ControladorBatalla2 implements ActionListener {
     for (JToggleButton boton :bAtacantes){
             if (boton.isSelected()){
                 
+               if (boton.equals(this.vb.getJtDefensa1())|| boton.equals(this.vb.getJtEsquivar1()) || boton.equals(this.vb.getJtDefender2()) ||  boton.equals(this.vb.getJtEsquivar2())){
+                this.vb.getBtConfirmarA().setEnabled(true);
+                
+               }
                 if (bAtacantes.equals(this.acciones1)){
                 this.seleccionador1=boton;
                 }
