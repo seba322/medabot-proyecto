@@ -21,11 +21,14 @@ public class ControladorTorneo implements ActionListener{
     private Torneo torneo;
     private VistaRegistro1 vt1;
     private int usuarios;
+    private int contadorGlobal;
+    private VistaFinalB vf;
     
     
     
     public ControladorTorneo(VistaMenuTorneo vmt,VistaPreparacionTorneo vpt,VistaTranscursoTorneo vtt,VistaMenu vm,Torneo torneo){
         this.torneo=torneo;
+        this.contadorGlobal=1;
         this.vmt=vmt;
         this.vpt=vpt;
         this.vtt=vtt;
@@ -39,6 +42,18 @@ public class ControladorTorneo implements ActionListener{
         this.vtt.getBtSig().addActionListener(this);
         this.vpt.getBtAtras2().addActionListener(this);
         this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
+    }
+    public void desarrollarBatalla(Medaboot pj1,Medaboot pj2){
+                VistaBatalla vb=new VistaBatalla();
+                Batalla batalla=new Batalla(pj1,pj2);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo");
+                ctb2.getVf().getBtContinuar2().addActionListener(this);
+                
+                 this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                
     }
     
 
@@ -64,19 +79,10 @@ public class ControladorTorneo implements ActionListener{
             
         }
         else if(ae.getSource().equals(this.vtt.getBtSig())){
-            int contador=0;
-        
-            while(contador< this.torneo.getCombatientes().size()){
-                VistaBatalla vb=new VistaBatalla();
-                Batalla batalla=new Batalla(this.torneo.getCombatientes().get(contador),this.torneo.getCombatientes().get(contador+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm);
-                vb.setSize(844, 584);
-                this.vm.getContentPane().removeAll();
-                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
-                this.vm.getContentPane().revalidate();
-                this.vm.getContentPane().repaint();
-                contador+=2;
-            }
+            desarrollarBatalla(this.torneo.getCombatientes().get(this.contadorGlobal), this.torneo.getCombatientes().get(this.contadorGlobal+1));
+             
+           
+            
         } 
         //Cambiar a vista de preparacion torneo, cuando se pula el torneo normal
         else if(ae.getSource().equals(this.vmt.getBtTnormal())){

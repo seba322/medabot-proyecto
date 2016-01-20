@@ -30,7 +30,8 @@ public class ControladorBatalla2 implements ActionListener {
     
     private VistaBatalla vb;
     private VistaMenu vm;
-    
+    private VistaFinalB vf;
+    private VistaTranscursoTorneo vtt;
     private Batalla batalla;
     private ArrayList <ArrayList>  ataques=new <ArrayList> ArrayList();// lista que guardara todos los ataques de un turno
     private ArrayList<ArrayList> ataques2=new <ArrayList> ArrayList();
@@ -40,17 +41,19 @@ public class ControladorBatalla2 implements ActionListener {
     private JToggleButton seleccionador1=null;
     private JToggleButton seleecionador2=null;
     private int contador =0;
+    private String modalidad;
     private String esquivar1 ="";
     private String esquivar2="";
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
-    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm){
+    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad){
         
-       
+        this.vf=new VistaFinalB();
         this.vm=vm;
+        this.vtt=vtt;
         this.batalla=b;
-        
+        this.modalidad=modalidad;
         this.turno =this.batalla.getJugador1();
         this.vb=vb;
         this.vb.getJtBrazoIZ1().addActionListener(this);
@@ -67,6 +70,7 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getJtEsquivar1().addActionListener(this);
         this.vb.getJtDefender2().addActionListener(this);
         this.vb.getJtEsquivar2().addActionListener(this);
+        this.vf.getBtContinuar2().addActionListener(this);
         this.acciones1.add(this.vb.getJtBrazoIZ1());
         this.acciones1.add(this.vb.getJtBrazoDE1());
         this.acciones1.add(this.vb.getJtPiernaIZ1());
@@ -154,21 +158,27 @@ public class ControladorBatalla2 implements ActionListener {
 //        realizarBatalla();
           
     }
+
+    public VistaFinalB getVf() {
+        return vf;
+    }
+    
     //Metodo que se encarga de finalizarla batala, restableciendo datos
     // recompensando al ganador y guardando ls resultados en el historial
     public void finalizarBatalla(Medaboot ganador,Medaboot perdedor){
-        VistaFinalB vf=new VistaFinalB();
-        vf.setSize(844, 584);
+        
+        this.vf.setSize(844, 584);
         this.vm.getContentPane().removeAll();
-        this.vm.getContentPane().add(vf,BorderLayout.CENTER);
+        this.vm.getContentPane().add(this.vf,BorderLayout.CENTER);
         this.vm.getContentPane().revalidate();
         this.vm.getContentPane().repaint();
         this.batalla.restablecerVida(ganador);
         this.batalla.restablecerVida(perdedor);
-        vf.getTxGanador().setText(this.batalla.getGanador());
-        vf.getTxPerdedor().setText(this.batalla.getPerdedor()); 
+        this.vf.getTxGanador().setText(this.batalla.getGanador());
+        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor()); 
         this.batalla.asignarMedaparte(ganador,perdedor);
              //guardarHistorial;
+        this.batalla.setEstado("Finalizada");
             
     }
     
@@ -276,12 +286,32 @@ public class ControladorBatalla2 implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
+        if(ae.getSource().equals(this.vf.getBtContinuar2())){
+            if(this.modalidad.equals("Batalla")){
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+            }
+            else{
+                this.vtt.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+            }
+        }
+        
         if (ae.getSource().equals(this.vb.getJBContinuar())){
            if (this.batalla.getJugador1().getSalud()<=0){
-            finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
+               this.batalla.setGanador(this.batalla.getJugador2().getNombre());
+               this.batalla.setPerdedor(this.batalla.getJugador1().getNombre());
+            finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
            }
        else if (this.batalla.getJugador2().getSalud()<=0){
-            finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
+           this.batalla.setGanador(this.batalla.getJugador1().getNombre());
+           this.batalla.setPerdedor(this.batalla.getJugador2().getNombre());
+            finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
            }
         }
         

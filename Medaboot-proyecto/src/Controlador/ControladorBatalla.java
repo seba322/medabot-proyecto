@@ -10,17 +10,13 @@ import Modelo.Medaboot;
 import Modelo.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Vista.VistaBatalla;
-import Vista.VistaMenuB;
-import Vista.VistaPreparacionBPj;
-import Vista.VistaMenu;
-import Vista.VistaRegistro1;
-import Vista.VistaRegistro2;
+import Vista.*;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class ControladorBatalla implements ActionListener {
     private VistaMenuB vmb;
@@ -79,7 +75,8 @@ public class ControladorBatalla implements ActionListener {
                 System.out.println("aqui"+pj1.getSalud());
                 Medaboot pj2= this.user2.getPersonajes()[0];
                 Batalla batalla= new Batalla(pj1,pj2);
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm);
+                
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"Batalla");
                 
                 this.vb.setSize(844, 584);
                 this.vm.getContentPane().removeAll();

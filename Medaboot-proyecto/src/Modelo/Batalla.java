@@ -14,11 +14,13 @@ public class Batalla {
    private String perdedor;
    private ArrayList<Medaparte> partes;
    private ArrayList<String> mensajes;
+   private String estado;
   
     
     public Batalla (Medaboot jugador1,Medaboot jugador2){
         this.partes=new ArrayList<Medaparte>();
         this.mensajes=new ArrayList<String>();
+        this.estado="En Proceso";
         
         this.jugador1= jugador1;
         this.jugador2=jugador2;
@@ -38,6 +40,14 @@ public class Batalla {
         
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public ArrayList<Medaparte> getPartes() {
         return partes;
     }
@@ -73,7 +83,7 @@ public class Batalla {
     //Se encarga de asignar una medaparte al azar al ganador
     public void asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
         int valorEntero = (int) Math.floor(Math.random()*(5-1+1)+1);// Valor entre M y N, ambos incluidos.
-        Medaparte parte=personajeP.getArmadura().get(valorEntero);
+        //Medaparte parte=personajeP.getArmadura().get(valorEntero);
         
         
     }
