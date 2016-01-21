@@ -133,9 +133,7 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getTxtDatos2().append("PiernaIz:\n");
         this.vb.getTxtDatos2().append("PiernaDe:\n");
         this.vb.getTxtDatos2().append("Cabeza:\n");
-        this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
-        this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
-        this.vb.getTxAcciones().append("Jugaor1 reliazo la siguiente accion\n");
+       
         
         
         
