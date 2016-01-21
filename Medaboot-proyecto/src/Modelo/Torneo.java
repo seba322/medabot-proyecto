@@ -42,9 +42,9 @@ public class Torneo {
         ArrayList<Integer> numerosAzar= new ArrayList<Integer>();
         int contador=0;
         while(contador<8){
-            int valorEntero = (int) Math.floor(Math.random()*(7-0+1)+0);// Valor entre M y N, ambos incluidos.
+            int valorEntero = (int) Math.floor(Math.random()*(7-0+1)+0);// Valor entre 7 y 0, ambos incluidos.
             while(numerosAzar.contains(valorEntero)==true){
-                 valorEntero = (int) Math.floor(Math.random()*(7-0+1)+0);// Valor entre M y N, ambos incluidos.
+                 valorEntero = (int) Math.floor(Math.random()*(7-0+1)+0);// Valor entre 7 y 0, ambos incluidos.
             }
             this.combatientes.add(participantes.get(valorEntero).getPersonajes()[0]);
             numerosAzar.add(valorEntero);

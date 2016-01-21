@@ -19,16 +19,22 @@ public class ControladorTorneo implements ActionListener{
     private VistaTranscursoTorneo vtt;
     private VistaMenu vm;
     private Torneo torneo;
-    private VistaRegistro1 vt1;
+    private VistaRegistro1 vt11;
     private int usuarios;
     private int contadorGlobal;
+    private int contadorCasillas;
     private VistaFinalB vf;
+    private Batalla batalla;
+    private ArrayList<Medaboot> perdedores;
     
     
     
     public ControladorTorneo(VistaMenuTorneo vmt,VistaPreparacionTorneo vpt,VistaTranscursoTorneo vtt,VistaMenu vm,Torneo torneo){
         this.torneo=torneo;
-        this.contadorGlobal=1;
+        this.perdedores=new ArrayList<Medaboot>();
+        this.vf=new VistaFinalB();
+        this.contadorGlobal=0;
+        this.contadorCasillas=1;
         this.vmt=vmt;
         this.vpt=vpt;
         this.vtt=vtt;
@@ -39,22 +45,14 @@ public class ControladorTorneo implements ActionListener{
         this.vpt.getBtComenzar().addActionListener(this);
         this.vpt.getBtEmparejar().addActionListener(this);
         this.vpt.getBtLimpiar().addActionListener(this);
-        this.vtt.getBtSig().addActionListener(this);
+        this.vtt.getBtRonda1().addActionListener(this);
+        this.vtt.getBtRonda2().addActionListener(this);
+        this.vtt.getBtFinal().addActionListener(this);
+        //this.vf.getBtContinuar2().addActionListener(this);
         this.vpt.getBtAtras2().addActionListener(this);
         this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
     }
-    public void desarrollarBatalla(Medaboot pj1,Medaboot pj2){
-                VistaBatalla vb=new VistaBatalla();
-                Batalla batalla=new Batalla(pj1,pj2);
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo");
-                ctb2.getVf().getBtContinuar2().addActionListener(this);
-                
-                 this.vm.getContentPane().removeAll();
-                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
-                this.vm.getContentPane().revalidate();
-                this.vm.getContentPane().repaint();
-                
-    }
+    
     
 
     @Override
@@ -78,12 +76,120 @@ public class ControladorTorneo implements ActionListener{
             
             
         }
-        else if(ae.getSource().equals(this.vtt.getBtSig())){
-            desarrollarBatalla(this.torneo.getCombatientes().get(this.contadorGlobal), this.torneo.getCombatientes().get(this.contadorGlobal+1));
-             
-           
+        else if(ae.getSource().equals(this.vtt.getBtFinal())){
+            VistaBatalla vb=new VistaBatalla();
+                
+                this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ctb2.getVf().getBtContinuar2().addActionListener(this);
+                vb.setSize(844, 584);
+                System.out.println(this.torneo.getCombatientes());
+                
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                
+        }
+        
+        else if(ae.getSource().equals(this.vtt.getBtRonda2())){
+             VistaBatalla vb=new VistaBatalla();
+                
+                this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ctb2.getVf().getBtContinuar2().addActionListener(this);
+                vb.setSize(844, 584);
+                System.out.println(this.torneo.getCombatientes());
+                
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                if(this.contadorGlobal<2){
+                    this.contadorGlobal+=2;
+                    
+                }
+                else{
+                    this.vtt.getBtRonda2().setEnabled(false);
+                    this.vtt.getBtFinal().setEnabled(true);
+                    for(Medaboot perdedor:this.perdedores){
+                        this.torneo.getCombatientes().remove(perdedor);
+                    }
+                    this.perdedores.clear();
+                    this.contadorGlobal=0;
+                }
+        }
+        
+        else if(ae.getSource().equals(this.vtt.getBtRonda1())){
+                VistaBatalla vb=new VistaBatalla();
+                
+                this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ctb2.getVf().getBtContinuar2().addActionListener(this);
+                vb.setSize(844, 584);
+                System.out.println(this.torneo.getCombatientes());
+                
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+               
+                if(this.contadorGlobal<6){
+                    this.contadorGlobal=this.contadorGlobal+2;
+                    System.out.println("este es el Numero"+this.contadorGlobal);
+                }
+                else{
+                    this.vtt.getBtRonda1().setEnabled(false);
+                    this.vtt.getBtRonda2().setEnabled(true);
+                    for(Medaboot perdedor:this.perdedores){
+                        this.torneo.getCombatientes().remove(perdedor);
+                    }
+                    this.perdedores.clear();
+                    this.contadorGlobal=0;
+                }
+        }
+        
+        else if(ae.getSource().equals(this.vf.getBtContinuar2())){
+            this.vtt.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+                
+            this.perdedores.add(this.batalla.getPerdedor());
             
-        } 
+            switch (this.contadorCasillas) {
+                case 1:
+                    this.vtt.getTxtPjr12().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 2:
+                    this.vtt.getTxtPjr22().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 3:
+                    this.vtt.getTxtPjr32().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 4:
+                    this.vtt.getTxtPjr42().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 5:
+                    this.vtt.getTxtPjr13().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 6:
+                    this.vtt.getTxtPjr23().setText(this.batalla.getGanador().getNombre());
+                    break;
+                case 7:
+                    this.vtt.getTxtGanador().setText(this.batalla.getGanador().getNombre());
+                    this.vtt.getLbGanador().setEnabled(true);
+                    break;
+                default:
+                    break;
+            }
+            this.contadorCasillas=this.contadorCasillas+1;
+            
+            
+        }
+                
+        
         //Cambiar a vista de preparacion torneo, cuando se pula el torneo normal
         else if(ae.getSource().equals(this.vmt.getBtTnormal())){
             this.vpt.setSize(844, 584);
@@ -96,8 +202,8 @@ public class ControladorTorneo implements ActionListener{
         //Cuando esten registrados los 8 jugadores se habilita las opciones para comenzar la batalla
         
         else if(ae.getSource().equals(this.vpt.getBtRegistro())){
-            this.vt1=new VistaRegistro1();
-             ControladorRegistro controlador= new ControladorRegistro(this.vt1,new VistaRegistro2(),"kimbo");
+            this.vt11=new VistaRegistro1();
+             ControladorRegistro controlador= new ControladorRegistro(this.vt11,new VistaRegistro2(),"kimbo");
              controlador.getVt1().getBtEntrar().addActionListener(this);
              if(this.usuarios>=7){
                  this.vpt.getBtRegistro().setEnabled(false); 
@@ -107,10 +213,10 @@ public class ControladorTorneo implements ActionListener{
         
         }
         //Agregar el  usuario a la lista de usuarios participanes
-        else if(ae.getSource().equals(this.vt1.getBtEntrar())){
+        else if(ae.getSource().equals(this.vt11.getBtEntrar())){
             try {
-                String nombreUsuario2=this.vt1.getTxtUsuario().getText();
-                String contraseña2=this.vt1.getTxtContraseña().getText();
+                String nombreUsuario2=this.vt11.getTxtUsuario().getText();
+                String contraseña2=this.vt11.getTxtContraseña().getText();
                 Usuario usuarioN=new Usuario(nombreUsuario2,contraseña2);
                 if (new Usuario(nombreUsuario2,contraseña2).validarUsuario(nombreUsuario2, contraseña2)==true && this.torneo.verificarUsuario(new Usuario(nombreUsuario2,contraseña2))==true){
                     this.torneo.getParticipantes().add(new Usuario(nombreUsuario2,contraseña2));
@@ -163,3 +269,4 @@ public class ControladorTorneo implements ActionListener{
     }
     
 }
+

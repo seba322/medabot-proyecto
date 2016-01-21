@@ -47,9 +47,9 @@ public class ControladorBatalla2 implements ActionListener {
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
-    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad){
+    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,VistaFinalB vf){
         
-        this.vf=new VistaFinalB();
+        this.vf=vf;
         this.vm=vm;
         this.vtt=vtt;
         this.batalla=b;
@@ -174,8 +174,8 @@ public class ControladorBatalla2 implements ActionListener {
         this.vm.getContentPane().repaint();
         this.batalla.restablecerVida(ganador);
         this.batalla.restablecerVida(perdedor);
-        this.vf.getTxGanador().setText(this.batalla.getGanador());
-        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor()); 
+        this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
+        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
         this.batalla.asignarMedaparte(ganador,perdedor);
              //guardarHistorial;
         this.batalla.setEstado("Finalizada");
@@ -293,24 +293,25 @@ public class ControladorBatalla2 implements ActionListener {
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
             }
-            else{
-                this.vtt.setSize(844, 584);
-                this.vm.getContentPane().removeAll();
-                this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
-                this.vm.getContentPane().revalidate();
-                this.vm.getContentPane().repaint();
-            }
+//            else{
+//                this.vtt.setSize(844, 584);
+//                this.vm.getContentPane().removeAll();
+//                this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
+//                this.vm.getContentPane().revalidate();
+//                this.vm.getContentPane().repaint();
+//                
+//            }
         }
         
         if (ae.getSource().equals(this.vb.getJBContinuar())){
            if (this.batalla.getJugador1().getSalud()<=0){
-               this.batalla.setGanador(this.batalla.getJugador2().getNombre());
-               this.batalla.setPerdedor(this.batalla.getJugador1().getNombre());
+               this.batalla.setGanador(this.batalla.getJugador2());
+               this.batalla.setPerdedor(this.batalla.getJugador1());
             finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
            }
        else if (this.batalla.getJugador2().getSalud()<=0){
-           this.batalla.setGanador(this.batalla.getJugador1().getNombre());
-           this.batalla.setPerdedor(this.batalla.getJugador2().getNombre());
+           this.batalla.setGanador(this.batalla.getJugador1());
+           this.batalla.setPerdedor(this.batalla.getJugador2());
             finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
            }
         }

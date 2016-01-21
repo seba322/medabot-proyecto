@@ -10,8 +10,9 @@ public class Batalla {
    private Medaboot jugador1;
    public Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
-   private String ganador;
-   private String perdedor;
+   
+   private Medaboot ganador;
+   private Medaboot perdedor;
    private ArrayList<Medaparte> partes;
    private ArrayList<String> mensajes;
    private String estado;
@@ -56,21 +57,23 @@ public class Batalla {
         return mensajes;
     }
 
-    public String getGanador() {
+    public Medaboot getGanador() {
         return ganador;
     }
 
-    public String getPerdedor() {
+    public Medaboot getPerdedor() {
         return perdedor;
     }
 
-    public void setPerdedor(String perdedor) {
+    public void setGanador(Medaboot ganador) {
+        this.ganador = ganador;
+    }
+
+    public void setPerdedor(Medaboot perdedor) {
         this.perdedor = perdedor;
     }
 
-    public void setGanador(String ganador) {
-        this.ganador = ganador;
-    }
+   
     
 
     public void setPartes() {
