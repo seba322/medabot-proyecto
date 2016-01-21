@@ -27,8 +27,9 @@ public class ControladorBatalla implements ActionListener {
     private String nombreUsuario;
     private String contraseña;
     private VistaRegistro1 vt11;
-    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña){
-        System.out.println("Empieza CONTROLADORBATALLA");
+    private VistaPreparacionBPjvsCpu vtpc;
+    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC){
+        this.vtpc=vtpc;
         this.vm=vm;
         this.vb=vb;
         this.vmb=vmb;
@@ -37,6 +38,7 @@ public class ControladorBatalla implements ActionListener {
         this.contraseña=contraseña;
         this.user2=new Usuario();
         this.vmb.getBtJugador().addActionListener(this);
+        this.vmb.getBtCPU().addActionListener(this);
         this.vtp.getBtComenzar().addActionListener(this);
         this.vtp.getBtAtras().addActionListener(this);
         this.vmb.getBtAtras().addActionListener(this);
@@ -66,13 +68,21 @@ public class ControladorBatalla implements ActionListener {
             
           
         }
+        else if(ae.getSource().equals(this.vmb.getBtCPU())){
+            this.vtpc.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vtpc,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            
+        }
         
         else if(ae.getSource().equals(this.vtp.getBtComenzar())){
             try {
                 Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
-                System.out.println(this.user2.getNombreUsuario()+"FUNCIONOOOOOOOOOOOOOO");
+                
                 Medaboot pj1= user1.getPersonajes()[0];
-                System.out.println("aqui"+pj1.getSalud());
+                
                 Medaboot pj2= this.user2.getPersonajes()[0];
                 Batalla batalla= new Batalla(pj1,pj2);
                 VistaFinalB vf= new VistaFinalB();
@@ -115,16 +125,16 @@ public class ControladorBatalla implements ActionListener {
         else if(ae.getSource().equals(this.vt11.getBtEntrar())){
                     try {
                         String nombreUsuario2=this.vt11.getTxtUsuario().getText();
-                        System.out.println(nombreUsuario2+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                        
                         String contraseña2=this.vt11.getTxtContraseña().getText();
-                        System.out.println(contraseña2);
-                        System.out.println("ESTOR AQUI");
+                       ;
+                        
                         
                         if (this.user2.validarUsuario(nombreUsuario2, contraseña2)==true){
                             this.vtp.getBtComenzar().setEnabled(true);
                             this.user2=new Usuario(nombreUsuario2,contraseña2);
-                            System.out.println(this.user2.getNombreUsuario());
-                            System.out.println("FUCIONO");
+                           
+                            
                             
                         }   
                         

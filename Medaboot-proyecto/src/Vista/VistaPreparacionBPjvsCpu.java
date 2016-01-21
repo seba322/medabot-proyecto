@@ -56,7 +56,7 @@ public class VistaPreparacionBPjvsCpu extends javax.swing.JPanel {
         ltCPU.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         ltCPU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPU1", "CPU2", "CPU3" }));
 
-        btAtras.setText("jButton1");
+        btAtras.setText("Atras");
 
         btAdministrarPj.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btAdministrarPj.setText("Administrar Personaje");
@@ -86,9 +86,6 @@ public class VistaPreparacionBPjvsCpu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(241, 241, 241)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
@@ -100,7 +97,9 @@ public class VistaPreparacionBPjvsCpu extends javax.swing.JPanel {
                             .addComponent(btComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btAdministrarPj, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(ltCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))

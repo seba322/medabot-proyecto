@@ -52,13 +52,14 @@ public class ControladorMenu implements ActionListener {
             VistaMenuB vmb= new VistaMenuB();
             VistaBatalla vb= new VistaBatalla();
             VistaPreparacionBPj vtp= new VistaPreparacionBPj();
+            VistaPreparacionBPjvsCpu vtpc= new VistaPreparacionBPjvsCpu();
            
             vmb.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(vmb,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña);
+            ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc);
         }
         else if (e.getSource().equals(this.vm.getBtTorneo())){
             Usuario user=null;
