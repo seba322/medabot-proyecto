@@ -11,7 +11,7 @@ import Modelo.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.*;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
+//import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,18 +22,21 @@ public class ControladorBatalla implements ActionListener {
     private VistaMenuB vmb;
     private VistaBatalla vb;
     private VistaPreparacionBPj vtp;
+
     private VistaMenu vm;
+    private Medaboot Cpu;
     private Usuario user2;
     private String nombreUsuario;
     private String contraseña;
     private VistaRegistro1 vt11;
     private VistaPreparacionBPjvsCpu vtpc;
     public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC){
-        this.vtpc=vtpc;
+       
         this.vm=vm;
         this.vb=vb;
         this.vmb=vmb;
         this.vtp=vtp;
+        this.vtpc=vtpC;
         this.nombreUsuario=nombreUsuario;
         this.contraseña=contraseña;
         this.user2=new Usuario();
@@ -43,6 +46,10 @@ public class ControladorBatalla implements ActionListener {
         this.vtp.getBtAtras().addActionListener(this);
         this.vmb.getBtAtras().addActionListener(this);
         this.vtp.getBtRegistro2().addActionListener(this);
+        this.vtpc.getBtAdministrarPj().addActionListener(this);
+        this.vtpc.getBtComenzar().addActionListener(this);
+        this.vtpc.getBtAtras().addActionListener(this);
+        this.vtpc.getBtSeleccionar().addActionListener(this);
                 
         
        
@@ -74,7 +81,7 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().add(this.vtpc,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            
+           
         }
         
         else if(ae.getSource().equals(this.vtp.getBtComenzar())){
@@ -122,7 +129,52 @@ public class ControladorBatalla implements ActionListener {
              controlador.getVt1().getBtEntrar().addActionListener(this);
         }
         
-        else if(ae.getSource().equals(this.vt11.getBtEntrar())){
+     
+       else if (ae.getSource().equals(this.vtpc.getBtSeleccionar())){
+            try {
+                String  nombreCpu = (String) this.vtpc.getLtCPU().getSelectedItem();
+                Medaboot CpuSelecc = new Medaboot ("'"+nombreCpu+"'");
+                this.Cpu=CpuSelecc;
+                this.vtpc.getTxtEstadisticas().setText("");
+                String Estadisicas = "nombre :"+ CpuSelecc.getNombre()+"\n"
+                        + "salud:"+CpuSelecc.getSalud()+"\n"+"esquive:"+CpuSelecc.getEsquive()+"\n"
+                        +"defensa:"+CpuSelecc.getDefensa()+"\n"+"ataque:"+CpuSelecc.getAtaque()+"\n";
+               
+                this.vtpc.getTxtEstadisticas().append(Estadisicas);
+                this.vtpc.getBtComenzar().setEnabled(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+          
+       else if (ae.getSource().equals(this.vtpc.getBtComenzar())){
+           try {
+                Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
+                
+                Medaboot pj1= user1.getPersonajes()[0];
+                
+                Medaboot pj2= this.Cpu;
+                Batalla batalla= new Batalla(pj1,pj2);
+                VistaFinalB vf= new VistaFinalB();
+                
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj",vf);
+                
+                this.vb.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+       
+       
+       
+       }
+        
+       else if(ae.getSource().equals(this.vt11.getBtEntrar())){
                     try {
                         String nombreUsuario2=this.vt11.getTxtUsuario().getText();
                         
@@ -148,8 +200,7 @@ public class ControladorBatalla implements ActionListener {
                 
                 
                 
-                } 
-                
+                }
             
             } 
             

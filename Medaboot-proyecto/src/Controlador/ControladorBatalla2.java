@@ -3,24 +3,15 @@ package Controlador;
 import Modelo.Batalla;
 import Modelo.*;
 import Vista.VistaBatalla;
-import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JToggleButton;
 import java.lang.System;
-import java.lang.reflect.Array.*;
 import java.util.Arrays;
 import Vista.*;
 import java.awt.BorderLayout;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import jdk.nashorn.internal.codegen.CompilerConstants;
+
 // falta instanciar acciones 1 y acciones 2 
 // ordenar funcionamiento de lista ataques y ataque
 // la idea es en ataque guardar el ataque de una medaparte a otr , y luego y juntando estos en lista ataques
@@ -47,6 +38,7 @@ public class ControladorBatalla2 implements ActionListener {
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
+    
     public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,VistaFinalB vf){
         
         this.vf=vf;
@@ -365,9 +357,11 @@ public class ControladorBatalla2 implements ActionListener {
           this.vb.getJtEsquivar1().setEnabled(false);
           this.vb.getJtDefender2().setEnabled(true);
           this.vb.getJtEsquivar2().setEnabled(true);
-
           botonDisabled(this.acciones1,null);
           botonEnabled(acciones2);
+          if (this.modalidad.equals("BatallaCpuPj")){
+              this.batalla.getJugador2().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2().getAtaques(), this.batalla.getJugador2().getDefensas(), this.vb.getTxtPhabilidad1(), this.vb.getBtConfirmarA());
+          }
           this.numeroTurno +=1;// cuenta los turnos
         
           

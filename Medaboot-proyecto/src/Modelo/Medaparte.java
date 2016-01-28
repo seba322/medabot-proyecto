@@ -105,6 +105,11 @@ public class Medaparte {
     public String getHabilidad() {
         return habilidad;
     }
+
+    public int getEsquive() {
+        return this.esquive;
+        
+    }
     
     
     

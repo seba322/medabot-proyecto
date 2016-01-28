@@ -8,7 +8,7 @@ import java.lang.Math.*;
 
 public class Batalla {
    private Medaboot jugador1;
-   public Medaboot jugador2;
+   private Medaboot jugador2;
    private ArrayList<Medaboot> personajes;
    
    private Medaboot ganador;
