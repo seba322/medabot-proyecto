@@ -35,10 +35,10 @@ public class ControladorTorneo implements ActionListener{
         this.vf=new VistaFinalB();
         this.contadorGlobal=0;
         this.contadorCasillas=1;
+        this.usuarios=1;
         this.vmt=vmt;
         this.vpt=vpt;
         this.vtt=vtt;
-        this.usuarios=1;
         this.vm=vm;
         this.vmt.getBtTnormal().addActionListener(this);
         this.vpt.getBtRegistro().addActionListener(this);
@@ -78,9 +78,10 @@ public class ControladorTorneo implements ActionListener{
         }
         else if(ae.getSource().equals(this.vtt.getBtFinal())){
             VistaBatalla vb=new VistaBatalla();
+            this.vf=new VistaFinalB();
                 
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
@@ -89,11 +90,14 @@ public class ControladorTorneo implements ActionListener{
                 this.vm.getContentPane().add(vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
+                this.vtt.getBtFinal().setEnabled(false);
+                this.vtt.getBtTerminar().setEnabled(true);
                 
         }
         
         else if(ae.getSource().equals(this.vtt.getBtRonda2())){
              VistaBatalla vb=new VistaBatalla();
+             this.vf=new VistaFinalB();
                 
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
@@ -122,6 +126,7 @@ public class ControladorTorneo implements ActionListener{
         
         else if(ae.getSource().equals(this.vtt.getBtRonda1())){
                 VistaBatalla vb=new VistaBatalla();
+                this.vf=new VistaFinalB();
                 
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
@@ -150,6 +155,7 @@ public class ControladorTorneo implements ActionListener{
         }
         
         else if(ae.getSource().equals(this.vf.getBtContinuar2())){
+            
             this.vtt.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
@@ -157,6 +163,7 @@ public class ControladorTorneo implements ActionListener{
             this.vm.getContentPane().repaint();
                 
             this.perdedores.add(this.batalla.getPerdedor());
+            System.out.println("FINALIZANDO BATALLA");
             
             switch (this.contadorCasillas) {
                 case 1:
@@ -164,6 +171,7 @@ public class ControladorTorneo implements ActionListener{
                     break;
                 case 2:
                     this.vtt.getTxtPjr22().setText(this.batalla.getGanador().getNombre());
+                    
                     break;
                 case 3:
                     this.vtt.getTxtPjr32().setText(this.batalla.getGanador().getNombre());
@@ -179,12 +187,13 @@ public class ControladorTorneo implements ActionListener{
                     break;
                 case 7:
                     this.vtt.getTxtGanador().setText(this.batalla.getGanador().getNombre());
-                    this.vtt.getLbGanador().setEnabled(true);
+                    this.vtt.getLbGanador().setVisible(true);
                     break;
                 default:
                     break;
             }
             this.contadorCasillas=this.contadorCasillas+1;
+            System.out.print("ESTE ES EL CONTADOR CASILLAS"+this.contadorCasillas);
             
             
         }

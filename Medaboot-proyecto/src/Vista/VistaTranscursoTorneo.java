@@ -13,7 +13,7 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
         initComponents();
         this.btRonda2.setEnabled(false);
         this.btFinal.setEnabled(false);
-        this.lbGanador.setEnabled(false);
+        this.lbGanador.setVisible(false);
         
         
                 
@@ -97,6 +97,11 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
     public JTextField getTxtPjr23() {
         return txtPjr23;
     }
+
+    public JButton getBtTerminar() {
+        return btTerminar;
+    }
+    
     
    
 
@@ -129,6 +134,7 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
         btFinal = new javax.swing.JButton();
         txtPjr32 = new javax.swing.JTextField();
         lbGanador = new javax.swing.JLabel();
+        btTerminar = new javax.swing.JButton();
 
         txtGanador.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         txtGanador.setDisabledTextColor(new java.awt.Color(0, 0, 255));
@@ -213,6 +219,8 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
         lbGanador.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbGanador.setText("Ganador");
 
+        btTerminar.setText("Finalizar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -276,11 +284,13 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbGanador)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btRonda2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbGanador)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btRonda2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btTerminar))
                 .addGap(405, 405, 405))
             .addGroup(layout.createSequentialGroup()
                 .addGap(431, 431, 431)
@@ -297,7 +307,9 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
                     .addComponent(txtGanador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lbGanador)
-                .addGap(70, 70, 70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btTerminar)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPjr23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPjr13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,6 +347,7 @@ public class VistaTranscursoTorneo extends javax.swing.JPanel {
     private javax.swing.JButton btFinal;
     private javax.swing.JButton btRonda1;
     private javax.swing.JButton btRonda2;
+    private javax.swing.JButton btTerminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
