@@ -19,24 +19,26 @@ import javax.swing.JToggleButton;
  * @author sebastian
  */
 public class Medaboot {
-    protected String nombre;
-    protected Medalla medalla;
-    protected int salud;
-    protected int saludMax;
-    protected int ph;
-    protected int llamadoMeda;
-    protected ArrayList<Medaparte> armadura;
-    protected Medaparte brazoIz;
-    protected Medaparte brazoDe;
-    protected Medaparte cabeza;
-    protected Medaparte piernaIz;
-    protected Medaparte piernaDe;
-    protected int esquive;
-    protected int defensa;
-    protected int ataque;
-    protected ArrayList<Integer> ataques=new ArrayList<Integer> ();
-    protected ArrayList<Integer> defensas=new ArrayList<Integer> ();
-    protected String tipo;
+    private String nombre;
+    private Medalla medalla;
+    private int salud;
+    private int saludMax;
+    private int ph;
+    private int llamadoMeda;
+    
+    private ArrayList<Medaparte> armadura;
+    private Medaparte brazoIz;
+    private Medaparte brazoDe;
+    private Medaparte cabeza;
+    private Medaparte piernaIz;
+    private Medaparte piernaDe;
+    private int esquive;
+    private int defensa;
+    private int ataque;
+    private ArrayList<Integer> ataques=new ArrayList<Integer> ();
+    private ArrayList<Integer> defensas=new ArrayList<Integer> ();
+    private  String tipo;
+    private String nombreUsuatrio;
   //  private Medaparte modificador;
     
     public Medaboot (String nombre) throws SQLException{
@@ -48,17 +50,17 @@ public class Medaboot {
          ResultSet re=stm.executeQuery(seleccionar);
          this.nombre=nombre;
          while(re.next()){
-         this.medalla= new Medalla("'"+re.getString(9)+"'");
-         System.out.println(re.getString(5));
-         this.brazoIz = new Medaparte(re.getString(5));
-         this.brazoDe= new Medaparte(re.getString(6));
-         this.piernaIz= new Medaparte(re.getString(7));
-         this.piernaDe= new Medaparte(re.getString(8));
-         this.cabeza= new Medaparte(re.getString(4));
-         this.armadura=new ArrayList<Medaparte> ();
-         
-         this.salud= re.getInt (1);
-         this.saludMax=re.getInt (1);
+            this.medalla= new Medalla("'"+re.getString(9)+"'");
+            System.out.println(re.getString(5));
+            this.brazoIz = new Medaparte(re.getString(5));
+            this.brazoDe= new Medaparte(re.getString(6));
+            this.piernaIz= new Medaparte(re.getString(7));
+            this.piernaDe= new Medaparte(re.getString(8));
+            this.cabeza= new Medaparte(re.getString(4));
+            this.armadura=new ArrayList<Medaparte> ();
+            this.nombreUsuatrio=re.getString(3);
+            this.salud= re.getInt (1);
+            this.saludMax=re.getInt (1);
           
          }
          
@@ -187,6 +189,11 @@ public class Medaboot {
    public ArrayList<Integer> getAtaques(){
        return this.ataques;
    }
+
+    public String getNombreUsuatrio() {
+        return nombreUsuatrio;
+    }
+   
     
    
     

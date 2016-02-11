@@ -17,6 +17,8 @@ import Vista.VistaPreparacionTorneo;
 import Vista.VistaRegistro1;
 import java.awt.BorderLayout;
 import Modelo.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class ControladorMenu implements ActionListener {
     
@@ -37,13 +39,37 @@ public class ControladorMenu implements ActionListener {
         this.vm.getBtOculto().addActionListener(this);
         this.vm.getBtHistorial().addActionListener(this);
         this.vm.getBtDesconectar().addActionListener(this);
+        try {
+            comprobarPjOculto();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
 
 }
    
 
-    ControladorMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void comprobarPjOculto() throws SQLException{
+        boolean pjOculto=false;
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+            String nombre="'"+this.nombreUsuario+"'";
+            Statement stm=conexion.consultar();
+            String insertar= "SELECT PJOCULTO FROM USUARIO WHERE NOMBRE="+nombre;
+            ResultSet respuesta=stm.executeQuery(insertar);
+            while(respuesta.next()){
+              pjOculto=respuesta.getBoolean(1);
+                
+            }
+        respuesta.close();
+        conexion.desconectar();
+        }
+        if(pjOculto){
+            this.vm.getBtOculto().setEnabled(true);
+            
+        }
+        
+        
     }
 
     @Override

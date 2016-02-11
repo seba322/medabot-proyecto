@@ -159,11 +159,11 @@ public class Usuario {
         DBConection conexion=new DBConection();
         if(conexion.conectar()){
             Statement stm=conexion.consultar();
-            String insertar= "INSERT INTO USUARIO(NOMBRE,PASS,PERSONAJE) VALUES ('"+nombreUsuario+"','"+contraseña+"','"+nombreMedabot+"')";
-            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)"; 
-            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
+            String insertar= "INSERT INTO USUARIO(NOMBRE,PASS,PERSONAJE,PJOCULTO) VALUES ('"+nombreUsuario+"','"+contraseña+"','"+nombreMedabot+"',false)";
+            String insertarMedabotA="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"A',"+"'"+nombreUsuario+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)"; 
+            String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"B',"+"'"+nombreUsuario+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
             String insetarMedapartes="INSERT INTO MEDAPARTEUSUARIO( USUARIO ) VALUES('"+nombreUsuario+"')" ;       
-            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+"default"+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
+            String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (50,'"+nombreMedabot+"C',"+"'"+nombreUsuario+"',"+"'"+"Cabeza Generica (C)"+"',"+"'"+"Brazo Generico (BI)"+"',"+"'"+"Brazo Generico (BD)"+"',"+"'"+"Pierna Generica (PI)"+"',"+"'"+"Pierna Generica (PD)"+"',"+"'"+"Perro"+"',"+"10)";
             String insertarMedallas="INSERT INTO MEDALLAUSUARIO(USUARIO,MEDALLA) VALUES ('"+nombreUsuario+"','Gato,Toro,Aguila') ";        
             int respuesta=stm.executeUpdate(insertar);
             int creacionA=stm.executeUpdate(insertarMedabotA);

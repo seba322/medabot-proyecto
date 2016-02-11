@@ -1,6 +1,8 @@
 
 package Modelo;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -52,6 +54,20 @@ public class Torneo {
             ++contador;
             
         }
+        
+       
+    }
+    
+    public void activarPjOculto(String nombreUsuario) throws SQLException{
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+            String nombre="'"+nombreUsuario+"'";
+            String instruccion="UPDATE USUARIO SET PJOCULTO= true WHERE NOMBRE="+nombre;
+            Statement consulta = conexion.consultar();  
+            consulta.executeUpdate(instruccion);
+        
+        }
+        conexion.desconectar();
     }
     
     

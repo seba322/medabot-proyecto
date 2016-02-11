@@ -24,6 +24,7 @@ public class ControladorTorneo implements ActionListener{
     private int contadorGlobal;
     private int contadorCasillas;
     private VistaFinalB vf;
+    private VistaFinalizarTorneo vft;
     private Batalla batalla;
     private ArrayList<Medaboot> perdedores;
     
@@ -40,6 +41,7 @@ public class ControladorTorneo implements ActionListener{
         this.vpt=vpt;
         this.vtt=vtt;
         this.vm=vm;
+        this.vft=new VistaFinalizarTorneo();
         this.vmt.getBtTnormal().addActionListener(this);
         this.vpt.getBtRegistro().addActionListener(this);
         this.vpt.getBtComenzar().addActionListener(this);
@@ -48,6 +50,8 @@ public class ControladorTorneo implements ActionListener{
         this.vtt.getBtRonda1().addActionListener(this);
         this.vtt.getBtRonda2().addActionListener(this);
         this.vtt.getBtFinal().addActionListener(this);
+        this.vtt.getBtTerminar().addActionListener(this);
+        this.vft.getBtContinuar2().addActionListener(this);
         //this.vf.getBtContinuar2().addActionListener(this);
         this.vpt.getBtAtras2().addActionListener(this);
         this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
@@ -57,6 +61,7 @@ public class ControladorTorneo implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         //Comenzar el torneo
         if(ae.getSource().equals(this.vpt.getBtComenzar())){
             this.vtt.setSize(844, 584);
@@ -72,10 +77,8 @@ public class ControladorTorneo implements ActionListener{
             this.vtt.getTxtPjr6().setText(this.torneo.getCombatientes().get(5).getNombre());
             this.vtt.getTxtPjr7().setText(this.torneo.getCombatientes().get(6).getNombre());
             this.vtt.getTxtPjr8().setText(this.torneo.getCombatientes().get(7).getNombre());
-           
-            
-            
         }
+        
         else if(ae.getSource().equals(this.vtt.getBtFinal())){
             VistaBatalla vb=new VistaBatalla();
             this.vf=new VistaFinalB();
@@ -91,7 +94,7 @@ public class ControladorTorneo implements ActionListener{
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
                 this.vtt.getBtFinal().setEnabled(false);
-                this.vtt.getBtTerminar().setEnabled(true);
+                this.vtt.getBtTerminar().setVisible(true);
                 
         }
         
@@ -116,10 +119,7 @@ public class ControladorTorneo implements ActionListener{
                 else{
                     this.vtt.getBtRonda2().setEnabled(false);
                     this.vtt.getBtFinal().setEnabled(true);
-                    for(Medaboot perdedor:this.perdedores){
-                        this.torneo.getCombatientes().remove(perdedor);
-                    }
-                    this.perdedores.clear();
+                   
                     this.contadorGlobal=0;
                 }
         }
@@ -146,10 +146,7 @@ public class ControladorTorneo implements ActionListener{
                 else{
                     this.vtt.getBtRonda1().setEnabled(false);
                     this.vtt.getBtRonda2().setEnabled(true);
-                    for(Medaboot perdedor:this.perdedores){
-                        this.torneo.getCombatientes().remove(perdedor);
-                    }
-                    this.perdedores.clear();
+                    
                     this.contadorGlobal=0;
                 }
         }
@@ -178,16 +175,31 @@ public class ControladorTorneo implements ActionListener{
                     break;
                 case 4:
                     this.vtt.getTxtPjr42().setText(this.batalla.getGanador().getNombre());
+                    for(Medaboot perdedor:this.perdedores){
+                        this.torneo.getCombatientes().remove(perdedor);
+                    }
+                    this.perdedores.clear();
                     break;
                 case 5:
                     this.vtt.getTxtPjr13().setText(this.batalla.getGanador().getNombre());
                     break;
                 case 6:
                     this.vtt.getTxtPjr23().setText(this.batalla.getGanador().getNombre());
+                     for(Medaboot perdedor:this.perdedores){
+                        this.torneo.getCombatientes().remove(perdedor);
+                    }
+                    this.perdedores.clear();
                     break;
                 case 7:
                     this.vtt.getTxtGanador().setText(this.batalla.getGanador().getNombre());
                     this.vtt.getLbGanador().setVisible(true);
+            {
+                try {
+                    this.torneo.activarPjOculto(this.batalla.getGanador().getNombreUsuatrio());
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     break;
                 default:
                     break;
@@ -273,6 +285,25 @@ public class ControladorTorneo implements ActionListener{
             this.usuarios=1;
             this.vpt.getTxtParticipantes().append("Usuario                              Personaje\n");
             this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
+        }
+        else if(ae.getSource().equals(this.vtt.getBtTerminar())){
+            this.vft.setSize(918, 651);
+            this.vft.getTxtGanador().setText(this.batalla.getGanador().getNombre());
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vft,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            
+        }
+        else if(ae.getSource().equals(this.vft.getBtContinuar2())){
+         
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            if(this.torneo.getUser().getNombreUsuario().equals(this.batalla.getGanador().getNombreUsuatrio())){
+                this.vm.getBtOculto().setEnabled(true);
+            }
         }
         
     }
