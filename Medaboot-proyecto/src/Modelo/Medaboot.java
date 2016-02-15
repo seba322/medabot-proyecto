@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Vista.VistaBatalla;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -244,31 +245,44 @@ public class Medaboot {
 
    
 public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,ArrayList<JToggleButton> botonesObjetivo
-        ,ArrayList<Integer> ataques,ArrayList<Integer> defensasObjetivo,JTextPane PhActual,JButton confirmar){
+        ,ArrayList<Integer> ataques,ArrayList<Integer> defensasObjetivo,VistaBatalla vistaPH,JButton confirmar,JButton listo){
          
          ArrayList <Integer> ordenadorAta=(ArrayList<Integer>) ataques.clone();
          ArrayList<Integer> ordenadorDef=(ArrayList<Integer>) defensasObjetivo.clone();
          Comparator<Integer> comparador = Collections.reverseOrder();
          Collections.sort(ordenadorAta, comparador);
          Collections.sort(ordenadorDef,comparador);
+          int contadorPH=Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+          System.out.println( "esta es la lista de ataques"+ordenadorAta);
+           System.out.println( "esta es la lista de defensas"+ordenadorDef);
     if (turno>=0){
-         int i=0;
-      while(Integer.parseInt(PhActual.getText())>0){
+         
+      while(contadorPH>0){
+          int i=0;
+           System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
            for(int ataque : ordenadorAta){
                int posicion1 = ataques.indexOf(ataque);
+               System.out.println("ESTE ES ATAQUE"+ataques.indexOf(ataque));
+               System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+               System.out.println("ESTE ES DEFENSA"+defensasObjetivo.indexOf(ordenadorDef.get(i)));
                int posicion2 = defensasObjetivo.indexOf(ordenadorDef.get(i));
-               i+=1;
+               
                botonesAtacante.get(posicion1).doClick();
+//               botonesAtacante.get(posicion1).setSelected(true);
                botonesObjetivo.get(posicion2).doClick();
                
                confirmar.doClick();
+               contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+               System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+               i+=1;
                
               
            }
           
        
+        System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
        }
-    
+    listo.doClick();
     }
 
 

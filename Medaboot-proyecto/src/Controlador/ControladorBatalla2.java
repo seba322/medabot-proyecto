@@ -358,7 +358,7 @@ public class ControladorBatalla2 implements ActionListener {
           botonDisabled(this.acciones1,null);
           botonEnabled(acciones2);
           if (this.modalidad.equals("BatallaCpuPj")){
-              this.batalla.getJugador2().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2().getAtaques(), this.batalla.getJugador2().getDefensas(), this.vb.getTxtPhabilidad1(), this.vb.getBtConfirmarA());
+              this.batalla.getJugador2().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2().getAtaques(), this.batalla.getJugador2().getDefensas(), this.vb,this.vb.getBtConfirmarA(),this.vb.getBtListo());
           }
           this.numeroTurno +=1;// cuenta los turnos
         
