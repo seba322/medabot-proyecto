@@ -4,6 +4,11 @@ package Modelo;
 import java.util.ArrayList;
 import Controlador.*;
 import java.lang.Math.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Batalla {
@@ -83,12 +88,35 @@ public class Batalla {
     public void setMensajes() {
         this.mensajes.clear();
     }
-    //Se encarga de asignar una medaparte al azar al ganador
-    public void asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
-        int valorEntero = (int) Math.floor(Math.random()*(5-1+1)+1);// Valor entre M y N, ambos incluidos.
-        //Medaparte parte=personajeP.getArmadura().get(valorEntero);
+    //Se encarga de asignar una medaparte al azar al ganador, accediendo a la base de datos de las medapartes del usuario
+    public String asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
+        int valorEntero = (int) Math.floor(Math.random()*(4-0+1)+0);// Valor entre M y N, ambos incluidos.
+        Medaparte parte=personajeP.getArmadura().get(valorEntero);
+        DBConection conexion=new DBConection();
+       try {
+           if(conexion.conectar()){
+               String medapartes="";
+               Statement stm=conexion.consultar();
+               String nombre="'"+personajeG.getNombreUsuatrio()+"'";
+               String inventario="SELECT MEDAPARTEES FROM MEDAPARTEUSUARIO WHERE USUARIO="+nombre ;
+               ResultSet informacion=stm.executeQuery(inventario);
+               while( informacion.next()){
+                   medapartes=informacion.getString(1);
+                   
+               }
+              informacion.close();
+              medapartes=medapartes+","+parte.getNombre();
+              
+              String instruccion="UPDATE MEDAPARTEUSUARIO SET MEDAPARTEES='"+medapartes+"' WHERE USUARIO="+nombre;
+              stm.executeUpdate(instruccion);
+              conexion.desconectar();
+           }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(Batalla.class.getName()).log(Level.SEVERE, null, ex);
+       }
         
-        
+        return parte.getNombre();
     }
      public int getPorcent(Medaboot personaje){
         int porcent=(personaje.getSalud()*100)/personaje.getSaludMax();

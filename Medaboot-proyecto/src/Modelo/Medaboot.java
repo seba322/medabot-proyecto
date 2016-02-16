@@ -70,6 +70,7 @@ public class Medaboot {
          this.armadura.add(this.piernaIz);
          this.armadura.add(this.brazoDe);
          this.armadura.add(this.brazoIz);
+         System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"+this.armadura);
          this.defensa=this.brazoIz.getDefensa()+this.brazoDe.getDefensa()+this.piernaIz.getDefensa()+this.piernaDe.getDefensa()+this.cabeza.getDefensa();
          this.ataques.add(this.brazoIz.getAtaque());
          this.ataques.add(this.brazoDe.getAtaque());

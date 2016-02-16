@@ -166,7 +166,8 @@ public class ControladorBatalla2 implements ActionListener {
         this.batalla.restablecerVida(perdedor);
         this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
         this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
-        this.batalla.asignarMedaparte(ganador,perdedor);
+        String parte=this.batalla.asignarMedaparte(ganador,perdedor);
+        this.vf.getTxRecompensa().setText(parte);
              //guardarHistorial;
         this.batalla.setEstado("Finalizada");
             
