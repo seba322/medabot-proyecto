@@ -52,6 +52,26 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
     public void actionPerformed(ActionEvent ae) {
         
           if(ae.getSource().equals(this.vta.getBtAtras())){
+               System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[0].getNombre());
+               System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[1].getNombre());
+               System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[2].getNombre());
+            String comprobar= (String) this.vta.getJcPersonaje().getSelectedItem();
+            for(int i=0;i<this.user.getPersonajes().length;i++){
+            
+               if (comprobar.equals(this.user.getPersonajes()[i].getNombre())) {
+                   Medaboot[] clon =this.user.getPersonajes().clone();
+                   this.user.getPersonajes()[0]=clon[i];
+                   this.user.getPersonajes()[i]=clon[0];
+                   System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[0].getNombre());
+                    System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[1].getNombre());
+                     System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[2].getNombre());
+                   break;
+                   
+                   
+               }  
+            }
+            
+            
               
           this.vm.getContentPane().removeAll();
           this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
@@ -221,6 +241,8 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                  }
          }
          }
+         
+         
     }
 
     @Override
