@@ -246,13 +246,15 @@ public class Medaboot {
 
    
 public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,ArrayList<JToggleButton> botonesObjetivo
-        ,ArrayList<Integer> ataques,ArrayList<Integer> defensasObjetivo,VistaBatalla vistaPH,String defensa , String esquive){
+        ,Medaboot jugador2,VistaBatalla vistaPH,String defensa , String esquive){
          
-         ArrayList <Integer> ordenadorAta=(ArrayList<Integer>) ataques.clone();
-         ArrayList<Integer> ordenadorDef=(ArrayList<Integer>) defensasObjetivo.clone();
+         ArrayList <Integer> ordenadorAta=(ArrayList<Integer>) this.ataques.clone();
+         ArrayList<Integer> ordenadorDef=(ArrayList<Integer>) jugador2.defensas.clone();
+       
          Comparator<Integer> comparador = Collections.reverseOrder();
          Collections.sort(ordenadorAta, comparador);
          Collections.sort(ordenadorDef,comparador);
+        
           int contadorPH=Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
           System.out.println( "esta es la lista de ataques"+ordenadorAta);
            System.out.println( "esta es la lista de defensas"+ordenadorDef);
@@ -262,11 +264,11 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
           int i=0;
            System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
            for(int ataque : ordenadorAta){
-               int posicion1 = ataques.indexOf(ataque);
+               int posicion1 = this.ataques.indexOf(ataque);
                System.out.println("ESTE ES ATAQUE"+ataques.indexOf(ataque));
                System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
-               System.out.println("ESTE ES DEFENSA"+defensasObjetivo.indexOf(ordenadorDef.get(i)));
-               int posicion2 = defensasObjetivo.indexOf(ordenadorDef.get(i));
+               System.out.println("ESTE ES DEFENSA"+jugador2.defensas.indexOf(ordenadorDef.get(i)));
+               int posicion2 = jugador2.defensas.indexOf(ordenadorDef.get(i));
                
                botonesAtacante.get(posicion1).doClick();
 //               botonesAtacante.get(posicion1).setSelected(true);
@@ -292,12 +294,12 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
         
        if (this.esquive >= 0.3){vistaPH.getJtEsquivar2().doClick(); }
        else{vistaPH.getJtDefender2();}
-       if (esquive.equals("si")){
+       if (defensa.equals("si")){
          while(contadorPH>0){
-           int posicion2 = defensasObjetivo.indexOf(ordenadorDef.get(0));
+           int posicion2 = jugador2.defensas.indexOf(ordenadorDef.get(0));
            System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
            for(int ataque : ordenadorAta){
-               int posicion1 = ataques.indexOf(ataque);
+               int posicion1 = this.ataques.indexOf(ataque);
                 botonesAtacante.get(posicion1).doClick();
                 botonesObjetivo.get(posicion2).doClick();
                 vistaPH.getBtConfirmarA().doClick();
@@ -308,14 +310,20 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
         }
      }
        
-       else{
+       else if (esquive.equals("si")){
             while(contadorPH>0){
-           int posicion2 = defensasObjetivo.indexOf(ordenadorDef.get(0));
+                
+               
            System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
            for(int ataque : ordenadorAta){
                int posicion1 = ataques.indexOf(ataque);
                 botonesAtacante.get(posicion1).doClick();
-                botonesObjetivo.get(posicion2).doClick();
+                 if (jugador2.brazoDe.getEsquive()>jugador2.brazoIz.getEsquive()){;
+                     botonesObjetivo.get(2).doClick();}
+                else if (jugador2.brazoDe.getEsquive()<jugador2.brazoIz.getEsquive()){
+                    botonesObjetivo.get(3).doClick();}
+                else {}
+                
                 vistaPH.getBtConfirmarA().doClick();
                 contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
                 System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
@@ -337,6 +345,108 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
 
 }
 
+
+
+
+
+
+public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,ArrayList<JToggleButton> botonesObjetivo
+        ,Medaboot jugador2,VistaBatalla vistaPH,String defensa , String esquive){
+         
+         ArrayList <Integer> ordenadorAta=(ArrayList<Integer>) this.ataques.clone();
+         ArrayList<Integer> ordenadorDef=(ArrayList<Integer>) jugador2.defensas.clone();
+       
+         Comparator<Integer> comparador = Collections.reverseOrder();
+         Collections.sort(ordenadorAta, comparador);
+         Collections.sort(ordenadorDef,comparador);
+        
+          int contadorPH=Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+          System.out.println( "esta es la lista de ataques"+ordenadorAta);
+           System.out.println( "esta es la lista de defensas"+ordenadorDef);
+    if (turno==0){
+         
+      while(contadorPH>0){
+         
+           System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+           for(int ataque : ordenadorAta){
+               int posicion1 = this.ataques.indexOf(ataque);
+             
+               int posicion2 = 4;
+               
+               botonesAtacante.get(posicion1).doClick();
+//               botonesAtacante.get(posicion1).setSelected(true);
+               botonesObjetivo.get(posicion2).doClick();
+               
+               vistaPH.getBtConfirmarA().doClick();
+               contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+               System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+              
+               
+              
+           }
+          
+       
+        System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+       }
+    vistaPH.getBtListo().doClick();
+   
+    }
+
+
+   if (turno>0){
+        
+       if (this.esquive >= 0.5){vistaPH.getJtEsquivar2().doClick(); }
+       else{vistaPH.getJtDefender2();}
+       if (defensa.equals("si")){
+         while(contadorPH>0){
+           int posicion2 = jugador2.defensas.indexOf(ordenadorDef.get(0));
+           System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+           for(int ataque : ordenadorAta){
+               int posicion1 = this.ataques.indexOf(ataque);
+                botonesAtacante.get(posicion1).doClick();
+                botonesObjetivo.get(posicion2).doClick();
+                vistaPH.getBtConfirmarA().doClick();
+                contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+                System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+               
+               }
+        }
+     }
+       
+       else if (esquive.equals("si")){
+            while(contadorPH>0){
+                
+               
+           System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+           for(int ataque : ordenadorAta){
+               int posicion1 = ataques.indexOf(ataque);
+                botonesAtacante.get(posicion1).doClick();
+                 if (jugador2.brazoDe.getEsquive()>jugador2.brazoIz.getEsquive()){;
+                     botonesObjetivo.get(2).doClick();}
+                else if (jugador2.brazoDe.getEsquive()<jugador2.brazoIz.getEsquive()){
+                    botonesObjetivo.get(3).doClick();}
+                else {}
+                
+                vistaPH.getBtConfirmarA().doClick();
+                contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());
+                System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
+               
+               }
+        }
+       
+       
+       
+       
+       
+       }
+       
+   
+  
+   
+    vistaPH.getBtListo().doClick();
+   }
+
+}
    
     
     
