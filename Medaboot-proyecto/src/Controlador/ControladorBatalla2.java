@@ -408,7 +408,7 @@ public class ControladorBatalla2 implements ActionListener {
           }
           
           if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("CPU2")){
-            this.batalla.getJugador2().manejarCpu2(numeroTurno, acciones2, acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1,2);
+            this.batalla.getJugador2().manejarCpu2(numeroTurno, acciones2, acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1);
           }
           
           
@@ -459,7 +459,7 @@ public class ControladorBatalla2 implements ActionListener {
            this.batalla.getJugador1().manejarCpu1(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
           }
           else if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("CPU2")){
-           this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+           this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2);
           }
           this.esquivar1="";
           this.esquivar2="";

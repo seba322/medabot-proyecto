@@ -330,6 +330,7 @@ public class ControladorTorneo implements ActionListener{
                 }
                 else{
                     System.out.println("ERROR");
+                    this.vpt.getBtRegistro().setEnabled(true); 
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
@@ -382,7 +383,11 @@ public class ControladorTorneo implements ActionListener{
             this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            if(this.torneo.getUser().getNombreUsuario().equals(this.batalla.getGanador().getNombreUsuatrio())){
+             System.out.println(this.torneo.getUser().getNombreUsuario());
+                System.out.println(this.batalla.getGanador().getNombreUsuatrio());
+            if(this.torneo.getUser().getNombreUsuario().equals("'"+this.batalla.getGanador().getNombreUsuatrio()+"'")){
+                System.out.println(this.torneo.getUser().getNombreUsuario());
+                System.out.println(this.batalla.getGanador().getNombreUsuatrio());
                 this.vm.getBtOculto().setEnabled(true);
             }
         }
