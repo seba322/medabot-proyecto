@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 public class ControladorTorneo implements ActionListener{
     private VistaMenuTorneo vmt;
     private VistaPreparacionTorneo vpt;
+    private VistaPreparacionCpuTorneo vpct;
     private VistaTranscursoTorneo vtt;
     private VistaMenu vm;
     private Torneo torneo;
@@ -23,23 +24,28 @@ public class ControladorTorneo implements ActionListener{
     private int usuarios;
     private int contadorGlobal;
     private int contadorCasillas;
+    private int contadorParticipantes;
     private VistaFinalB vf;
     private VistaFinalizarTorneo vft;
     private Batalla batalla;
     private ArrayList<Medaboot> perdedores;
+    private String modalidad;
     
     
     
     public ControladorTorneo(VistaMenuTorneo vmt,VistaPreparacionTorneo vpt,VistaTranscursoTorneo vtt,VistaMenu vm,Torneo torneo){
         this.torneo=torneo;
+        this.modalidad="BatallaPj";
         this.perdedores=new ArrayList<Medaboot>();
         this.vf=new VistaFinalB();
         this.contadorGlobal=0;
         this.contadorCasillas=1;
         this.usuarios=1;
+        this.contadorParticipantes=1;
         this.vmt=vmt;
         this.vpt=vpt;
         this.vtt=vtt;
+        this.vpct=new VistaPreparacionCpuTorneo();
         this.vm=vm;
         this.vft=new VistaFinalizarTorneo();
         this.vmt.getBtTnormal().addActionListener(this);
@@ -47,12 +53,15 @@ public class ControladorTorneo implements ActionListener{
         this.vpt.getBtComenzar().addActionListener(this);
         this.vpt.getBtEmparejar().addActionListener(this);
         this.vpt.getBtLimpiar().addActionListener(this);
+        this.vpt.getBtCPU().addActionListener(this);
         this.vtt.getBtRonda1().addActionListener(this);
         this.vtt.getBtRonda2().addActionListener(this);
         this.vtt.getBtFinal().addActionListener(this);
         this.vtt.getBtTerminar().addActionListener(this);
         this.vft.getBtContinuar2().addActionListener(this);
-        //this.vf.getBtContinuar2().addActionListener(this);
+        this.vpct.getBtSeleccionar().addActionListener(this);
+        this.vpct.getBtAtras().addActionListener(this);
+        this.vf.getBtContinuar2().addActionListener(this);
         this.vpt.getBtAtras2().addActionListener(this);
         this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
     }
@@ -80,11 +89,13 @@ public class ControladorTorneo implements ActionListener{
         }
         
         else if(ae.getSource().equals(this.vtt.getBtFinal())){
-            VistaBatalla vb=new VistaBatalla();
-            this.vf=new VistaFinalB();
-                
+                VistaBatalla vb=new VistaBatalla();
+                this.vf=new VistaFinalB();
+                 if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
+                    this.modalidad="BatallaCpuPj";
+                }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
@@ -99,11 +110,13 @@ public class ControladorTorneo implements ActionListener{
         }
         
         else if(ae.getSource().equals(this.vtt.getBtRonda2())){
-             VistaBatalla vb=new VistaBatalla();
-             this.vf=new VistaFinalB();
-                
+                VistaBatalla vb=new VistaBatalla();
+                this.vf=new VistaFinalB();
+                 if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
+                    this.modalidad="BatallaCpuPj";
+                }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
@@ -127,9 +140,15 @@ public class ControladorTorneo implements ActionListener{
         else if(ae.getSource().equals(this.vtt.getBtRonda1())){
                 VistaBatalla vb=new VistaBatalla();
                 this.vf=new VistaFinalB();
-                
+                if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
+                    this.modalidad="BatallaCpuPj";
+                }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,"Torneo",this.vf);
+                System.out.println("ESTE ES EL JUGADOR 1"+this.batalla.getJugador1().getNombre());
+                System.out.println("ESTE ES EL JUGADOR 2"+this.batalla.getJugador2().getNombre());
+                
+                
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
@@ -226,12 +245,53 @@ public class ControladorTorneo implements ActionListener{
             this.vt11=new VistaRegistro1();
              ControladorRegistro controlador= new ControladorRegistro(this.vt11,new VistaRegistro2(),"kimbo");
              controlador.getVt1().getBtEntrar().addActionListener(this);
-             if(this.usuarios>=7){
-                 this.vpt.getBtRegistro().setEnabled(false); 
+             if(this.contadorParticipantes>=7){
+                 this.vpt.getBtRegistro().setEnabled(false);
+                 this.vpt.getBtCPU().setEnabled(false);
                  this.vpt.getBtEmparejar().setEnabled(true);
                  this.vpt.getBtLimpiar().setEnabled(true);
             }
+            
         
+        }
+        //Permite acceder a la pantalla para seleccionar una CPU
+        else if(ae.getSource().equals(this.vpt.getBtCPU())){
+            this.vpct.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vpct,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+             if(this.contadorParticipantes>=7){
+                 this.vpt.getBtRegistro().setEnabled(false); 
+                 this.vpt.getBtEmparejar().setEnabled(true);
+                 this.vpt.getBtCPU().setEnabled(false);
+                 this.vpt.getBtLimpiar().setEnabled(true);
+                 
+            }
+        }
+        //Permite seleccionar la CPU que se desee utilizar
+        else if(ae.getSource().equals(this.vpct.getBtSeleccionar())){
+            String cpu=(String) this.vpct.getiTCpu().getSelectedItem();
+            try {
+                Medaboot cpuSelected=new Medaboot("'"+cpu+"'");
+                this.torneo.setCpu(cpuSelected);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        //Permite volver a la pantalla de preparacion de torneo, y agrega la CPU
+        // Seleccionada a la lista de personajes participantes
+        else if(ae.getSource().equals(this.vpct.getBtAtras())){
+             
+            this.vpt.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            this.torneo.getPersonajes().add(this.torneo.getCpu());
+            this.vpt.getTxtParticipantes().append(Integer.toString(this.contadorParticipantes+1)+")"+":                                     "+this.torneo.getCpu().getNombre()+"\n");
+            ++this.contadorParticipantes;
         }
         //Agregar el  usuario a la lista de usuarios participanes
         else if(ae.getSource().equals(this.vt11.getBtEntrar())){
@@ -243,8 +303,9 @@ public class ControladorTorneo implements ActionListener{
                     this.torneo.getParticipantes().add(new Usuario(nombreUsuario2,contraseña2));
                     System.out.println(this.torneo.getParticipantes());
                     
-                    this.vpt.getTxtParticipantes().append(Integer.toString(this.usuarios+1)+")"+this.torneo.getParticipantes().get(usuarios).getNombreUsuario()+":                             "+this.torneo.getParticipantes().get(usuarios).getPersonajes()[0].getNombre()+"\n");
+                    this.vpt.getTxtParticipantes().append(Integer.toString(this.contadorParticipantes+1)+")"+this.torneo.getParticipantes().get(usuarios).getNombreUsuario()+":                             "+this.torneo.getParticipantes().get(usuarios).getPersonajes()[0].getNombre()+"\n");
                     ++this.usuarios;
+                    ++this.contadorParticipantes;
                     System.out.println(this.usuarios);
                 
                 }
@@ -283,6 +344,7 @@ public class ControladorTorneo implements ActionListener{
             this.torneo.getParticipantes().clear();
             this.torneo.getParticipantes().add(this.torneo.getUser());
             this.usuarios=1;
+            this.contadorParticipantes=1;
             this.vpt.getTxtParticipantes().append("Usuario                              Personaje\n");
             this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
         }

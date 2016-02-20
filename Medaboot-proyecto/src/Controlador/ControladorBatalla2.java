@@ -33,19 +33,21 @@ public class ControladorBatalla2 implements ActionListener {
     private JToggleButton seleecionador2=null;
     private int contador =0;
     private String modalidad;
+    private String tipo;
     private String esquivar1 ="";
     private String esquivar2="";
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
     
-    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,VistaFinalB vf){
+    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,String tipo,VistaFinalB vf){
         
         this.vf=vf;
         this.vm=vm;
         this.vtt=vtt;
         this.batalla=b;
         this.modalidad=modalidad;
+        this.tipo=tipo;
         this.turno =this.batalla.getJugador1();
         this.vb=vb;
         this.vb.getJtBrazoIZ1().addActionListener(this);
@@ -278,20 +280,15 @@ public class ControladorBatalla2 implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         
         if(ae.getSource().equals(this.vf.getBtContinuar2())){
-            if(this.modalidad.equals("Batalla")){
+            if(this.tipo.equals("Batalla")){
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
             }
-//            else{
-//                this.vtt.setSize(844, 584);
-//                this.vm.getContentPane().removeAll();
-//                this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
-//                this.vm.getContentPane().revalidate();
-//                this.vm.getContentPane().repaint();
+//           
 //                
-//            }
+//            
         }
         
         if (ae.getSource().equals(this.vb.getJBContinuar())){
@@ -358,10 +355,10 @@ public class ControladorBatalla2 implements ActionListener {
           this.vb.getJtEsquivar2().setEnabled(true);
           botonDisabled(this.acciones1,null);
           botonEnabled(acciones2);
-          if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("CPU1")){
+          if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("'CPU1'")){
             this.batalla.getJugador2().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1);
           }
-          else if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("CPU1")){
+          else if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones2, acciones1, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2);
           }
           if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("CPU2")){

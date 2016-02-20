@@ -56,6 +56,8 @@ public class Medaboot {
             this.brazoIz = new Medaparte(re.getString(5));
             this.brazoDe= new Medaparte(re.getString(6));
             this.piernaIz= new Medaparte(re.getString(7));
+            this.tipo=re.getString(11);
+            System.out.println("ESTE ES EL TIPO DE PERSONAJE"+this.tipo);
             this.piernaDe= new Medaparte(re.getString(8));
             this.cabeza= new Medaparte(re.getString(4));
             this.armadura=new ArrayList<Medaparte> ();
@@ -184,6 +186,11 @@ public class Medaboot {
         return this.ataque;
     
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+    
 
    public ArrayList<Integer> getDefensas(){
        return this.defensas;

@@ -123,7 +123,7 @@ public class VistaPreparacionBPjvsCpu extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(241, 241, 241)
                             .addComponent(jLabel1))))
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
