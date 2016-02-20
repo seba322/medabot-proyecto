@@ -152,9 +152,9 @@ public class ControladorBatalla implements ActionListener {
            try {
                 Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
                 
-                Medaboot pj2= user1.getPersonajes()[0];
+                Medaboot pj1= user1.getPersonajes()[0];
                 
-                Medaboot pj1= this.Cpu;
+                Medaboot pj2= this.Cpu;
                 Batalla batalla= new Batalla(pj1,pj2);
                 VistaFinalB vf= new VistaFinalB();
                 
