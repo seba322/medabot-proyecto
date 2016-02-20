@@ -101,6 +101,12 @@ public class Medaparte {
     public void setSalud() {
         this.salud = saludMax;
     }
+    public void setHp2veinte(){
+        this.salud=this.salud+((this.saludMax*20)/100);
+        if(this.salud>this.saludMax){
+            this.salud=this.saludMax;
+        }
+    }
 
     public String getHabilidad() {
         return habilidad;

@@ -34,14 +34,15 @@ public class ControladorBatalla2 implements ActionListener {
     private int contador =0;
     private String modalidad;
     private String tipo;
+    private String tipoTorneo;
     private String esquivar1 ="";
     private String esquivar2="";
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
     
-    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,String tipo,VistaFinalB vf){
-        
+    public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,String tipo,VistaFinalB vf,String tipoTorneo){
+        this.tipoTorneo=tipoTorneo;
         this.vf=vf;
         this.vm=vm;
         this.vtt=vtt;
@@ -81,20 +82,20 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getBtListo().addActionListener(this);
         this.vb.getBtListo().setSelected(true);
         
-        this.vb.getJpBrazoDE1().setMaximum(this.batalla.getJugador1().getBrazoDer().getSalud());
-        this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSalud());
-        this.vb.getJpPiernaIZ1().setMaximum(this.batalla.getJugador1().getPiernaIzq().getSalud());
-        this.vb.getJpPiernaDE1().setMaximum(this.batalla.getJugador1().getPiernaDer().getSalud());
-        this.vb.getJpCabeza1().setMaximum(this.batalla.getJugador1().getCabeza().getSalud());
-        this.vb.getJpBrazoDE2().setMaximum(this.batalla.getJugador2().getBrazoDer().getSalud());
-        this.vb.getJpBrazoIZ2().setMaximum(this.batalla.getJugador2().getBrazoIzq().getSalud());
-        this.vb.getJpPiernaIZ2().setMaximum(this.batalla.getJugador2().getPiernaIzq().getSalud());
-        this.vb.getJpPiernaDE2().setMaximum(this.batalla.getJugador2().getPiernaDer().getSalud());
-        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSalud());
-        this.vb.getJpVida1().setMaximum(this.batalla.getJugador1().getSalud());
+        this.vb.getJpBrazoDE1().setMaximum(this.batalla.getJugador1().getBrazoDer().getSaludMax());
+        this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSaludMax());
+        this.vb.getJpPiernaIZ1().setMaximum(this.batalla.getJugador1().getPiernaIzq().getSaludMax());
+        this.vb.getJpPiernaDE1().setMaximum(this.batalla.getJugador1().getPiernaDer().getSaludMax());
+        this.vb.getJpCabeza1().setMaximum(this.batalla.getJugador1().getCabeza().getSaludMax());
+        this.vb.getJpBrazoDE2().setMaximum(this.batalla.getJugador2().getBrazoDer().getSaludMax());
+        this.vb.getJpBrazoIZ2().setMaximum(this.batalla.getJugador2().getBrazoIzq().getSaludMax());
+        this.vb.getJpPiernaIZ2().setMaximum(this.batalla.getJugador2().getPiernaIzq().getSaludMax());
+        this.vb.getJpPiernaDE2().setMaximum(this.batalla.getJugador2().getPiernaDer().getSaludMax());
+        this.vb.getJpCabeza2().setMaximum(this.batalla.getJugador2().getCabeza().getSaludMax());
+        this.vb.getJpVida1().setMaximum(this.batalla.getJugador1().getSaludMax());
         
-        this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSalud());
-        this.vb.getJpVida2().setMaximum(this.batalla.getJugador2().getSalud());
+        this.vb.getJpBrazoIZ1().setMaximum(this.batalla.getJugador1().getBrazoIzq().getSaludMax());
+        this.vb.getJpVida2().setMaximum(this.batalla.getJugador2().getSaludMax());
          this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud()); 
         this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
         this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
@@ -154,6 +155,11 @@ public class ControladorBatalla2 implements ActionListener {
     public VistaFinalB getVf() {
         return vf;
     }
+
+    public VistaBatalla getVb() {
+        return vb;
+    }
+    
     
     //Metodo que se encarga de finalizarla batala, restableciendo datos
     // recompensando al ganador y guardando ls resultados en el historial
@@ -165,6 +171,25 @@ public class ControladorBatalla2 implements ActionListener {
         this.vm.getContentPane().revalidate();
         this.vm.getContentPane().repaint();
         this.batalla.restablecerVida(ganador);
+        this.batalla.restablecerVida(perdedor);
+        this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
+        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
+        String parte=this.batalla.asignarMedaparte(ganador,perdedor);
+        this.vf.getTxRecompensa().setText(parte);
+             //guardarHistorial;
+        this.batalla.setEstado("Finalizada");
+            
+    }
+    //Metodo que se encarga de finalizarla batala, restableciendo datos
+    // recompensando al ganador y guardando ls resultados en el historial
+    public void finalizarBatallaAvanzado(Medaboot ganador,Medaboot perdedor){
+        
+        this.vf.setSize(844, 584);
+        this.vm.getContentPane().removeAll();
+        this.vm.getContentPane().add(this.vf,BorderLayout.CENTER);
+        this.vm.getContentPane().revalidate();
+        this.vm.getContentPane().repaint();
+        this.batalla.setHpVeinte(ganador);
         this.batalla.restablecerVida(perdedor);
         this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
         this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
@@ -290,20 +315,35 @@ public class ControladorBatalla2 implements ActionListener {
 //                
 //            
         }
-        
-        if (ae.getSource().equals(this.vb.getJBContinuar())){
-           if (this.batalla.getJugador1().getSalud()<=0){
-               this.batalla.setGanador(this.batalla.getJugador2());
-               this.batalla.setPerdedor(this.batalla.getJugador1());
-            finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
+        else if (ae.getSource().equals(this.vb.getJBContinuar())){
+            if(this.tipoTorneo.equals("Avanzado")){
+                if (this.batalla.getJugador1().getSalud()<=0){
+                    this.batalla.setGanador(this.batalla.getJugador2());
+                    this.batalla.setPerdedor(this.batalla.getJugador1());
+                    finalizarBatallaAvanzado(this.batalla.getJugador2(), this.batalla.getJugador1());
+                }    
+               else if (this.batalla.getJugador2().getSalud()<=0){
+                    this.batalla.setGanador(this.batalla.getJugador1());
+                    this.batalla.setPerdedor(this.batalla.getJugador2());
+                    finalizarBatallaAvanzado(this.batalla.getJugador1(), this.batalla.getJugador2());
+                }
+           
            }
-       else if (this.batalla.getJugador2().getSalud()<=0){
-           this.batalla.setGanador(this.batalla.getJugador1());
-           this.batalla.setPerdedor(this.batalla.getJugador2());
-            finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
-           }
+            else{
+           
+                if (this.batalla.getJugador1().getSalud()<=0){
+                    this.batalla.setGanador(this.batalla.getJugador2());
+                    this.batalla.setPerdedor(this.batalla.getJugador1());
+                    finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
+                }
+                else if (this.batalla.getJugador2().getSalud()<=0){
+                    this.batalla.setGanador(this.batalla.getJugador1());
+                    this.batalla.setPerdedor(this.batalla.getJugador2());
+                    finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
+                }
+            }
         }
-        
+     
         
         
     // escuchador de evento de botones  enfocado a defensa y esquive 

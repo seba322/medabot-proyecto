@@ -94,7 +94,7 @@ public class ControladorBatalla implements ActionListener {
                 Batalla batalla= new Batalla(pj1,pj2);
                 VistaFinalB vf= new VistaFinalB();
                 
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaPjvsPj","Batalla",vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaPjvsPj","Batalla",vf,"");
                 
                 this.vb.setSize(844, 584);
                 this.vm.getContentPane().removeAll();
@@ -158,7 +158,7 @@ public class ControladorBatalla implements ActionListener {
                 Batalla batalla= new Batalla(pj1,pj2);
                 VistaFinalB vf= new VistaFinalB();
                 
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf,"");
                 
                 this.vb.setSize(844, 584);
                 this.vm.getContentPane().removeAll();

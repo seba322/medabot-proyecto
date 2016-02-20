@@ -25,6 +25,7 @@ public class ControladorTorneo implements ActionListener{
     private int contadorGlobal;
     private int contadorCasillas;
     private int contadorParticipantes;
+    private String tipoTorneo;
     private VistaFinalB vf;
     private VistaFinalizarTorneo vft;
     private Batalla batalla;
@@ -35,6 +36,8 @@ public class ControladorTorneo implements ActionListener{
     
     public ControladorTorneo(VistaMenuTorneo vmt,VistaPreparacionTorneo vpt,VistaTranscursoTorneo vtt,VistaMenu vm,Torneo torneo){
         this.torneo=torneo;
+       this.batalla=null;
+        this.tipoTorneo="";
         this.modalidad="BatallaPj";
         this.perdedores=new ArrayList<Medaboot>();
         this.vf=new VistaFinalB();
@@ -49,6 +52,7 @@ public class ControladorTorneo implements ActionListener{
         this.vm=vm;
         this.vft=new VistaFinalizarTorneo();
         this.vmt.getBtTnormal().addActionListener(this);
+        this.vmt.getBtTavanzado().addActionListener(this);
         this.vpt.getBtRegistro().addActionListener(this);
         this.vpt.getBtComenzar().addActionListener(this);
         this.vpt.getBtEmparejar().addActionListener(this);
@@ -95,7 +99,7 @@ public class ControladorTorneo implements ActionListener{
                     this.modalidad="BatallaCpuPj";
                 }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,"");
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
@@ -116,11 +120,13 @@ public class ControladorTorneo implements ActionListener{
                     this.modalidad="BatallaCpuPj";
                 }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,this.tipoTorneo);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
-                System.out.println(this.torneo.getCombatientes());
                 
+                System.out.println(this.torneo.getCombatientes());
+                System.out.println("ESTA ES MI SALUDDDDDDD"+this.torneo.getCombatientes().get(contadorGlobal).getSalud());
+                System.out.println("ESTA ES MI SALUDDDDDDD"+this.torneo.getCombatientes().get(contadorGlobal+1).getSalud());
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
@@ -138,6 +144,7 @@ public class ControladorTorneo implements ActionListener{
         }
         
         else if(ae.getSource().equals(this.vtt.getBtRonda1())){
+               
                 VistaBatalla vb=new VistaBatalla();
                 this.vf=new VistaFinalB();
                 if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
@@ -148,10 +155,11 @@ public class ControladorTorneo implements ActionListener{
                 System.out.println("ESTE ES EL JUGADOR 2"+this.batalla.getJugador2().getNombre());
                 
                 
-                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf);
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,this.tipoTorneo);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
                 vb.setSize(844, 584);
                 System.out.println(this.torneo.getCombatientes());
+                
                 
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(vb,BorderLayout.CENTER);
@@ -230,13 +238,24 @@ public class ControladorTorneo implements ActionListener{
         }
                 
         
-        //Cambiar a vista de preparacion torneo, cuando se pula el torneo normal
+        //Cambiar a vista de preparacion torneo, cuando se pulsa el torneo normal
         else if(ae.getSource().equals(this.vmt.getBtTnormal())){
             this.vpt.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();  
+        }
+        //Cambiar a vista preparacion torneo, y permite que se sigan 
+        //Las reglas del torneo avanzado, cambiando el tributo "tipoTorneo"
+        else if(ae.getSource().equals(this.vmt.getBtTavanzado())){
+            this.vpt.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            this.tipoTorneo="Avanzado";
+            System.out.println(tipoTorneo);
         }
         //Boton que permite que se registren los 7 jugadores restantes para el torneo
         //Cuando esten registrados los 8 jugadores se habilita las opciones para comenzar la batalla

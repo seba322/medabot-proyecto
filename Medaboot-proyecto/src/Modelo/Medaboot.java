@@ -175,6 +175,12 @@ public class Medaboot {
     public void setSaludF(){
         this.salud=saludMax;
     }
+    public void setHpVeinte(){
+        this.salud=this.salud+((this.saludMax*20)/100);
+        if(this.salud>this.saludMax){
+            this.salud=this.saludMax;
+        }
+    }
 
     public ArrayList<Medaparte> getArmadura() {
         return armadura;

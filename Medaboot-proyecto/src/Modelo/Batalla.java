@@ -78,7 +78,14 @@ public class Batalla {
         this.perdedor = perdedor;
     }
 
-   
+   public void setHpVeinte(Medaboot personaje){
+       personaje.setHpVeinte();
+       personaje.getBrazoDer().setHp2veinte();
+       personaje.getBrazoIzq().setHp2veinte();
+       personaje.getPiernaDer().setHp2veinte();
+       personaje.getPiernaIzq().setHp2veinte();
+       personaje.getCabeza().setHp2veinte();
+   }
     
 
     public void setPartes() {
@@ -105,9 +112,10 @@ public class Batalla {
                    
                }
               informacion.close();
-              medapartes=medapartes+","+parte.getNombre();
+              medapartes=medapartes+parte.getNombre();
               
               String instruccion="UPDATE MEDAPARTEUSUARIO SET MEDAPARTEES='"+medapartes+"' WHERE USUARIO="+nombre;
+              System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+medapartes);
               stm.executeUpdate(instruccion);
               conexion.desconectar();
            }
