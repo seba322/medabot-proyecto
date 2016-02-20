@@ -170,7 +170,7 @@ public class ControladorBatalla2 implements ActionListener {
     //Metodo que se encarga de finalizarla batala, restableciendo datos
     // recompensando al ganador y guardando ls resultados en el historial
     public void finalizarBatalla(Medaboot ganador,Medaboot perdedor){
-        
+        String parte="";
         this.vf.setSize(844, 584);
         this.vm.getContentPane().removeAll();
         this.vm.getContentPane().add(this.vf,BorderLayout.CENTER);
@@ -180,7 +180,12 @@ public class ControladorBatalla2 implements ActionListener {
         this.batalla.restablecerVida(perdedor);
         this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
         this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
-        String parte=this.batalla.asignarMedaparte(ganador,perdedor);
+         if(ganador.getTipo().equals("CPU")){
+            parte="No hay recompensa";
+        }
+        else{
+            parte=this.batalla.asignarMedaparte(ganador,perdedor);
+        }
         this.vf.getTxRecompensa().setText(parte);
              //guardarHistorial;
         this.batalla.setEstado("Finalizada");
@@ -189,7 +194,7 @@ public class ControladorBatalla2 implements ActionListener {
     //Metodo que se encarga de finalizarla batala, restableciendo datos
     // recompensando al ganador y guardando ls resultados en el historial
     public void finalizarBatallaAvanzado(Medaboot ganador,Medaboot perdedor){
-        
+        String parte="";
         this.vf.setSize(844, 584);
         this.vm.getContentPane().removeAll();
         this.vm.getContentPane().add(this.vf,BorderLayout.CENTER);
@@ -198,8 +203,13 @@ public class ControladorBatalla2 implements ActionListener {
         this.batalla.setHpVeinte(ganador);
         this.batalla.restablecerVida(perdedor);
         this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
-        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
-        String parte=this.batalla.asignarMedaparte(ganador,perdedor);
+        this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre());
+        if(ganador.getTipo().equals("CPU")){
+            parte="No hay recompensa";
+        }
+        else{
+            parte=this.batalla.asignarMedaparte(ganador,perdedor);
+        }
         this.vf.getTxRecompensa().setText(parte);
              //guardarHistorial;
         this.batalla.setEstado("Finalizada");
@@ -323,7 +333,21 @@ public class ControladorBatalla2 implements ActionListener {
         }
         else if (ae.getSource().equals(this.vb.getJBContinuar())){
             if(this.tipoTorneo.equals("Avanzado")){
-                if (this.batalla.getJugador1().getSalud()<=0){
+                if (this.batalla.getJugador1().getSalud() <= 0  && this.batalla.getJugador2().getSalud() <= 0){
+                    
+                    int valorEntero = (int) Math.floor(Math.random()*(2-1+1)+1);// Valor entre 2 y 1, ambos incluidos.
+                    if(valorEntero==1){
+                        this.batalla.setGanador(this.batalla.getJugador1());
+                        this.batalla.setPerdedor(this.batalla.getJugador2());
+                        finalizarBatallaAvanzado(this.batalla.getJugador1(), this.batalla.getJugador2());
+                    }
+                    else{
+                        this.batalla.setGanador(this.batalla.getJugador2());
+                        this.batalla.setPerdedor(this.batalla.getJugador1());
+                        finalizarBatallaAvanzado(this.batalla.getJugador2(), this.batalla.getJugador1());
+                    }
+                }
+                else if (this.batalla.getJugador1().getSalud()<=0){
                     this.batalla.setGanador(this.batalla.getJugador2());
                     this.batalla.setPerdedor(this.batalla.getJugador1());
                     finalizarBatallaAvanzado(this.batalla.getJugador2(), this.batalla.getJugador1());
@@ -336,8 +360,22 @@ public class ControladorBatalla2 implements ActionListener {
            
            }
             else{
+                if (this.batalla.getJugador1().getSalud() <= 0  && this.batalla.getJugador2().getSalud() <= 0){
+                    
+                    int valorEntero = (int) Math.floor(Math.random()*(2-1+1)+1);// Valor entre 2 y 1, ambos incluidos.
+                    if(valorEntero==1){
+                        this.batalla.setGanador(this.batalla.getJugador1());
+                        this.batalla.setPerdedor(this.batalla.getJugador2());
+                        finalizarBatallaAvanzado(this.batalla.getJugador1(), this.batalla.getJugador2());
+                    }
+                    else{
+                        this.batalla.setGanador(this.batalla.getJugador2());
+                        this.batalla.setPerdedor(this.batalla.getJugador1());
+                        finalizarBatallaAvanzado(this.batalla.getJugador2(), this.batalla.getJugador1());
+                    }
+                }
            
-                if (this.batalla.getJugador1().getSalud()<=0){
+                else if (this.batalla.getJugador1().getSalud()<=0){
                     this.batalla.setGanador(this.batalla.getJugador2());
                     this.batalla.setPerdedor(this.batalla.getJugador1());
                     finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
@@ -447,7 +485,16 @@ public class ControladorBatalla2 implements ActionListener {
           this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
           comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
           comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ; 
-           if (this.batalla.getJugador1().getSalud() <= 0  ||this.batalla.getJugador2().getSalud() <= 0){
+            if (this.batalla.getJugador1().getSalud() <= 0  && this.batalla.getJugador2().getSalud() <= 0){
+              this.vb.getTxAcciones().append("LOS JUGADORES EMPATAN\n ");
+              this.vb.getTxAcciones().append("EL GANADOR SE DECIDE DE FORMA ALEATORIA");
+              this.vb.getBtConfirmarA().setVisible(false);
+              this.vb.getBtListo().setVisible(false);
+              this.vb.getLbEmpate().setVisible(true);
+              this.vb.getJMensaje().setVisible(true);
+              this.vb.getJBContinuar().setVisible(true);
+            }
+            else if (this.batalla.getJugador1().getSalud() <= 0  || this.batalla.getJugador2().getSalud() <= 0){
               this.vb.getBtConfirmarA().setVisible(false);
               this.vb.getBtListo().setVisible(false);
               this.vb.getJMensaje().setVisible(true);
