@@ -20,6 +20,9 @@ public class Usuario {
    private ArrayList medapartes;
    private ArrayList medallas ;
    private Medaboot[] personajes;
+   private int victorias;
+   private int derrotas;
+   private int torneos;
   // private Medaboot personaje2; 
    //private Medaboot érsonaje3;
    
@@ -96,6 +99,23 @@ public class Usuario {
         
     
     }
+    public Usuario(String nombreUsuario) throws SQLException{
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+             String nombre="'"+nombreUsuario+"'";
+             String instruccion= "SELECT VICTORIAS,DERROTAS,TORNEOS FROM USUARIO WHERE NOMBRE ="+nombre;
+             Statement stm=conexion.consultar();
+             ResultSet informacion=stm.executeQuery(instruccion);
+             while(informacion.next()){
+                 this.victorias=informacion.getInt(1);
+                 this.derrotas=informacion.getInt(2);
+                 this.torneos=informacion.getInt(3);
+                 
+             }
+        informacion.close();
+        conexion.desconectar();
+        }
+    }
 
     public Usuario() {
         
@@ -117,6 +137,19 @@ public class Usuario {
     public String getNombreUsuario() {
         return nombreUsuario;
     }
+
+    public int getDerrotas() {
+        return derrotas;
+    }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public int getTorneos() {
+        return torneos;
+    }
+    
     
     
     
@@ -223,6 +256,25 @@ public class Usuario {
         System.out.println ("no funciona");
         }
     
+    }
+    //Se encarga de crear una lista con todos los nombre de usuarios
+    //Disponibles en a base de datos
+    public ArrayList<String> getNombresUsers() throws SQLException{
+        ArrayList<String> nombres= new ArrayList<String>();
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+            
+            Statement stm=conexion.consultar();
+            String instruccion="SELECT NOMBRE FROM USUARIO";
+            ResultSet informacion=stm.executeQuery(instruccion);
+            while( informacion.next()){
+                nombres.add(informacion.getString(1));
+            }
+            informacion.close();
+            System.out.println(nombres);
+            conexion.desconectar();
+        }
+        return nombres;
     }
     
     

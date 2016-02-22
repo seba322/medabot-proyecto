@@ -95,6 +95,42 @@ public class Batalla {
     public void setMensajes() {
         this.mensajes.clear();
     }
+    //Se encarga de modificar la informacon de victorias y derrotas
+    //De los usuarios, en la base de datos
+    public void asignarHistorial(Medaboot ganador,Medaboot perdedor){
+       try {
+           DBConection conexion=new DBConection();
+           if(conexion.conectar()){
+               int victorias=0;
+               int derrotas=0;
+               Statement stm=conexion.consultar();
+               String nombreG="'"+ganador.getNombreUsuatrio()+"'";
+               String nombreP="'"+perdedor.getNombreUsuatrio()+"'";
+               String instruccion="SELECT VICTORIAS FROM USUARIO WHERE NOMBRE="+nombreG;
+               String instruccion2="SELECT DERROTAS FROM USUARIO WHERE NOMBRE="+nombreP;
+               ResultSet informacion=stm.executeQuery(instruccion);
+               while( informacion.next()){
+                   victorias=informacion.getInt(1);
+               }
+               informacion.close();
+               Statement stm2=conexion.consultar();
+               ResultSet informacion2=stm2.executeQuery(instruccion2);
+               while( informacion2.next()){
+                   derrotas=informacion2.getInt(1);
+               }
+               informacion2.close();
+               String modVictorias="UPDATE USUARIO SET VICTORIAS="+(victorias+1)+"WHERE NOMBRE="+nombreG;
+               String modDerrotas="UPDATE USUARIO SET DERROTAS="+(derrotas+1)+"WHERE NOMBRE="+nombreP;
+               stm.executeUpdate(modVictorias);
+               stm.executeUpdate(modDerrotas);
+               conexion.conectar();
+               
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(Batalla.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+       
     //Se encarga de asignar una medaparte al azar al ganador, accediendo a la base de datos de las medapartes del usuario
     public String asignarMedaparte(Medaboot personajeG,Medaboot personajeP){
         int valorEntero = (int) Math.floor(Math.random()*(4-0+1)+0);// Valor entre M y N, ambos incluidos.

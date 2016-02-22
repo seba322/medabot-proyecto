@@ -1,9 +1,12 @@
 
 package Modelo;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Torneo {
@@ -91,6 +94,32 @@ public class Torneo {
         }
         conexion.desconectar();
     }
+    public void asignarHistorial(Medaboot ganador){
+        try {
+           DBConection conexion=new DBConection();
+           if(conexion.conectar()){
+               int victorias=0;
+               
+               Statement stm=conexion.consultar();
+               String nombreG="'"+ganador.getNombreUsuatrio()+"'";
+               String instruccion="SELECT TORNEOS FROM USUARIO WHERE NOMBRE="+nombreG;
+               ResultSet informacion=stm.executeQuery(instruccion);
+               while( informacion.next()){
+                   victorias=informacion.getInt(1);
+               }
+               informacion.close();
+               String modVictorias="UPDATE USUARIO SET TORNEOS="+(victorias+1)+"WHERE NOMBRE="+nombreG;
+               stm.executeUpdate(modVictorias);
+               conexion.conectar();
+               
+            }
+        }
+        catch (SQLException ex) {
+           Logger.getLogger(Batalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+        
+    
     
     
 }

@@ -138,7 +138,18 @@ public class ControladorMenu implements ActionListener {
             //llamar a oculto
         }
         else if (e.getSource().equals(this.vm.getBtHistorial())){
-            //llamar a historial
+            VistaHistorial vth=new VistaHistorial();
+            vth.setSize(784, 529);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(vth,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            try {
+                ControladorHistorial cth= new ControladorHistorial(this.nombreUsuario,vth,this.vm);
+                //llamar a historial
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if (e.getSource().equals(this.vm.getBtDesconectar())){
             this.vm.dispose();

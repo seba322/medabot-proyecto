@@ -187,7 +187,7 @@ public class ControladorBatalla2 implements ActionListener {
             parte=this.batalla.asignarMedaparte(ganador,perdedor);
         }
         this.vf.getTxRecompensa().setText(parte);
-             //guardarHistorial;
+        this.batalla.asignarHistorial(ganador, perdedor);
         this.batalla.setEstado("Finalizada");
             
     }
@@ -211,7 +211,7 @@ public class ControladorBatalla2 implements ActionListener {
             parte=this.batalla.asignarMedaparte(ganador,perdedor);
         }
         this.vf.getTxRecompensa().setText(parte);
-             //guardarHistorial;
+        this.batalla.asignarHistorial(ganador, perdedor);
         this.batalla.setEstado("Finalizada");
             
     }
