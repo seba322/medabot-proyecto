@@ -295,7 +295,20 @@ public class Batalla {
         for(ArrayList<Medaparte> accion:ataques){
             int daño= accion.get(0).getAtaque();
             int def=accion.get(1).getDefensa();
-           
+            
+            if(Aesquive.equals("si")){
+                Aesquive="no";
+                int esquive=personajeO.getEsquive();
+                int valorEntero = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
+                if(valorEntero<=esquive){
+                    dañoTotal=0;
+                    this.mensajes.add("No recibe daño, esquive efectivo");
+                    break;
+                }
+                
+                
+            }
+            
             if(daño>def){
                 //Misiles rastreadores
                 if(accion.get(0).getHabilidad().equals("Misiles rastreadores")){
@@ -342,7 +355,7 @@ public class Batalla {
            
            
         }
-           if(Adef.equals("si")){
+        if(Adef.equals("si")){
                int dafTotal=personajeO.getDefensa();
                 if(defTotal>dañoTotal){
                     String mensaje2="No recibe daño";
@@ -353,10 +366,8 @@ public class Batalla {
                   
                 }
             }
+       
         personajeO.setSalud(dañoTotal);
-        
-        
-        
     }
         
         

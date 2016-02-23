@@ -86,7 +86,7 @@ public class Medaboot {
          this.defensas.add(this.cabeza.getDefensa());
          System.out.println("AQUI SALUD"+this.salud);
          this.ataque=this.brazoIz.getAtaque()+this.brazoDe.getAtaque()+this.piernaIz.getAtaque()+this.piernaDe.getAtaque()+this.cabeza.getAtaque();
-         this.esquive = (this.brazoIz.getEsquive()+this.brazoDe.getEsquive()+this.piernaIz.getEsquive()+this.piernaDe.getEsquive()+this.cabeza.getEsquive())/100; 
+         this.esquive = (this.brazoIz.getEsquive()+this.brazoDe.getEsquive()+this.piernaIz.getEsquive()+this.piernaDe.getEsquive()+this.cabeza.getEsquive()); 
         // this.modificador= null;
          System.out.println(this.nombre);
          System.out.println("MEDABOTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
