@@ -4,9 +4,11 @@ package Modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import static java.time.Clock.system;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import javax.naming.spi.DirStateFactory;
 
 /**
@@ -35,6 +37,7 @@ public class Usuario {
         DBConection conexion=new DBConection();
         System.out.println("aca tambien");
        if(conexion.conectar()){
+         String nombre=nmU;
          nmU="'"+nmU+"'";
          System.out.println("aca tambien1");
          Statement stm=conexion.consultar();
@@ -79,7 +82,7 @@ public class Usuario {
                  System.out.println("aca tambien11");
          }
          medalla.close();
-         this.nombreUsuario= nmU;
+         this.nombreUsuario= nombre;
          this.contraseña=contra;
       
      
@@ -275,6 +278,13 @@ public class Usuario {
             conexion.desconectar();
         }
         return nombres;
+    }
+    public String mostrarHora(){
+        Date fechaActual=new Date();
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/yyyy 'a las' hh:mm a");
+        String fecha=formato.format(fechaActual); 
+        return fecha;
+         
     }
     
     

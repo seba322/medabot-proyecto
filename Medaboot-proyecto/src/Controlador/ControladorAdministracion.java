@@ -143,6 +143,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
           }
        }
          if (ae.getSource().equals(this.vta.getBtGuardar())){
+             
              System.out.println("Prueba");
             int indexPersonaje=this.vta.getJcPersonaje().getSelectedIndex();
              if (this.vta.getJcBrazoDE().getSelectedIndex() != 0){
@@ -240,6 +241,8 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
          }
+             String registroAcciones=user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora()+"\n";
+             this.vm.getTxtRegistroAcciones().append(registroAcciones);
          }
          
          

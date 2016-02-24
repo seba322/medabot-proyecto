@@ -101,6 +101,9 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
+                //Se encarga de registrar en el menu las acciones del usuario
+                String registroAcciones=user1.getNombreUsuario()+" a roboBatallado con "+this.user2.getNombreUsuario()+" el dia "+user1.mostrarHora()+"\n";
+                this.vm.getTxtRegistroAcciones().append(registroAcciones);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -165,6 +168,8 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
+                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora()+"\n";
+                this.vm.getTxtRegistroAcciones().append(registroAcciones);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }

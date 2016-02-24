@@ -90,6 +90,8 @@ public class ControladorTorneo implements ActionListener{
             this.vtt.getTxtPjr6().setText(this.torneo.getCombatientes().get(5).getNombre());
             this.vtt.getTxtPjr7().setText(this.torneo.getCombatientes().get(6).getNombre());
             this.vtt.getTxtPjr8().setText(this.torneo.getCombatientes().get(7).getNombre());
+            String registroAcciones=this.torneo.getUser().getNombreUsuario()+" a participado en un torneo el dia"+this.torneo.getUser().mostrarHora()+"\n";
+            this.vm.getTxtRegistroAcciones().append(registroAcciones);
         }
         
         else if(ae.getSource().equals(this.vtt.getBtFinal())){

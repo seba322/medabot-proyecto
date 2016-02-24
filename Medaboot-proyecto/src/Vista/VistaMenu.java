@@ -3,6 +3,8 @@ package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class VistaMenu extends javax.swing.JFrame {
@@ -18,6 +20,15 @@ public class VistaMenu extends javax.swing.JFrame {
     public JButton getBtBatalla() {
         return btBatalla;
     }
+
+    public JTextField getTxtUsuario() {
+        return txtUsuario;
+    }
+
+    public JTextArea getTxtRegistroAcciones() {
+        return txtRegistroAcciones;
+    }
+    
 
     public JButton getBtTorneo() {
         return btTorneo;
@@ -59,6 +70,10 @@ public class VistaMenu extends javax.swing.JFrame {
         btHistorial = new javax.swing.JButton();
         btDesconectar = new javax.swing.JButton();
         lbTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtRegistroAcciones = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,27 +99,47 @@ public class VistaMenu extends javax.swing.JFrame {
         lbTitulo.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         lbTitulo.setText("MEDABOT");
 
+        txtRegistroAcciones.setColumns(20);
+        txtRegistroAcciones.setRows(5);
+        txtRegistroAcciones.setDisabledTextColor(new java.awt.Color(0, 102, 51));
+        txtRegistroAcciones.setEnabled(false);
+        jScrollPane1.setViewportView(txtRegistroAcciones);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText("Registro de:");
+
+        txtUsuario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtUsuario.setDoubleBuffered(true);
+        txtUsuario.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btDesconectar)
                 .addGap(168, 168, 168))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btOculto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(13, 13, 13)
-                            .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(307, Short.MAX_VALUE))
+                    .addComponent(btBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtUsuario))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,16 +148,25 @@ public class VistaMenu extends javax.swing.JFrame {
                 .addComponent(btDesconectar)
                 .addGap(30, 30, 30)
                 .addComponent(lbTitulo)
-                .addGap(112, 112, 112)
-                .addComponent(btBatalla)
-                .addGap(32, 32, 32)
-                .addComponent(btAdministracion)
-                .addGap(44, 44, 44)
-                .addComponent(btTorneo)
-                .addGap(36, 36, 36)
-                .addComponent(btOculto)
-                .addGap(26, 26, 26)
-                .addComponent(btHistorial)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(btBatalla)
+                        .addGap(18, 18, 18)
+                        .addComponent(btAdministracion)
+                        .addGap(22, 22, 22)
+                        .addComponent(btTorneo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btOculto)
+                        .addGap(18, 18, 18)
+                        .addComponent(btHistorial))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -182,7 +226,11 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JButton btHistorial;
     private javax.swing.JButton btOculto;
     private javax.swing.JButton btTorneo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JTextArea txtRegistroAcciones;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
