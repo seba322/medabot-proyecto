@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Modelo.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,21 +78,33 @@ public class ControladorTorneo implements ActionListener{
         
         //Comenzar el torneo
         if(ae.getSource().equals(this.vpt.getBtComenzar())){
-            this.vtt.setSize(844, 584);
-            this.vm.getContentPane().removeAll();
-            this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
-            this.vm.getContentPane().revalidate();
-            this.vm.getContentPane().repaint();
-            this.vtt.getTxtPjr1().setText(this.torneo.getCombatientes().get(0).getNombre());
-            this.vtt.getTxtPjr2().setText(this.torneo.getCombatientes().get(1).getNombre());
-            this.vtt.getTxtPjr3().setText(this.torneo.getCombatientes().get(2).getNombre());
-            this.vtt.getTxtPjr4().setText(this.torneo.getCombatientes().get(3).getNombre());
-            this.vtt.getTxtPjr5().setText(this.torneo.getCombatientes().get(4).getNombre());
-            this.vtt.getTxtPjr6().setText(this.torneo.getCombatientes().get(5).getNombre());
-            this.vtt.getTxtPjr7().setText(this.torneo.getCombatientes().get(6).getNombre());
-            this.vtt.getTxtPjr8().setText(this.torneo.getCombatientes().get(7).getNombre());
-            String registroAcciones=this.torneo.getUser().getNombreUsuario()+" a participado en un torneo el dia"+this.torneo.getUser().mostrarHora()+"\n";
-            this.vm.getTxtRegistroAcciones().append(registroAcciones);
+            try {
+                this.vtt.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vtt,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                this.vtt.getTxtPjr1().setText(this.torneo.getCombatientes().get(0).getNombre());
+                this.vtt.getTxtPjr2().setText(this.torneo.getCombatientes().get(1).getNombre());
+                this.vtt.getTxtPjr3().setText(this.torneo.getCombatientes().get(2).getNombre());
+                this.vtt.getTxtPjr4().setText(this.torneo.getCombatientes().get(3).getNombre());
+                this.vtt.getTxtPjr5().setText(this.torneo.getCombatientes().get(4).getNombre());
+                this.vtt.getTxtPjr6().setText(this.torneo.getCombatientes().get(5).getNombre());
+                this.vtt.getTxtPjr7().setText(this.torneo.getCombatientes().get(6).getNombre());
+                this.vtt.getTxtPjr8().setText(this.torneo.getCombatientes().get(7).getNombre());
+                String registroAcciones=this.torneo.getUser().getNombreUsuario()+" a organizado un torneo  el dia"+this.torneo.getUser().mostrarHora()+'\n';
+                this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
+                this.torneo.getUser().escribirAcciones(registroAcciones);
+                for(Usuario user:this.torneo.getParticipantes()){
+                    if(user.equals(this.torneo.getUser())){
+                        continue;
+                    }
+                    String registroAcciones2=user.getNombreUsuario()+" a participado en un torneo organizado por "+this.torneo.getUser().getNombreUsuario()+" el dia "+user.mostrarHora();
+                    user.escribirAcciones(registroAcciones2);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         else if(ae.getSource().equals(this.vtt.getBtFinal())){

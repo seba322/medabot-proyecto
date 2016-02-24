@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import javax.naming.spi.DirStateFactory;
+import java.io.*;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Usuario {
    //private String nombreMedabot;
    private ArrayList medapartes;
    private ArrayList medallas ;
+   private ArrayList<String> registroAcciones;
    private Medaboot[] personajes;
    private int victorias;
    private int derrotas;
@@ -84,7 +86,7 @@ public class Usuario {
          medalla.close();
          this.nombreUsuario= nombre;
          this.contraseña=contra;
-      
+        this.registroAcciones=new ArrayList();
      
          
          
@@ -118,6 +120,7 @@ public class Usuario {
         informacion.close();
         conexion.desconectar();
         }
+        this.nombreUsuario=nombreUsuario;
     }
 
     public Usuario() {
@@ -136,6 +139,11 @@ public class Usuario {
     public ArrayList getMedapartes() {
         return medapartes;
     }
+
+    public ArrayList<String> getRegistroAcciones() {
+        return registroAcciones;
+    }
+    
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -285,6 +293,76 @@ public class Usuario {
         String fecha=formato.format(fechaActual); 
         return fecha;
          
+    }
+    public void escribirAcciones(String registro) throws FileNotFoundException, IOException{
+        File archivo= new File("C:\\Users\\kimbo\\Documents\\NetBeansProjects\\medabot-proyect7\\Medaboot-proyecto\\Registro"+this.nombreUsuario+".txt");
+        ArrayList<String> registroA=new ArrayList<String>();
+        if(archivo.exists()){
+            FileReader carga=new FileReader(archivo);
+            BufferedReader procesador=new BufferedReader(carga);
+            String linea=procesador.readLine();
+            while(linea !=null){
+                registroA.add(linea);
+                linea=procesador.readLine();
+            }
+            carga.close();
+            procesador.close();
+            registroA.add(registro);
+            PrintWriter procesador2= new PrintWriter(archivo);
+            for(String linea2:registroA){
+                System.out.println(linea);
+                procesador2.println(linea2+"\n");
+            }
+            procesador2.close();
+            
+            
+        }
+        else{
+            PrintWriter procesador= new PrintWriter(archivo);
+            
+            procesador.print(registro+"\n");
+            procesador.close();
+            
+        }
+       
+    }
+    
+    public boolean cargarAcciones() throws FileNotFoundException, IOException{
+        File archivo= new File("C:\\Users\\kimbo\\Documents\\NetBeansProjects\\medabot-proyect7\\Medaboot-proyecto\\Registro"+this.nombreUsuario+".txt");
+        if(archivo.exists()){
+            FileReader carga=new FileReader(archivo);
+            BufferedReader procesador=new BufferedReader(carga);
+            String linea=procesador.readLine();
+            while(linea !=null){
+                this.registroAcciones.add(linea);
+                linea=procesador.readLine();
+            }
+            carga.close();
+            procesador.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    //Comprueba si el usuario tiene el pj oculto activo
+    public boolean comprobarPjOculto() throws SQLException{
+        boolean pjOculto=false;
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+            String nombre="'"+this.nombreUsuario+"'";
+            Statement stm=conexion.consultar();
+            String insertar= "SELECT PJOCULTO FROM USUARIO WHERE NOMBRE="+nombre;
+            ResultSet respuesta=stm.executeQuery(insertar);
+            while(respuesta.next()){
+              pjOculto=respuesta.getBoolean(1);
+                
+            }
+        respuesta.close();
+        conexion.desconectar();
+        }
+        return pjOculto;
+        
     }
     
     

@@ -17,6 +17,7 @@ import Vista.VistaPreparacionTorneo;
 import Vista.VistaRegistro1;
 import java.awt.BorderLayout;
 import Modelo.*;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -30,6 +31,7 @@ public class ControladorMenu implements ActionListener {
     
    
     public ControladorMenu(VistaMenu vm,String nombreUsuario ,String contraseña) {
+        
         this.vm= vm;
         this.nombreUsuario=nombreUsuario;
         this.contraseña=contraseña;
@@ -40,8 +42,19 @@ public class ControladorMenu implements ActionListener {
         this.vm.getBtHistorial().addActionListener(this);
         this.vm.getBtDesconectar().addActionListener(this);
         try {
-            comprobarPjOculto();
+            Usuario userP=new Usuario(this.nombreUsuario,this.contraseña);
+            if(userP.cargarAcciones()){
+                for(String linea:userP.getRegistroAcciones()){
+                    this.vm.getTxtRegistroAcciones().append("\n"+linea);
+                }
+            }
+            if(userP.comprobarPjOculto()){
+                this.vm.getBtOculto().setEnabled(true);
+            }
+            
         } catch (SQLException ex) {
+            Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     
@@ -49,28 +62,7 @@ public class ControladorMenu implements ActionListener {
 }
    
 
-    public void comprobarPjOculto() throws SQLException{
-        boolean pjOculto=false;
-        DBConection conexion=new DBConection();
-        if(conexion.conectar()){
-            String nombre="'"+this.nombreUsuario+"'";
-            Statement stm=conexion.consultar();
-            String insertar= "SELECT PJOCULTO FROM USUARIO WHERE NOMBRE="+nombre;
-            ResultSet respuesta=stm.executeQuery(insertar);
-            while(respuesta.next()){
-              pjOculto=respuesta.getBoolean(1);
-                
-            }
-        respuesta.close();
-        conexion.desconectar();
-        }
-        if(pjOculto){
-            this.vm.getBtOculto().setEnabled(true);
-            
-        }
-        
-        
-    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

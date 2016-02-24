@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import Vista.*;
 //import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
 import java.awt.BorderLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,9 +104,13 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
                 //Se encarga de registrar en el menu las acciones del usuario
-                String registroAcciones=user1.getNombreUsuario()+" a roboBatallado con "+this.user2.getNombreUsuario()+" el dia "+user1.mostrarHora()+"\n";
-                this.vm.getTxtRegistroAcciones().append(registroAcciones);
+                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.user2.getNombreUsuario()+" el dia "+user1.mostrarHora();
+                this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
+                user1.escribirAcciones(registroAcciones);
+                this.user2.escribirAcciones(registroAcciones);
             } catch (SQLException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -168,11 +174,16 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
-                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora()+"\n";
-                this.vm.getTxtRegistroAcciones().append(registroAcciones);
+                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora()+'\n';
+                this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
+                user1.escribirAcciones(registroAcciones);
+                
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            } 
        
        
        

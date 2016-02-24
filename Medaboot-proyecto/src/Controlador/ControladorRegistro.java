@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import Vista.VistaMenu;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 
@@ -135,6 +137,27 @@ public class ControladorRegistro implements ActionListener  {
                   this.vt1.getTxtUsuario().setText("");
                   this.vt1.getTxtContraseña().setText("");
                   this.vt1.getContentPane().repaint();
+                  
+                  try {
+                      Usuario userP=new Usuario(nombreUsuario);
+                      String bienvenida="Bienvenido a Medaboot"+nombreUsuario;
+                      String registro="Te has registrado el "+userP.mostrarHora();
+                      userP.escribirAcciones(bienvenida);
+                      userP.escribirAcciones(registro);
+                      ArrayList<String> usuarios=this.user.getNombresUsers();
+                      for(String nombre:usuarios){
+                          if(nombre.equals(nombreUsuario)){
+                              continue;
+                          }
+                          Usuario usuario=new Usuario(nombre);
+                          String accion="Se a registrado un nuevo usuario llamado "+nombreUsuario+" el dia "+usuario.mostrarHora()+'\n';
+                          usuario.escribirAcciones(accion);
+                      }
+                  } catch (SQLException ex) {
+                      Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                  } catch (IOException ex) {
+                      Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                  }
                   
               }
               else{

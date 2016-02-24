@@ -9,6 +9,7 @@ import Modelo.Usuario;
 import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -241,8 +242,13 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
          }
-             String registroAcciones=user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora()+"\n";
-             this.vm.getTxtRegistroAcciones().append(registroAcciones);
+             String registroAcciones=this.user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora();
+             this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
+              try {
+                  this.user.escribirAcciones(registroAcciones);
+              } catch (IOException ex) {
+                  Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+              }
          }
          
          
