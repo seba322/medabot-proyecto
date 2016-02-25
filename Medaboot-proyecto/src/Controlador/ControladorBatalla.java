@@ -119,7 +119,7 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
                 //Se encarga de registrar en el menu las acciones del usuario
-                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.user2.getNombreUsuario()+" el dia "+user1.mostrarHora();
+                String registroAcciones=" "+user1.getNombreUsuario()+" a Batallado con "+this.user2.getNombreUsuario()+" el dia "+user1.mostrarHora();
                 this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
                 user1.escribirAcciones(registroAcciones);
                 this.user2.escribirAcciones(registroAcciones);
@@ -198,7 +198,7 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
-                String registroAcciones=user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora()+'\n';
+                String registroAcciones=" "+user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora();
                 this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
                 user1.escribirAcciones(registroAcciones);
                 

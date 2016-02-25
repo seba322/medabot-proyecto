@@ -150,7 +150,7 @@ public class ControladorRegistro implements ActionListener  {
                               continue;
                           }
                           Usuario usuario=new Usuario(nombre);
-                          String accion="Se a registrado un nuevo usuario llamado "+nombreUsuario+" el dia "+usuario.mostrarHora()+'\n';
+                          String accion="Se a registrado un nuevo usuario llamado "+nombreUsuario+" el dia "+usuario.mostrarHora();
                           usuario.escribirAcciones(accion);
                       }
                   } catch (SQLException ex) {

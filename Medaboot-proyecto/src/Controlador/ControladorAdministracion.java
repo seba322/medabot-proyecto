@@ -242,7 +242,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
          }
-             String registroAcciones=this.user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora();
+             String registroAcciones=" "+this.user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora();
              this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
               try {
                   this.user.escribirAcciones(registroAcciones);

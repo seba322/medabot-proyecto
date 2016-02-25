@@ -43,6 +43,7 @@ public class ControladorMenu implements ActionListener {
         this.vm.getBtDesconectar().addActionListener(this);
         try {
             Usuario userP=new Usuario(this.nombreUsuario,this.contraseña);
+            this.vm.getTxtUsuario().setText(this.nombreUsuario);
             if(userP.cargarAcciones()){
                 for(String linea:userP.getRegistroAcciones()){
                     this.vm.getTxtRegistroAcciones().append("\n"+linea);

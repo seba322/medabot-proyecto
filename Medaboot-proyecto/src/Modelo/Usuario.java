@@ -311,7 +311,7 @@ public class Usuario {
             PrintWriter procesador2= new PrintWriter(archivo);
             for(String linea2:registroA){
                 System.out.println(linea);
-                procesador2.println(linea2+"\n");
+                procesador2.println(linea2);
             }
             procesador2.close();
             
@@ -320,7 +320,7 @@ public class Usuario {
         else{
             PrintWriter procesador= new PrintWriter(archivo);
             
-            procesador.print(registro+"\n");
+            procesador.print(registro);
             procesador.close();
             
         }
@@ -334,6 +334,7 @@ public class Usuario {
             BufferedReader procesador=new BufferedReader(carga);
             String linea=procesador.readLine();
             while(linea !=null){
+                System.out.println(linea);
                 this.registroAcciones.add(linea);
                 linea=procesador.readLine();
             }
