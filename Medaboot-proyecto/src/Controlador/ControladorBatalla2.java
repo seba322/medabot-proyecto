@@ -11,6 +11,8 @@ import java.lang.System;
 import java.util.Arrays;
 import Vista.*;
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // falta instanciar acciones 1 y acciones 2 
 // ordenar funcionamiento de lista ataques y ataque
@@ -40,7 +42,7 @@ public class ControladorBatalla2 implements ActionListener {
     private String defender1="";
     private String defender2="";
     private int numeroTurno=0;
-    
+    private IntroBatalla vistaEmergente;
     public ControladorBatalla2(Batalla b ,VistaBatalla vb,VistaMenu vm,VistaTranscursoTorneo vtt,String modalidad,String tipo,VistaFinalB vf,String tipoTorneo){
         this.tipoTorneo=tipoTorneo;
         this.vf=vf;
@@ -147,12 +149,27 @@ public class ControladorBatalla2 implements ActionListener {
        this.vb.getJBContinuar().setVisible(false);
        this.vb.getJMensaje().setVisible(false);
        
+           
+       this.vistaEmergente= new IntroBatalla();
+       if (this.modalidad.equals("BatallaCpuVsCpu")){
+           this.vb.getBtListo().setVisible(false);
+           botonDisabled(acciones1, null);
+           botonDisabled(acciones2, null);
+//           this.vb.getJtDefender1().setEnabled(false);
+//           this.vb.getJtEsquivar1().setEnabled(false);
+           this.vistaEmergente.getJBAceptar().addActionListener(this);
+           this.vistaEmergente.getJBCancelar().addActionListener(this);
+           this.vistaEmergente.setVisible(true);
+       }
+       
       if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
-          }
+         this.vb.getBtListo();
+      }
        else  if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU2'")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
-          }
+          this.vb.getBtListo();
+       }
        
 //        realizarBatalla();
           
@@ -443,10 +460,13 @@ public class ControladorBatalla2 implements ActionListener {
          
           if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("'CPU1'")){
             this.batalla.getJugador2().manejarCpu1(numeroTurno, this.acciones2, this.acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1,2);
+            this.vb.getBtListo();
           }
           
+          
           if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador2().getNombre().equals("CPU2")){
-            this.batalla.getJugador2().manejarCpu2(numeroTurno, acciones2, acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1);
+            this.batalla.getJugador2().manejarCpu2(numeroTurno, acciones2, acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1,2);
+            this.vb.getBtListo();
           }
           
           
@@ -503,10 +523,13 @@ public class ControladorBatalla2 implements ActionListener {
           
          
           if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
-           this.batalla.getJugador1().manejarCpu1(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+            this.batalla.getJugador1().manejarCpu1(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+            this.vb.getBtListo();
           }
+          
           else if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("CPU2")){
-           this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2);
+            this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+            this.vb.getBtListo();
           }
           this.esquivar1="";
           this.esquivar2="";
@@ -523,6 +546,130 @@ public class ControladorBatalla2 implements ActionListener {
           
           }    
           
+    }
+     
+     
+     
+      if (ae.getSource().equals(this.vistaEmergente.getJBAceptar())){
+        this.vistaEmergente.setVisible(false);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ControladorBatalla2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
+           this.batalla.getJugador1().manejarCpu1(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+                   }
+          if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU2'")){
+           this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+                   }
+        
+        while  (!(this.batalla.getJugador1().getSalud() <= 0  || this.batalla.getJugador2().getSalud() <= 0)){
+             try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ControladorBatalla2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
+        //          finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
+          this.turno=this.batalla.getJugador2();
+          this.contador=1;// contador que determina quien y en que orden de batalla se ejecuta este evento
+          this.vb.getJtDefender1().setEnabled(false);
+          this.vb.getJtEsquivar1().setEnabled(false);
+         
+          this.vb.getJtDefender2().setEnabled(true);
+          this.vb.getJtEsquivar2().setEnabled(true);
+          botonDisabled(this.acciones1,null);
+          botonEnabled(acciones2);
+          this.numeroTurno +=1;// cuenta los turnos
+          System.out.println("BATALLA CPU VS CPU : LLEGUE AQUII2 el contador es"+this.contador); 
+          if (this.modalidad.equals("BatallaCpuVsCpu") && this.batalla.getJugador2().getNombre().equals("'CPU1'")){
+            this.batalla.getJugador2().manejarCpu1(numeroTurno, this.acciones2, this.acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1,2);
+         }
+          if (this.modalidad.equals("BatallaCpuVsCpu") && this.batalla.getJugador2().getNombre().equals("'CPU2'")){
+                this.batalla.getJugador2().manejarCpu2(numeroTurno, acciones2, acciones1, this.batalla.getJugador1(), this.vb,this.defender1,this.esquivar1,2);
+            
+          }
+          
+         
+          
+          
+        this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
+          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+          this.turno=this.batalla.getJugador1();
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
+          this.batalla.ejecutarAcciones(this.ataques,this.ataques2,this.batalla.getJugador2(),this.batalla.getJugador1(),this.defender2,this.esquivar2);
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          this.batalla.ejecutarAcciones(this.ataques2,this.ataques,this.batalla.getJugador1(),this.batalla.getJugador2(),this.defender1,this.esquivar1);
+              
+          System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
+          setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());
+          System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
+          this.ataques.clear();
+          this.ataques2.clear();
+          this.vb.getTxtPhabilidad1().setText("10");
+          this.vb.getTxtPhabilidad2().setText("10");
+          
+          botonDisabled(this.acciones2,null);
+          botonEnabled(acciones1);
+          
+          this.vb.getJtEsquivar1().setEnabled(true);
+          this.vb.getJtDefender1().setEnabled(true);
+          this.vb.getJtEsquivar2().setEnabled(false);
+          this.vb.getJtDefender2().setEnabled(false);
+          
+          this.contador=0;
+           this.numeroTurno +=1;
+          this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
+          comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
+          comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ; 
+  
+          
+         System.out.println("BATALLA CPU VS CPU : LLEGUE AQUII1 el contador es"+this.contador); 
+          if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
+           this.batalla.getJugador1().manejarCpu1(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+                    
+          
+
+            
+          }
+          
+          else if (this.modalidad.equals("BatallaCpuVsCpu") && this.batalla.getJugador1().getNombre().equals("'CPU2'")){
+
+           
+           this.batalla.getJugador1().manejarCpu2(numeroTurno, this.acciones1, this.acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
+         
+          
+          }
+          this.esquivar1="";
+          this.esquivar2="";
+          this.defender1="";
+          this.defender2="";
+         
+        }
+         
+    
+            
+            
+              
+              this.vb.getBtConfirmarA().setVisible(false);
+              this.vb.getBtListo().setVisible(false);
+              botonDisabled(this.acciones1,null);
+              botonDisabled(this.acciones2,null);
+              this.vb.getJMensaje().setVisible(true);
+              this.vb.getJBContinuar().setVisible(true);
+             
+               
+              
+            
+    
+    
+    
+    
     }
 //       if(this.acciones1.contains(this.seleecionador2) /*&& this.acciones2.contains(this.seleecionador2)*/){
 //          this.vb.getBtConfirmarA().setEnabled(true);}

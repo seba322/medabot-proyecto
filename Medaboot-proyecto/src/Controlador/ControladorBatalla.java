@@ -32,18 +32,22 @@ public class ControladorBatalla implements ActionListener {
     private String contraseña;
     private VistaRegistro1 vt11;
     private VistaPreparacionBPjvsCpu vtpc;
-    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC){
+    private VistaPreparacionCpuvsCpu1 vtCpCp;
+    private Medaboot Cpu1;
+    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC,VistaPreparacionCpuvsCpu1 vtCpCp){
        
         this.vm=vm;
         this.vb=vb;
         this.vmb=vmb;
         this.vtp=vtp;
         this.vtpc=vtpC;
+        this.vtCpCp=vtCpCp;
         this.nombreUsuario=nombreUsuario;
         this.contraseña=contraseña;
         this.user2=new Usuario();
         this.vmb.getBtJugador().addActionListener(this);
         this.vmb.getBtCPU().addActionListener(this);
+        this.vmb.getBtMaquina().addActionListener(this);
         this.vtp.getBtComenzar().addActionListener(this);
         this.vtp.getBtAtras().addActionListener(this);
         this.vmb.getBtAtras().addActionListener(this);
@@ -52,7 +56,9 @@ public class ControladorBatalla implements ActionListener {
         this.vtpc.getBtComenzar().addActionListener(this);
         this.vtpc.getBtAtras().addActionListener(this);
         this.vtpc.getBtSeleccionar().addActionListener(this);
-                
+        this.vtCpCp.getBtComenzar().addActionListener(this);
+        this.vtCpCp.getBtAtras().addActionListener(this);
+        this.vtCpCp.getBtSeleccionar().addActionListener(this);       
         
        
               
@@ -81,6 +87,15 @@ public class ControladorBatalla implements ActionListener {
             this.vtpc.setSize(844, 584);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vtpc,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+           
+        }
+        
+        else if(ae.getSource().equals(this.vmb.getBtMaquina())){
+            this.vtCpCp.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vtCpCp,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
            
@@ -124,6 +139,15 @@ public class ControladorBatalla implements ActionListener {
         }
         //Volver a menu de batalla, desde preparacion de batalla
         else if(ae.getSource().equals(this.vtp.getBtAtras())){
+          
+            vmb.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(vmb,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            
+        }
+        else if(ae.getSource().equals(this.vtCpCp.getBtAtras())){
           
             vmb.setSize(844, 584);
             this.vm.getContentPane().removeAll();
@@ -184,6 +208,49 @@ public class ControladorBatalla implements ActionListener {
             } catch (IOException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             } 
+       
+       
+       
+       
+       }
+       
+       else if (ae.getSource().equals(this.vtCpCp.getBtSeleccionar())){
+            try {
+                String  nombreCpu = (String) this.vtCpCp.getLtCPU().getSelectedItem();
+                 String  nombreCpu1 = (String) this.vtCpCp.getLtCPU1().getSelectedItem();
+                Medaboot CpuSelecc = new Medaboot ("'"+nombreCpu+"'");
+                 Medaboot CpuSelecc1 = new Medaboot ("'"+nombreCpu1+"'");
+                this.Cpu=CpuSelecc;
+                this.Cpu1=CpuSelecc1;
+                this.vtCpCp.getTxtEstadisticas().setText("");
+                String Estadisicas = "nombre :"+ CpuSelecc.getNombre()+"\n"
+                        + "salud:"+CpuSelecc.getSalud()+"\n"+"esquive:"+CpuSelecc.getEsquive()+"\n"
+                        +"defensa:"+CpuSelecc.getDefensa()+"\n"+"ataque:"+CpuSelecc.getAtaque()+"\n";
+                this.vtCpCp.getTxtEstadisticas1().setText("");
+                String Estadisicas1 = "nombre :"+ CpuSelecc1.getNombre()+"\n"
+                        + "salud:"+CpuSelecc.getSalud()+"\n"+"esquive:"+CpuSelecc.getEsquive()+"\n"
+                        +"defensa:"+CpuSelecc.getDefensa()+"\n"+"ataque:"+CpuSelecc.getAtaque()+"\n";
+               
+                this.vtCpCp.getTxtEstadisticas().append(Estadisicas);
+                this.vtCpCp.getTxtEstadisticas1().append(Estadisicas1);
+                this.vtCpCp.getBtComenzar().setEnabled(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+          
+       else if (ae.getSource().equals(this.vtCpCp.getBtComenzar())){
+           Medaboot pj1= this.Cpu;
+           Medaboot pj2= this.Cpu1;
+           Batalla batalla= new Batalla(pj1,pj2);
+           VistaFinalB vf= new VistaFinalB();
+           ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuVsCpu","Batalla",vf,"");
+           this.vb.setSize(844, 584);
+           this.vm.getContentPane().removeAll();
+           this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
+           this.vm.getContentPane().revalidate();
+           this.vm.getContentPane().repaint();
        
        
        
