@@ -333,8 +333,8 @@ public class ControladorTorneo implements ActionListener{
                 String nombreUsuario2=this.vt11.getTxtUsuario().getText();
                 String contraseña2=this.vt11.getTxtContraseña().getText();
                 Usuario usuarioN=new Usuario(nombreUsuario2,contraseña2);
-                if (new Usuario(nombreUsuario2,contraseña2).validarUsuario(nombreUsuario2, contraseña2)==true && this.torneo.verificarUsuario(new Usuario(nombreUsuario2,contraseña2))==true){
-                    this.torneo.getParticipantes().add(new Usuario(nombreUsuario2,contraseña2));
+                if (usuarioN.validarUsuario(nombreUsuario2, contraseña2)==true && this.torneo.verificarUsuario(usuarioN)==true){
+                    this.torneo.getParticipantes().add(usuarioN);
                     System.out.println(this.torneo.getParticipantes());
                     
                     this.vpt.getTxtParticipantes().append(Integer.toString(this.contadorParticipantes+1)+")"+this.torneo.getParticipantes().get(usuarios).getNombreUsuario()+":                             "+this.torneo.getParticipantes().get(usuarios).getPersonajes()[0].getNombre()+"\n");
