@@ -11,13 +11,16 @@ import Modelo.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.*;
+import static com.sun.javafx.tk.Toolkit.getToolkit;
 //import com.sun.corba.se.impl.protocol.giopmsgheaders.ReplyMessage;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 public class ControladorBatalla implements ActionListener {
@@ -112,8 +115,9 @@ public class ControladorBatalla implements ActionListener {
                 VistaFinalB vf= new VistaFinalB();
                 
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaPjvsPj","Batalla",vf,"");
-                
-                this.vb.setSize(844, 584);
+                this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+                this.vb.setSize(1402, 684);
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
@@ -192,7 +196,7 @@ public class ControladorBatalla implements ActionListener {
                 VistaFinalB vf= new VistaFinalB();
                 
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf,"");
-                
+                this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 this.vb.setSize(844, 584);
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
@@ -246,6 +250,7 @@ public class ControladorBatalla implements ActionListener {
            Batalla batalla= new Batalla(pj1,pj2);
            VistaFinalB vf= new VistaFinalB();
            ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuVsCpu","Batalla",vf,"");
+           this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
            this.vb.setSize(844, 584);
            this.vm.getContentPane().removeAll();
            this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);

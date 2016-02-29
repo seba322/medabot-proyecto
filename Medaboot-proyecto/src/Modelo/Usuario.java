@@ -317,13 +317,13 @@ public class Usuario {
             
             
         }
-        else{
-            PrintWriter procesador= new PrintWriter(archivo);
-            
-            procesador.print(registro);
-            procesador.close();
-            
-        }
+//        else{
+//            PrintWriter procesador= new PrintWriter(archivo);
+//            
+//            procesador.print(registro);
+//            procesador.close();
+//            
+//        }
        
     }
     

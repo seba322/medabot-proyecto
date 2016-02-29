@@ -13,6 +13,7 @@ import Vista.*;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 // falta instanciar acciones 1 y acciones 2 
 // ordenar funcionamiento de lista ataques y ataque
@@ -151,6 +152,7 @@ public class ControladorBatalla2 implements ActionListener {
        
            
        this.vistaEmergente= new IntroBatalla();
+       this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
        if (this.modalidad.equals("BatallaCpuVsCpu")){
            this.vb.getBtListo().setVisible(false);
            botonDisabled(acciones1, null);
@@ -161,6 +163,7 @@ public class ControladorBatalla2 implements ActionListener {
            this.vistaEmergente.getJBCancelar().addActionListener(this);
            this.vistaEmergente.setVisible(true);
        }
+       this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
        
       if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("'CPU1'")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
@@ -194,8 +197,8 @@ public class ControladorBatalla2 implements ActionListener {
         this.vm.getContentPane().revalidate();
         this.vm.getContentPane().repaint();
         this.batalla.restablecerVida(ganador);
-        this.batalla.restablecerVida(perdedor);
         this.vf.getTxGanador().setText(this.batalla.getGanador().getNombre());
+        this.batalla.restablecerVida(perdedor);
         this.vf.getTxPerdedor().setText(this.batalla.getPerdedor().getNombre()); 
          if(ganador.getTipo().equals("CPU")){
             parte="No hay recompensa";
@@ -339,6 +342,7 @@ public class ControladorBatalla2 implements ActionListener {
         
         if(ae.getSource().equals(this.vf.getBtContinuar2())){
             if(this.tipo.equals("Batalla")){
+                this.vm.setExtendedState(JFrame.NORMAL);
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
@@ -450,6 +454,7 @@ public class ControladorBatalla2 implements ActionListener {
 //          finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
           this.turno=this.batalla.getJugador2();
           this.contador+=1;// contador que determina quien y en que orden de batalla se ejecuta este evento
+          this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
           this.vb.getJtDefender1().setEnabled(false);
           this.vb.getJtEsquivar1().setEnabled(false);
           this.vb.getJtDefender2().setEnabled(true);
@@ -474,8 +479,8 @@ public class ControladorBatalla2 implements ActionListener {
           
          }
           else if (this.contador==1){
-          this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
-          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+          
+          
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
@@ -550,7 +555,7 @@ public class ControladorBatalla2 implements ActionListener {
      
      
      
-      if (ae.getSource().equals(this.vistaEmergente.getJBAceptar())){
+     else if (ae.getSource().equals(this.vistaEmergente.getJBAceptar())){
         this.vistaEmergente.setVisible(false);
             try {
                 Thread.sleep(500);
@@ -681,12 +686,12 @@ public class ControladorBatalla2 implements ActionListener {
             System.out.println(parte);
             int parte2= this.acciones2.indexOf(this.seleecionador2);
             if (this.turno.equals(this.batalla.getJugador1())){
-            confirmador(parte ,parte2,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2());
+            confirmador(parte ,parte2,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"CONFIRMAR");
             controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad1().getText()),this.batalla.getJugador1(),this.acciones1);
             }
             
             else{
-            confirmador(parte2 ,parte,this.ataques2,this.acciones2,this.acciones1,this.batalla.getJugador2() ,this.batalla.getJugador1());    
+            confirmador(parte2 ,parte,this.ataques2,this.acciones2,this.acciones1,this.batalla.getJugador2() ,this.batalla.getJugador1(),"CONFIRMAR");    
              controlarPH(Integer.parseInt(this.vb.getTxtPhabilidad2().getText()),this.batalla.getJugador2(),this.acciones2);
             }
       
@@ -744,10 +749,14 @@ public class ControladorBatalla2 implements ActionListener {
                 
               
                 if (bAtacantes.equals(this.acciones1)){
+                    
                 this.seleccionador1=boton;
+                System.out.println("ESTEE ES EL NUMERO"+this.acciones1.indexOf(boton));
+                confirmador(this.acciones1.indexOf(boton),9,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"ESTADISTICAS");
                 }
                 else{
                 this.seleecionador2=boton;
+               confirmador(9,this.acciones2.indexOf(boton),this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"ESTADISTICAS");
                 }
                    
                 botonDisabled(bAtacantes,boton);
@@ -757,10 +766,11 @@ public class ControladorBatalla2 implements ActionListener {
                       if (boton2.isSelected()){
                          if (bAtacantes.equals(this.acciones1)){
                              this.seleecionador2=boton2;
+                              confirmador(9,this.acciones2.indexOf(boton2),this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"ESTADISTICAS");
                                 }
                              else{
                                  this.seleccionador1=boton2;
-                                 
+                                 confirmador(this.acciones1.indexOf(boton2),9,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"ESTADISTICAS"); confirmador(this.acciones1.indexOf(boton),9,this.ataques,this.acciones1,this.acciones2,this.batalla.getJugador1() ,this.batalla.getJugador2(),"ESTADISTICAS");
                                 }
                          botonDisabled( bAtacados,boton2);
                          this.vb.getBtConfirmarA().setEnabled(true);
@@ -770,6 +780,7 @@ public class ControladorBatalla2 implements ActionListener {
                }
                       else if (!boton2.isSelected()){
                       this.vb.getBtConfirmarA().setEnabled(false);
+                      this.vb.getTxtEstadisticas2().setText("");
                       
                       }
                  }
@@ -782,55 +793,126 @@ public class ControladorBatalla2 implements ActionListener {
 //            this.seleecionador2.setSelected(false);
             botonDisabled( bAtacados,null);
             botonEnabled(bAtacantes);}
+            this.vb.getTxtEstadisticas1().setText("");
             
             
         }
    
    
    }
-   public void confirmador(int parteAtacante ,int parteAtacado,ArrayList <ArrayList> lista,ArrayList<JToggleButton> bAtacantes,ArrayList<JToggleButton>bAtacado,Medaboot ataca ,Medaboot atacado ){
+   public void confirmador(int parteAtacante ,int parteAtacado,ArrayList <ArrayList> lista,ArrayList<JToggleButton> bAtacantes,ArrayList<JToggleButton>bAtacado,Medaboot ataca ,Medaboot atacado,String modalidad ){
         switch(parteAtacante){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
-            case 0: lista.add(new ArrayList(Arrays.asList(ataca.getBrazoIzq(),null)));
+            case 0: if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas1().setText(ataca.getBrazoIzq().getEstadisticas());
+                      break;
+                  }
+                     else{
+                  lista.add(new ArrayList(Arrays.asList(ataca.getBrazoIzq(),null)) );   
                   setPH1( ataca.getBrazoIzq().getPh(),ataca);
-                  break;
-            case 1: lista.add(new ArrayList(Arrays.asList(ataca.getBrazoDer(),null)) );
+                  break;  
+                  }
+            case 1: if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas1().setText(ataca.getBrazoDer().getEstadisticas());
+                      break;
+                  }
+                     else{
+                  lista.add(new ArrayList(Arrays.asList(ataca.getBrazoDer(),null)) );   
                   setPH1( ataca.getBrazoDer().getPh(),ataca);
-                  break;
-            case 2: lista.add(new ArrayList(Arrays.asList(ataca.getPiernaIzq(),null)) );
+                  break;  
+                  }
+            case 2: if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas1().setText(ataca.getPiernaIzq().getEstadisticas());
+                      break;
+                  }
+                     else{
+                  lista.add(new ArrayList(Arrays.asList(ataca.getPiernaIzq(),null)) );   
                   setPH1( ataca.getPiernaIzq().getPh(),ataca);
-                  break;
-            case 3: lista.add(new ArrayList(Arrays.asList(ataca.getPiernaDer(),null)) );
+                  break;  
+                  }
+            case 3: if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas1().setText(ataca.getPiernaDer().getEstadisticas());
+                      break;
+                  }
+                     else{
+                  lista.add(new ArrayList(Arrays.asList(ataca.getPiernaDer(),null)) );   
                   setPH1( ataca.getPiernaDer().getPh(),ataca);
-                  break;   
-            case 4:lista.add(new ArrayList(Arrays.asList(ataca.getCabeza(),null)) );
+                  break;  
+                  }   
+            case 4:
+                     if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas1().setText(ataca.getCabeza().getEstadisticas());
+                      break;
+                  }
+                     else{
+                  lista.add(new ArrayList(Arrays.asList(ataca.getCabeza(),null)) );   
                   setPH1( ataca.getCabeza().getPh(),ataca);
-                  break;   
+                  break;  
+                  }
             default: System.out.println("error");
                  }
          switch(parteAtacado){ // teniendo el numero alamacenado en parte , se tomaran la medaparte a la que corresponde tal numero 
                      // y se guardara en una lista , definida en atributo 
-            case 0: lista.get(lista.size()-1).set(1, atacado.getBrazoIzq());
+            case 0: 
+                if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas2().setText(atacado.getBrazoIzq().getEstadisticas());
+                      break;
+                  }
+                else{
+                    lista.get(lista.size()-1).set(1, atacado.getBrazoIzq());
+                    }
             
                   break;
-            case 1:lista.get(lista.size()-1).set(1, atacado.getBrazoDer());
+            case 1:
+                if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas2().setText(atacado.getBrazoDer().getEstadisticas());
+                      break;
+                  }
+                else{
+                    lista.get(lista.size()-1).set(1, atacado.getBrazoDer());
+                    }
                   break;
-            case 2: lista.get(lista.size()-1).set(1, atacado.getPiernaIzq());
+            case 2: 
+                if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas2().setText(atacado.getPiernaIzq().getEstadisticas());
+                      break;
+                  }
+                else{
+                    lista.get(lista.size()-1).set(1, atacado.getPiernaIzq());
+                    }
                   break;
-            case 3: lista.get(lista.size()-1).set(1, atacado.getPiernaDer());
-                  break;   
-            case 4:lista.get(lista.size()-1).set(1, atacado.getCabeza());
+            case 3: 
+                if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas2().setText(atacado.getPiernaDer().getEstadisticas());
+                      break;
+                  }
+                     else{
+                 lista.get(lista.size()-1).set(1, atacado.getPiernaDer());
                   break; 
+                    }
+            case 4:
+                if (modalidad.equals("ESTADISTICAS")) {
+                      this.vb.getTxtEstadisticas2().setText(atacado.getCabeza().getEstadisticas());
+                      break;
+                  }
+                else{
+                lista.get(lista.size()-1).set(1, atacado.getCabeza());
+                  break; 
+                }
             
             default: System.out.println("error");
             
                 }
+         if(!modalidad.equals("ESTADISTICAS")){
+             this.vb.getTxtEstadisticas1().setText("");
+             this.vb.getTxtEstadisticas2().setText("");
             System.out.println(this.ataques);
              System.out.println(this.ataques2);
             this.seleccionador1.setSelected(false);
            this.seleecionador2.setSelected(false);
             botonEnabled(bAtacantes);
             botonDisabled(bAtacado,null);
+         }
    
    }
 

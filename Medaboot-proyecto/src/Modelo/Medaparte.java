@@ -116,6 +116,18 @@ public class Medaparte {
         return this.esquive;
         
     }
+//metodo que retorna String con caracteristicas medaparte
+    public String getEstadisticas() {
+       String estadisticas ="Nombre:"+this.nombre+"\n"+ "Ataque:"+Integer.toString(this.ataque)+"\n"+
+               "Defensa:"+Integer.toString(this.defensa)+"\n"+
+               "Esquive:"+Integer.toString(this.esquive)+"\n"+
+               "Salud:"+Integer.toString(this.salud)+"\n"+
+               "Precision:"+Integer.toString(this.precision)+"\n"+
+               "PH:"+Integer.toString(this.ph)+"\n"+"Habilidad:"+this.habilidad+"\n";
+       return estadisticas;
+    }
+               
+               
     
     
     
