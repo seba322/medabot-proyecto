@@ -197,7 +197,7 @@ public class ControladorBatalla implements ActionListener {
                 
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf,"");
                 this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.vb.setSize(844, 584);
+                this.vb.setSize(1381, 707);
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
