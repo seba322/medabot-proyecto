@@ -203,6 +203,18 @@ public class Batalla {
     public ArrayList getPersonajes(){
         return this.personajes;
     }
+    public void desactivarMdafuerza(Medaboot personaje){
+        if(personaje.getMedalla().getMedaFuerza().equals("Velocidad")){
+            restablecerEsquive(personaje);
+        }
+        else if(personaje.getMedalla().getMedaFuerza().equals("Poder")){
+            restablecerAtaque(personaje);
+        }
+        else if(personaje.getMedalla().getMedaFuerza().equals("Reaccion")){
+            restablecerPh(personaje);
+        }
+    
+    }
     //Metodo que se encarga de verificar la  medafuerza de los persoanjes
     // De ser el caso, este se encarga de activarla
     public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno){
@@ -213,30 +225,36 @@ public class Batalla {
                 if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
                     int EsquiveA=personaje.getEsquive();
                     personaje.setEsquive((EsquiveA+100));
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda();
                 }
                 else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
                     int EsquiveA=personaje.getEsquive();
                     personaje.setEsquive((EsquiveA+100));
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
                 else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
                     int EsquiveA=personaje.getEsquive();
                     personaje.setEsquive((EsquiveA+100));
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
             }
            else{
                 if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
                     personaje.setPh(20);
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda();
                 }
                 else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
                     personaje.setPh(20);
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
                 else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
                     personaje.setPh(20);
+                    personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
            }
@@ -245,28 +263,31 @@ public class Batalla {
             
         }
         else if(personaje.getMedalla().getCarga().equals("Racha")){
-            if(getPorcent(personaje2)<=75 &&getPorcent(personaje2)>50 && personaje2.getLlamadoMeda() <=1 ){
+            if(getPorcent(personaje2)<=75 &&getPorcent(personaje2)>50 && personaje.getLlamadoMeda() <=1 ){
                personaje.getBrazoDer().setAtaque(10);
                personaje.getBrazoIzq().setAtaque(10);
                personaje.getPiernaDer().setAtaque(10);
                personaje.getPiernaIzq().setAtaque(10);
                personaje.getCabeza().setAtaque(10);
-               personaje2.setLlamadoMeda();
+               personaje.setMedafuerza(true);
+               personaje.setLlamadoMeda();
             }
-            else if(getPorcent(personaje2)<=50 &&getPorcent(personaje2)>25 && personaje2.getLlamadoMeda() <=2){
+            else if(getPorcent(personaje2)<=50 &&getPorcent(personaje2)>25 && personaje.getLlamadoMeda() <=2){
                personaje.getBrazoDer().setAtaque(10);
                personaje.getBrazoIzq().setAtaque(10);
                personaje.getPiernaDer().setAtaque(10);
                personaje.getPiernaIzq().setAtaque(10);
                personaje.getCabeza().setAtaque(10);
-                personaje2.setLlamadoMeda(); 
+               personaje.setMedafuerza(true);
+                personaje.setLlamadoMeda(); 
             }
-            else if(getPorcent(personaje2)<=25 &&getPorcent(personaje2)>0 && personaje2.getLlamadoMeda() <=3){
+            else if(getPorcent(personaje2)<=25 &&getPorcent(personaje2)>0 && personaje.getLlamadoMeda() <=3){
                personaje.getBrazoDer().setAtaque(10);
                personaje.getBrazoIzq().setAtaque(10);
                personaje.getPiernaDer().setAtaque(10);
                personaje.getPiernaIzq().setAtaque(10);
                personaje.getCabeza().setAtaque(10);
+               personaje.setMedafuerza(true);
                personaje.setLlamadoMeda(); 
             }
         }
@@ -279,6 +300,7 @@ public class Batalla {
                 personaje.getPiernaIzq().masSalud((personaje.getPiernaIzq().getSaludMax()*100)/25);
                 personaje.getPiernaDer().masSalud((personaje.getPiernaDer().getSaludMax()*100)/25);
                 personaje.getCabeza().masSalud((personaje.getCabeza().getSaludMax()*100)/25);
+                personaje.setMedafuerza(true);
                 
             }
         }

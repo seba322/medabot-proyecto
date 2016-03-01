@@ -15,8 +15,11 @@ public class VistaBatalla extends javax.swing.JPanel {
 
   
     public VistaBatalla() {
-       
+        
+        
         initComponents();
+         this.lbMedafuerza1.setVisible(false);
+        this.lbMedafuerza2.setVisible(false);
         this.lbEmpate.setVisible(false);
         
                 

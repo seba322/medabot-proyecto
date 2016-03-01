@@ -28,7 +28,7 @@ public class Medaboot {
     private int saludMax;
     private int ph;
     private int llamadoMeda;
-    
+   private boolean medaFuerza;
     private ArrayList<Medaparte> armadura;
     private Medaparte brazoIz;
     private Medaparte brazoDe;
@@ -48,8 +48,9 @@ public class Medaboot {
         this.llamadoMeda=1;
         DBConection conexion=new DBConection();
         if(conexion.conectar()){
+         String nombreComillas="'"+nombre+"'";
          Statement stm=conexion.consultar();
-         String seleccionar= "SELECT *FROM MEDABOT WHERE NOMBRE="+nombre;
+         String seleccionar= "SELECT *FROM MEDABOT WHERE NOMBRE="+nombreComillas;
          ResultSet re=stm.executeQuery(seleccionar);
          this.nombre=nombre;
          while(re.next()){
@@ -93,7 +94,7 @@ public class Medaboot {
          System.out.println(this.nombre);
          System.out.println("MEDABOTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
         }
-    
+        this.medaFuerza=false;
     
     
     }
@@ -102,6 +103,13 @@ public class Medaboot {
        
         return this.nombre;
     
+    }
+
+    public void setMedafuerza(boolean medafuerza) {
+        this.medaFuerza = medafuerza;
+    }
+    public boolean getMedafuerza() {
+       return this.medaFuerza;
     }
 
     /**

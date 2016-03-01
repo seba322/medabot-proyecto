@@ -454,7 +454,18 @@ public class ControladorBatalla2 implements ActionListener {
 //          finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
           this.turno=this.batalla.getJugador2();
           this.contador+=1;// contador que determina quien y en que orden de batalla se ejecuta este evento
-          this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
+            if(this.batalla.getJugador2().getMedafuerza()){
+                  this.batalla.desactivarMdafuerza(this.batalla.getJugador2());
+                  this.vb.getTxAcciones().append("Los efectos de la medafuerza se han ido para "+this.batalla.getJugador2().getNombre()+"\n");
+                  this.vb.getLbMedafuerza2().setVisible(false);
+                  this.batalla.getJugador2().setMedafuerza(false);
+            }
+          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+           if(this.batalla.getJugador2().getMedafuerza()){
+                System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador2().getLlamadoMeda());
+                this.vb.getLbMedafuerza2().setVisible(true);
+                this.vb.getTxAcciones().append("SE ACTIVA MEDAFUERZA PARA "+this.batalla.getJugador2().getNombre()+"\n");
+            }
           this.vb.getJtDefender1().setEnabled(false);
           this.vb.getJtEsquivar1().setEnabled(false);
           this.vb.getJtDefender2().setEnabled(true);
@@ -507,7 +518,18 @@ public class ControladorBatalla2 implements ActionListener {
           this.vb.getJtDefender2().setEnabled(false);
           
           this.contador=0;
+          if(this.batalla.getJugador1().getMedafuerza()){
+                  this.batalla.desactivarMdafuerza(this.batalla.getJugador1());
+                  this.vb.getTxAcciones().append("Los efectos de la medafuerza se han ido para "+this.batalla.getJugador1().getNombre()+"\n");
+                  this.vb.getLbMedafuerza1().setVisible(false);
+                  this.batalla.getJugador1().setMedafuerza(false);
+            }
           this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
+          if(this.batalla.getJugador1().getMedafuerza()){
+                System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador1().getLlamadoMeda());
+                this.vb.getLbMedafuerza1().setVisible(true);
+                this.vb.getTxAcciones().append("SE ACTIVA MEDAFUERZA PARA "+this.batalla.getJugador1().getNombre()+"\n");
+            }
           comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
           comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ; 
             if (this.batalla.getJugador1().getSalud() <= 0  && this.batalla.getJugador2().getSalud() <= 0){
@@ -600,8 +622,7 @@ public class ControladorBatalla2 implements ActionListener {
          
           
           
-        this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno);
-          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+       
           this.turno=this.batalla.getJugador1();
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
@@ -629,7 +650,7 @@ public class ControladorBatalla2 implements ActionListener {
           
           this.contador=0;
            this.numeroTurno +=1;
-          this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
+       
           comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
           comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ; 
   

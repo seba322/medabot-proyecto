@@ -53,16 +53,16 @@ public class Usuario {
          ResultSet informacion=stm.executeQuery(crear);
          while( informacion.next()){
          System.out.println("aca tambien5");
-         String prueba = "'"+informacion.getString(2);
+         String prueba = informacion.getString(2);
          
          System.out.println(prueba);
          System.out.println("aca tambien6");
          this.personajes=new Medaboot[3];
         System.out.println("aca tambien7");
-         this.personajes[0]= new Medaboot(prueba+"A'");
+         this.personajes[0]= new Medaboot(prueba+"A");
          
-         this.personajes[1]= new Medaboot(prueba+"B'");
-         this.personajes[2]= new Medaboot(prueba+"C'");
+         this.personajes[1]= new Medaboot(prueba+"B");
+         this.personajes[2]= new Medaboot(prueba+"C");
          System.out.println("aca tambien8");
        }
          informacion.close();
@@ -295,7 +295,7 @@ public class Usuario {
          
     }
     public void escribirAcciones(String registro) throws FileNotFoundException, IOException{
-        File archivo= new File("C:\\Users\\kimbo\\Documents\\NetBeansProjects\\medabot-proyect7\\Medaboot-proyecto\\Registro"+this.nombreUsuario+".txt");
+        File archivo= new File(this.nombreUsuario+".txt");
         ArrayList<String> registroA=new ArrayList<String>();
         if(archivo.exists()){
             FileReader carga=new FileReader(archivo);
@@ -317,18 +317,18 @@ public class Usuario {
             
             
         }
-//        else{
-//            PrintWriter procesador= new PrintWriter(archivo);
-//            
-//            procesador.print(registro);
-//            procesador.close();
-//            
-//        }
+       else{
+            PrintWriter procesador= new PrintWriter(archivo);
+            
+            procesador.print(registro);
+            procesador.close();
+            
+        }
        
     }
     
     public boolean cargarAcciones() throws FileNotFoundException, IOException{
-        File archivo= new File("C:\\Users\\kimbo\\Documents\\NetBeansProjects\\medabot-proyect7\\Medaboot-proyecto\\Registro"+this.nombreUsuario+".txt");
+        File archivo= new File(this.nombreUsuario+".txt");
         if(archivo.exists()){
             FileReader carga=new FileReader(archivo);
             BufferedReader procesador=new BufferedReader(carga);
