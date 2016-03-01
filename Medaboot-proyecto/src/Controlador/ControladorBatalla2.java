@@ -119,27 +119,20 @@ public class ControladorBatalla2 implements ActionListener {
         
         this.vb.getTxtPhabilidad1().setText("10");
         this.vb.getTxtPhabilidad2().setText("10");
-        this.vb.getTxtDatos1().setText("         MEDABOT:\n");
-        this.vb.getTxtDatos1().append("Defensa:"+this.batalla.getJugador2().getDefensa()+"\n");
-        this.vb.getTxtDatos1().append("%Esquive"+this.batalla.getJugador2().getEsquive()+"\n");
-        this.vb.getTxtDatos1().append("SaludMax"+this.batalla.getJugador2().getSalud()+"\n");
-        this.vb.getTxtDatos1().append("          MEDAPARTES:\n");
-        this.vb.getTxtDatos1().append("BrazoIz:\n");
-        this.vb.getTxtDatos1().append("BrazoDer:\n");
-        this.vb.getTxtDatos1().append("PiernaIz:\n");
-        this.vb.getTxtDatos1().append("PiernaDe:\n");
-        this.vb.getTxtDatos1().append("Cabeza:\n");
-        this.vb.getTxtDatos2().setText("         MEDABOT:\n");
-        this.vb.getTxtDatos2().append("Defensa:"+this.batalla.getJugador2().getDefensa()+"\n");
-        this.vb.getTxtDatos2().append("%Esquive"+this.batalla.getJugador2().getEsquive()+"\n");
-        this.vb.getTxtDatos2().append("SaludMax"+this.batalla.getJugador2().getSalud()+"\n");
-        this.vb.getTxtDatos2().append("          MEDAPARTES:\n");
-        this.vb.getTxtDatos2().append("BrazoIz:\n");
-        this.vb.getTxtDatos2().append("BrazoDer:\n");
-        this.vb.getTxtDatos2().append("PiernaIz:\n");
-        this.vb.getTxtDatos2().append("PiernaDe:\n");
-        this.vb.getTxtDatos2().append("Cabeza:\n");
-       
+        this.vb.getTxtDatos1().setText(this.batalla.getJugador1().getEstadisticas());
+        this.vb.getTxtDatos2().setText(this.batalla.getJugador2().getEstadisticas());
+        if (this.batalla.getJugador1().getTipo().equals("Normal")){
+        this.vb.getJLnombre1().setText(this.batalla.getJugador1().getNombre());
+        }      
+        else{
+          this.vb.getJLnombre1().setText(this.batalla.getJugador1().getNombre()+"(NPC)");   
+        }       
+        if (this.batalla.getJugador2().getTipo().equals("Normal")){
+        this.vb.getJLnombre2().setText(this.batalla.getJugador2().getNombre());
+        }      
+        else{
+          this.vb.getJLnombre2().setText(this.batalla.getJugador2().getNombre()+"(NPC)");   
+        }     
         
         
         

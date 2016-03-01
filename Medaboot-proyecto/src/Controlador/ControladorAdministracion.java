@@ -13,14 +13,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 //hola
 
 
 
-public class ControladorAdministracion implements ActionListener,ItemListener {
+public class ControladorAdministracion implements ActionListener {
     VistaAdmin vta;
     Usuario user;
     VistaMenu vm;
+    Medaboot numPersonaje;
     
     
     public ControladorAdministracion(VistaAdmin vta,Usuario user,VistaMenu vm){
@@ -34,16 +36,16 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
        // this.vta.getJcBrazoDE().addItem(this.user.getPersonajes().getNombre());
         
         
-        this.vta.getJcBrazoDE().addItemListener(this);
-        this.vta.getJcBrazoIZ().addItemListener(this);
-        this.vta.getJcPiernaIZ().addItemListener(this);
-        this.vta.getJcPiernaDE().addItemListener(this);
-        this.vta.getJcCabeza().addItemListener(this);
-        this.vta.getJcMedalla().addItemListener(this);
-        this.vta.getJcPersonaje().addItemListener(this);
+        
         this.vta.getBtSeleccionar().addActionListener(this);
         this.vta.getBtGuardar().addActionListener(this);
         this.vta.getBtAtras().addActionListener(this);
+        this.vta.getjBEstadisticas1().addActionListener(this);
+        this.vta.getjBEstadisticas2().addActionListener(this);
+        this.vta.getjBEstadisticas3().addActionListener(this);
+        this.vta.getjBEstadisticas4().addActionListener(this);
+        this.vta.getjBEstadisticas5().addActionListener(this);
+        this.vta.getjBEstadisticas6().addActionListener(this);
     }
     
     
@@ -52,6 +54,27 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
+        
+//          if(ae.getSource().equals(this.vta.getjBEstadisticas1())){
+//             this.vta.getjTextAdmin2().setText(this.numPersonaje.getEstadisticas());
+          if(ae.getSource().equals(this.vta.getjBEstadisticas2())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getBrazoDer().getEstadisticas());
+          }
+         if(ae.getSource().equals(this.vta.getjBEstadisticas3())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getBrazoIzq().getEstadisticas());
+         }
+          if(ae.getSource().equals(this.vta.getjBEstadisticas4())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getCabeza().getEstadisticas()); 
+          }
+              if(ae.getSource().equals(this.vta.getjBEstadisticas5())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getPiernaIzq().getEstadisticas());  
+              }
+            if(ae.getSource().equals(this.vta.getjBEstadisticas6())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getPiernaDer().getEstadisticas());  
+              }   
+             
+//        if(ae.getSource().equals(this.vta.getjBEstadisticas1())){
+//             this.vta.getjTextAdmin2().setText(this.numPersonaje.getEstadisticas());
           if(ae.getSource().equals(this.vta.getBtAtras())){
                System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[0].getNombre());
                System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[1].getNombre());
@@ -73,7 +96,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
             }
             
             
-              
+          this.vm.setExtendedState(JFrame.NORMAL);   
           this.vm.getContentPane().removeAll();
           this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
           this.vm.getContentPane().revalidate();
@@ -96,6 +119,8 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
             this.vta.getJcBrazoDE().addItem(this.user.getPersonajes()[0].getBrazoDer().getNombre());
             this.vta.getJcCabeza().addItem(this.user.getPersonajes()[0].getCabeza().getNombre());
             this.vta.getJcMedalla().addItem(this.user.getPersonajes()[0].getMedalla().getNombre());
+            this.numPersonaje  = this.user.getPersonajes()[0];
+            this.vta.getjTextAdmin1().setText(this.numPersonaje.getEstadisticas());
          }
          else if (comprobar.equals(this.user.getPersonajes()[1].getNombre())){
              this.vta.getJcPiernaDE().addItem(this.user.getPersonajes()[1].getPiernaDer().getNombre());
@@ -104,7 +129,8 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
             this.vta.getJcBrazoDE().addItem(this.user.getPersonajes()[1].getBrazoDer().getNombre());
             this.vta.getJcCabeza().addItem(this.user.getPersonajes()[1].getCabeza().getNombre());
             this.vta.getJcMedalla().addItem(this.user.getPersonajes()[1].getMedalla().getNombre());
-        
+             this.numPersonaje  = this.user.getPersonajes()[1];
+             this.vta.getjTextAdmin1().setText(this.numPersonaje.getEstadisticas());
            
         }    
         
@@ -115,6 +141,8 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
             this.vta.getJcBrazoDE().addItem(this.user.getPersonajes()[2].getBrazoDer().getNombre());
             this.vta.getJcCabeza().addItem(this.user.getPersonajes()[2].getCabeza().getNombre());
             this.vta.getJcMedalla().addItem(this.user.getPersonajes()[2].getMedalla().getNombre());
+            this.numPersonaje  = this.user.getPersonajes()[3];
+            this.vta.getjTextAdmin1().setText(this.numPersonaje.getEstadisticas());
         
            
         }   
@@ -254,8 +282,7 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
          
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent ie) {
+    
        /* if (ie.getSource().equals(this.vta.getJcPersonaje())) {
             String comprobar= (String) this.vta.getJcPersonaje().getSelectedItem();
             
@@ -281,4 +308,4 @@ public class ControladorAdministracion implements ActionListener,ItemListener {
     
 
 
-}
+

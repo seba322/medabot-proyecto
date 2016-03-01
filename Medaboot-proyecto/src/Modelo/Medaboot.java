@@ -520,7 +520,16 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
 
 }
    
-    
+    public String getEstadisticas() {
+       String estadisticas ="Medalla:"+this.medalla+"\n"+ "Ataque:"+Integer.toString(this.ataque)+"\n"+
+               "Defensa:"+Integer.toString(this.defensa)+"\n"+
+               "Esquive:"+Integer.toString(this.esquive)+"\n"+
+               "Salud:"+Integer.toString(this.salud)+"\n"+
+               "BrazoIz:"+(this.brazoIz.getNombre())+"\n"+"BrazoDe:"+(this.brazoDe.getNombre())+"\n"+
+               "PiernaIz:"+(this.piernaIz.getNombre())+"\n"+"PiernaDe:"+(this.piernaDe.getNombre())+"\n"+
+               "Cabeza:"+(this.cabeza.getNombre());
+       return estadisticas;
+    }
     
     
 }

@@ -20,6 +20,7 @@ import Modelo.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JFrame;
 
 public class ControladorMenu implements ActionListener {
     
@@ -115,10 +116,11 @@ public class ControladorMenu implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
             VistaAdmin vta = new VistaAdmin();
-             vta.setSize(844, 584);
+             vta.setSize(1131, 561);
             vta.setLocation(5,5);
-            
+            this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(vta,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
