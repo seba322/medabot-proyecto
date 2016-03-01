@@ -1,2 +1,6 @@
  p3 a participado en un torneo organizado por prueba el dia 27/02/2016 a las 03:29 PM
  p3 a participado en un torneo organizado por pawerlive el dia 27/02/2016 a las 04:02 PM
+ p3 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 02:35 AM
+ p1 a Batallado con p3 el dia 01/03/2016 a las 10:33 AM
+ p1 a Batallado con p3 el dia 01/03/2016 a las 10:34 AM
+ p4 a Batallado con p3 el dia 01/03/2016 a las 11:05 AM

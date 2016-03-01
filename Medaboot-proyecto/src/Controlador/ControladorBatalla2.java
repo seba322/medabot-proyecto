@@ -231,84 +231,35 @@ public class ControladorBatalla2 implements ActionListener {
     
    //Metodo que se encarga de imprimir las acciones del jugador2
     //y modificar su barra de vida
-    public void setEscenario(ArrayList<String> msj,ArrayList<Medaparte> parte){
-        
-        int i=0;
-        System.out.println(msj);
-        System.out.println(parte);
-        for( String texto: msj){
-
-            
-
-            this.vb.getTxAcciones().append(texto+"\n");
-            if(i<parte.size()){
-                if(parte.get(i).getNombre().endsWith("(PD)")){
-                    
-                    this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
-                    System.out.println("ESTOY AQUI!!1");
-                }
-                 if(parte.get(i).getNombre().endsWith("(PI)")){
-                    this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
-                    System.out.println("ESTOY AQUI!!2");
-                }
-                 if(parte.get(i).getNombre().endsWith("(BD)")){
-                    this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
-                    System.out.println("ESTOY AQUI!!3");
-                }
-                 if(parte.get(i).getNombre().endsWith("(BI)")){
-                    this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());
-                    System.out.println("ESTOY AQUI!!4");
-                }
-                 if(parte.get(i).getNombre().endsWith("(C)")){
-                    this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());
-                    System.out.println("ESTOY AQUI!!5");
-                }
-            
-        }
-            }
-            
-            i=i+1;
-             
-        this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
-        System.out.println("ESTOY AQUI!!");
-        this.batalla.setMensajes();
-        this.batalla.setPartes();
-        
+    public void setEscenario(){
+         this.vb.getJpPiernaDE2().setValue(this.batalla.getJugador2().getPiernaDer().getSalud());
+         this.vb.getJpPiernaIZ2().setValue(this.batalla.getJugador2().getPiernaIzq().getSalud());
+         this.vb.getJpBrazoDE2().setValue(this.batalla.getJugador2().getBrazoDer().getSalud());
+         this.vb.getJpBrazoIZ2().setValue(this.batalla.getJugador2().getBrazoIzq().getSalud());        
+         this.vb.getJpCabeza2().setValue(this.batalla.getJugador2().getCabeza().getSalud());       
+         this.vb.getJpVida2().setValue(this.batalla.getJugador2().getSalud());
+         for(String texto :this.batalla.getJugador1().getMsj()){
+             this.vb.getTxAcciones().append(texto+"\n");
+         }         
+         this.batalla.getJugador1().setMsj();
+                
     }
     //Metodo que se encarga de imprimir las acciones del jugador2
     //y modificar su barra de vida
-    public void setEscenario2(ArrayList<String> msj,ArrayList<Medaparte> parte){
+    public void setEscenario2(){
         
-        int i=0;
-        System.out.println(msj);
-        System.out.println(parte);
-        for( String texto: msj){
-            this.vb.getTxAcciones().append(texto+"\n");
-            if(i<parte.size()){
-                if(parte.get(i).getNombre().endsWith("(PD)")){
-                    this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
-                }
-                 if(parte.get(i).getNombre().endsWith("(PI)")){
-                    this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
-                }
-                 if(parte.get(i).getNombre().endsWith("(BD)")){
-                    this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
-                }
-                 if(parte.get(i).getNombre().endsWith("(BI)")){
-                    this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());
-                }
-                 if(parte.get(i).getNombre().endsWith("(C)")){
-                    this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());
-                }
-            
-            }
-            i=i+1;
-             
-        }
-        this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
+      this.vb.getJpPiernaDE1().setValue(this.batalla.getJugador1().getPiernaDer().getSalud());
+         this.vb.getJpPiernaIZ1().setValue(this.batalla.getJugador1().getPiernaIzq().getSalud());
+         this.vb.getJpBrazoDE1().setValue(this.batalla.getJugador1().getBrazoDer().getSalud());
+         this.vb.getJpBrazoIZ1().setValue(this.batalla.getJugador1().getBrazoIzq().getSalud());        
+         this.vb.getJpCabeza1().setValue(this.batalla.getJugador1().getCabeza().getSalud());       
+         this.vb.getJpVida1().setValue(this.batalla.getJugador1().getSalud());
+         for(String texto :this.batalla.getJugador2().getMsj()){
+             this.vb.getTxAcciones().append(texto+"\n");
+         }         
+         this.batalla.getJugador2().setMsj();
         
-        this.batalla.setMensajes();
-        this.batalla.setPartes();
+        
         
     }
     //Modifica los puntos de habilidad del jugador 1 y 2
@@ -490,12 +441,12 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.batalla.ejecutarAcciones(this.ataques,this.ataques2,this.batalla.getJugador2(),this.batalla.getJugador1(),this.defender2,this.esquivar2);
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
+         
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           this.batalla.ejecutarAcciones(this.ataques2,this.ataques,this.batalla.getJugador1(),this.batalla.getJugador2(),this.defender1,this.esquivar1);
-              
+          setEscenario();   
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());
+          setEscenario2();
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.ataques.clear();
           this.ataques2.clear();
@@ -621,12 +572,12 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.batalla.ejecutarAcciones(this.ataques,this.ataques2,this.batalla.getJugador2(),this.batalla.getJugador1(),this.defender2,this.esquivar2);
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          setEscenario(this.batalla.getMensajes(), this.batalla.getPartes());
+          
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
           this.batalla.ejecutarAcciones(this.ataques2,this.ataques,this.batalla.getJugador1(),this.batalla.getJugador2(),this.defender1,this.esquivar1);
-              
+          setEscenario();    
           System.out.println(this.batalla.getJugador1().getBrazoDer().getSalud());
-          setEscenario2(this.batalla.getMensajes(),this.batalla.getPartes());
+          setEscenario2();
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.ataques.clear();
           this.ataques2.clear();

@@ -295,7 +295,7 @@ public class Usuario {
          
     }
     public void escribirAcciones(String registro) throws FileNotFoundException, IOException{
-        File archivo= new File(this.nombreUsuario+".txt");
+        File archivo= new File("Registro"+this.nombreUsuario+".txt");
         ArrayList<String> registroA=new ArrayList<String>();
         if(archivo.exists()){
             FileReader carga=new FileReader(archivo);
@@ -328,7 +328,7 @@ public class Usuario {
     }
     
     public boolean cargarAcciones() throws FileNotFoundException, IOException{
-        File archivo= new File(this.nombreUsuario+".txt");
+        File archivo= new File("Registro"+this.nombreUsuario+".txt");
         if(archivo.exists()){
             FileReader carga=new FileReader(archivo);
             BufferedReader procesador=new BufferedReader(carga);

@@ -170,7 +170,7 @@ public class ControladorBatalla implements ActionListener {
        else if (ae.getSource().equals(this.vtpc.getBtSeleccionar())){
             try {
                 String  nombreCpu = (String) this.vtpc.getLtCPU().getSelectedItem();
-                Medaboot CpuSelecc = new Medaboot ("'"+nombreCpu+"'");
+                Medaboot CpuSelecc = new Medaboot (nombreCpu);
                 this.Cpu=CpuSelecc;
                 this.vtpc.getTxtEstadisticas().setText("");
                 String Estadisicas = "nombre :"+ CpuSelecc.getNombre()+"\n"
@@ -197,7 +197,7 @@ public class ControladorBatalla implements ActionListener {
                 
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf,"");
                 this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                this.vb.setSize(1381, 707);
+                this.vb.setSize(1402, 684);
                 this.vm.getContentPane().removeAll();
                 this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
                 this.vm.getContentPane().revalidate();
@@ -222,8 +222,8 @@ public class ControladorBatalla implements ActionListener {
             try {
                 String  nombreCpu = (String) this.vtCpCp.getLtCPU().getSelectedItem();
                  String  nombreCpu1 = (String) this.vtCpCp.getLtCPU1().getSelectedItem();
-                Medaboot CpuSelecc = new Medaboot ("'"+nombreCpu+"'");
-                 Medaboot CpuSelecc1 = new Medaboot ("'"+nombreCpu1+"'");
+                Medaboot CpuSelecc = new Medaboot (nombreCpu);
+                 Medaboot CpuSelecc1 = new Medaboot (nombreCpu1);
                 this.Cpu=CpuSelecc;
                 this.Cpu1=CpuSelecc1;
                 this.vtCpCp.getTxtEstadisticas().setText("");
@@ -251,7 +251,7 @@ public class ControladorBatalla implements ActionListener {
            VistaFinalB vf= new VistaFinalB();
            ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuVsCpu","Batalla",vf,"");
            this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
-           this.vb.setSize(844, 584);
+           this.vb.setSize(1402, 684);
            this.vm.getContentPane().removeAll();
            this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
            this.vm.getContentPane().revalidate();

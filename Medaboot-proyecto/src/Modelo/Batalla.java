@@ -18,14 +18,11 @@ public class Batalla {
    
    private Medaboot ganador;
    private Medaboot perdedor;
-   private ArrayList<Medaparte> partes;
-   private ArrayList<String> mensajes;
+   
    private String estado;
   
     
     public Batalla (Medaboot jugador1,Medaboot jugador2){
-        this.partes=new ArrayList<Medaparte>();
-        this.mensajes=new ArrayList<String>();
         this.estado="En Proceso";
         
         this.jugador1= jugador1;
@@ -49,19 +46,15 @@ public class Batalla {
     public String getEstado() {
         return estado;
     }
+    
 
     public void setEstado(String estado) {
         this.estado = estado;
     }
     
-    public ArrayList<Medaparte> getPartes() {
-        return partes;
-    }
+  
 
-    public ArrayList<String> getMensajes() {
-        return mensajes;
-    }
-
+  
     public Medaboot getGanador() {
         return ganador;
     }
@@ -88,13 +81,7 @@ public class Batalla {
    }
     
 
-    public void setPartes() {
-        this.partes.clear();
-    }
 
-    public void setMensajes() {
-        this.mensajes.clear();
-    }
     //Se encarga de modificar la informacon de victorias y derrotas
     //De los usuarios, en la base de datos
     public void asignarHistorial(Medaboot ganador,Medaboot perdedor){
@@ -191,7 +178,6 @@ public class Batalla {
          
          
      }
-     
      
     
 
@@ -318,13 +304,20 @@ public class Batalla {
             int daño= accion.get(0).getAtaque();
             int def=accion.get(1).getDefensa();
             
+         // Verifica la precision de cada medaparte al atacar   
+         int valorEntero = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
+         if(valorEntero>accion.get(0).getPrecision()){
+              personajeA.getMsj().add("El ataque de "+personajeA.getNombre()+" con "+accion.get(0).getNombre()+" falló");
+             continue;
+         }
+            //Se enarga de verificar el esquive del personaje objetivo
             if(Aesquive.equals("si")){
                 Aesquive="no";
                 int esquive=personajeO.getEsquive();
-                int valorEntero = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
-                if(valorEntero<=esquive){
+                int valorEntero2 = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
+                if(valorEntero2<=esquive){
                     dañoTotal=0;
-                    this.mensajes.add("No recibe daño, esquive efectivo");
+                    personajeA.getMsj().add(personajeO.getNombre()+" No recibe daño, esquive efectivo");
                     break;
                 }
                 
@@ -335,20 +328,28 @@ public class Batalla {
                 //Misiles rastreadores
                 if(accion.get(0).getHabilidad().equals("Misiles rastreadores")){
                      accion.get(1).setSalud(daño, def);
+                     personajeA.getMsj().add(personajeA.getNombre()+" Causa "+daño+" con misiles astreadores a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());
                      for(Medaparte parte:personajeO.getArmadura()){
-                         if(!parte.equals(accion.get(1))){
-                             parte.setSalud((daño*30)/100, parte.getDefensa());
+                         if(parte!=accion.get(1)){
+                             parte.setSalud((daño*30)/100, 0);
+//                             
+                              personajeA.getMsj().add(parte.getNombre()+" de "+personajeO.getNombre()+" se ve afectado por el daño en area de "+(daño*30)/100+"los misilesrastreadores");
                          }
                      }
+                     
                      dañoTotal+=daño;
                 } 
                 //Regeneracion
                 else if(accion.get(0).getHabilidad().equals("Regeneracion")){
                     accion.get(1).setSalud(daño, def);
-                    personajeA.masSalud((5*personajeA.getSaludMax())/100);
+                    personajeA.getMsj().add(personajeA.getNombre()+" causa "+daño+" con regeneracion a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());
+                    personajeA.masSalud((40*personajeA.getSaludMax())/100);
                     for(Medaparte parte: personajeA.getArmadura()){
                         parte.masSalud((5*parte.getSaludMax())/100);
+
+                         personajeA.getMsj().add(parte.getNombre()+" de "+personajeA.getNombre()+" se cura "+(5*parte.getSaludMax())/100);
                     }
+                    
                     dañoTotal+=daño;
                 }
                 //Anti aeros que cancelan el ataque de misiles rastreadores y develven su daño
@@ -356,23 +357,26 @@ public class Batalla {
                     for(ArrayList<Medaparte> contraAtaque:contraAtaques){
                         if(contraAtaque.get(0).getHabilidad().equals("Misiles Rastreadores")){
                             accion.get(1).setSalud(contraAtaque.get(0).getAtaque(), def);
+
                             contraAtaque.remove(0);
                             contraAtaque.remove(1);
                             dañoTotal+=contraAtaque.get(0).getAtaque();
+                             personajeA.getMsj().add(personajeA.getNombre()+" contraAtaca con anti aeros "+accion.get(1).getNombre()+" de "+personajeO.getNombre());
                         }
                     }
                 }
                 //Cuerpo a cuerpo o Disparo
                 else{
+                    
                     accion.get(1).setSalud(daño,def);
-                    this.partes.add(accion.get(1));
-                    this.mensajes.add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre());
+
+                     personajeA.getMsj().add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre()+" de "+personajeO.getNombre());
                      dañoTotal+=daño;
                 }
             }
             else{
-                this.partes.add(accion.get(1));
-                this.mensajes.add("NO RECIBE DAÑO");
+
+                 personajeA.getMsj().add(accion.get(1).getNombre()+" de "+personajeO.getNombre()+" gracias a su defensa ");
             }
            
            
@@ -380,12 +384,13 @@ public class Batalla {
         if(Adef.equals("si")){
                int dafTotal=personajeO.getDefensa();
                 if(defTotal>dañoTotal){
-                    String mensaje2="No recibe daño";
+                    dañoTotal=0;
+                     personajeA.getMsj().add(personajeO.getNombre()+ "no recibe daño a causa de su defensa");
                   
                 }
                 else{
                   dañoTotal-=defTotal;
-                  
+                  personajeA.getMsj().add("aqui si");
                 }
             }
        

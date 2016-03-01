@@ -40,6 +40,7 @@ public class Medaboot {
     private int ataque;
     private ArrayList<Integer> ataques=new ArrayList<Integer> ();
     private ArrayList<Integer> defensas=new ArrayList<Integer> ();
+    private ArrayList<String> msj;
     private  String tipo;
     private String nombreUsuatrio;
   //  private Medaparte modificador;
@@ -95,7 +96,7 @@ public class Medaboot {
          System.out.println("MEDABOTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
         }
         this.medaFuerza=false;
-    
+        this.msj=new ArrayList<String>();
     
     }
 
@@ -112,10 +113,14 @@ public class Medaboot {
        return this.medaFuerza;
     }
 
-    /**
-     *
-     * @return
-     */
+    public ArrayList<String> getMsj() {
+        return msj;
+    }
+
+    public void setMsj() {
+        this.msj.clear();
+    }
+    
     public Medaparte getPiernaDer() {
         return this.piernaDe;
     }
@@ -530,6 +535,8 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
                "Cabeza:"+(this.cabeza.getNombre());
        return estadisticas;
     }
+
+    
     
     
 }

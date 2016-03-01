@@ -68,6 +68,10 @@ public class Medaparte {
         return salud;
     }
 
+    public int getPrecision() {
+        return precision;
+    }
+
     public int getAtaque() {
         return ataque;
     }
