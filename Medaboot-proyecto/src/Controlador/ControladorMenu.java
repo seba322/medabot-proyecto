@@ -118,7 +118,7 @@ public class ControladorMenu implements ActionListener {
             }
             this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
             VistaAdmin vta = new VistaAdmin();
-             vta.setSize(1131, 561);
+             vta.setSize(1152, 582);
             vta.setLocation(5,5);
             this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
             this.vm.getContentPane().removeAll();

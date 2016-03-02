@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
 
 import Vista.VistaBatalla;
@@ -17,10 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 
-/**
- *
- * @author sebastian
- */
+
 public class Medaboot {
     private String nombre;
     private Medalla medalla;
@@ -28,6 +21,7 @@ public class Medaboot {
     private int saludMax;
     private int ph;
     private int llamadoMeda;
+    private int contraAtaque;
    private boolean medaFuerza;
     private ArrayList<Medaparte> armadura;
     private Medaparte brazoIz;
@@ -97,7 +91,7 @@ public class Medaboot {
         }
         this.medaFuerza=false;
         this.msj=new ArrayList<String>();
-    
+        this.contraAtaque=0;
     }
 
     public String getNombre() {
@@ -106,6 +100,15 @@ public class Medaboot {
     
     }
 
+    public int getContraAtaque() {
+        return contraAtaque;
+    }
+
+    public void setContraAtaque(int contraAtaque) {
+        this.contraAtaque = contraAtaque;
+    }
+    
+    
     public void setMedafuerza(boolean medafuerza) {
         this.medaFuerza = medafuerza;
     }
@@ -286,7 +289,7 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
           int contadorPH=10;
           System.out.println( "esta es la lista de ataques"+ordenadorAta);
            System.out.println( "esta es la lista de defensas"+ordenadorDef);
-    if (turno==0){
+    if (turno>=0){
          
       while(contadorPH>0){
           int i=0;
@@ -327,7 +330,7 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
     }
 
 
-   if (turno>0){
+   if (turno>100){
         
        if (this.esquive >= 0.3){
                if (player==1){
@@ -467,7 +470,7 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
     }
 
 
-   if (turno>1){
+   if (turno>100 ){
         
        if (this.esquive >= 0.5){vistaPH.getJtEsquivar2().doClick(); }
        else{vistaPH.getJtDefender2();}
@@ -526,7 +529,7 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
 }
    
     public String getEstadisticas() {
-       String estadisticas ="Medalla:"+this.medalla+"\n"+ "Ataque:"+Integer.toString(this.ataque)+"\n"+
+       String estadisticas ="Medalla:"+this.medalla.getNombre()+"\n"+ "Ataque:"+Integer.toString(this.ataque)+"\n"+
                "Defensa:"+Integer.toString(this.defensa)+"\n"+
                "Esquive:"+Integer.toString(this.esquive)+"\n"+
                "Salud:"+Integer.toString(this.salud)+"\n"+
