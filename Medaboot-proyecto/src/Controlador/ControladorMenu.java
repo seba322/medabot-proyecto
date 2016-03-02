@@ -80,7 +80,11 @@ public class ControladorMenu implements ActionListener {
             this.vm.getContentPane().add(vmb,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc,vtCpCp);
+            try {
+                ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc,vtCpCp);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if (e.getSource().equals(this.vm.getBtTorneo())){
             try {

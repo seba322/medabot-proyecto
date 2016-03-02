@@ -9,3 +9,6 @@
  p3 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:19 PM
  p3 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:27 PM
  p3 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 11:08 AM
+ p3 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 05:09 PM
+ p3 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 05:29 PM
+ p3 a modificado su personaje  el dia 02/03/2016 a las 05:53 PM

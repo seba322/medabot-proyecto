@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JToggleButton;
 
 
 public class Batalla {
@@ -136,7 +137,7 @@ public class Batalla {
                    
                }
               informacion.close();
-              medapartes=medapartes+parte.getNombre();
+              medapartes=medapartes+","+parte.getNombre();
               
               String instruccion="UPDATE MEDAPARTEUSUARIO SET MEDAPARTEES='"+medapartes+"' WHERE USUARIO="+nombre;
               System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+medapartes);
@@ -164,10 +165,10 @@ public class Batalla {
      }
      public void restablecerEsquive(Medaboot personaje){
          int EsquiveA=personaje.getEsquive();
-          personaje.setEsquive((EsquiveA+-100));
+          personaje.setEsquive((EsquiveA+-20));
      }
      public void restablecerPh(Medaboot personaje){
-         personaje.setPh(10);
+         personaje.setPh("10");
      }
      public void restablecerVida(Medaboot personaje){
          personaje.setSaludF();
@@ -190,6 +191,7 @@ public class Batalla {
     public ArrayList getPersonajes(){
         return this.personajes;
     }
+    //Se encarga de devolver los atributos del personaje a la normalidad
     public void desactivarMdafuerza(Medaboot personaje){
         if(personaje.getMedalla().getMedaFuerza().equals("Velocidad")){
             restablecerEsquive(personaje);
@@ -204,43 +206,43 @@ public class Batalla {
     }
     //Metodo que se encarga de verificar la  medafuerza de los persoanjes
     // De ser el caso, este se encarga de activarla
-    public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno){
+    public void activarMedafuerza(Medaboot personaje, Medaboot personaje2, int turno, ArrayList<JToggleButton> acciones){
         System.out.println("MEDALLA"+personaje.getMedalla().getCarga());
         System.out.println("MEDALLA"+personaje.getMedalla().getPotenciador());
         if(personaje.getMedalla().getCarga().equals("Venganza")){
            if(personaje.getMedalla().getMedaFuerza().equals("Velocidad")){
                 if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
                     int EsquiveA=personaje.getEsquive();
-                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setEsquive((EsquiveA+20));
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda();
                 }
                 else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
                     int EsquiveA=personaje.getEsquive();
-                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setEsquive((EsquiveA+20));
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
                 else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
                     int EsquiveA=personaje.getEsquive();
-                    personaje.setEsquive((EsquiveA+100));
+                    personaje.setEsquive((EsquiveA+20));
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
             }
            else{
                 if(getPorcent(personaje)<=75 &&getPorcent(personaje)>50 && personaje.getLlamadoMeda() <=1 ){
-                    personaje.setPh(20);
+                    personaje.setPh("20");
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda();
                 }
                 else if(getPorcent(personaje)<=50 &&getPorcent(personaje)>25 && personaje.getLlamadoMeda() <=2){
-                    personaje.setPh(20);
+                    personaje.setPh("20");
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
                 else if(getPorcent(personaje)<=25 &&getPorcent(personaje)>0 && personaje.getLlamadoMeda() <=3){
-                    personaje.setPh(20);
+                    personaje.setPh("20");
                     personaje.setMedafuerza(true);
                     personaje.setLlamadoMeda(); 
                 }
@@ -291,6 +293,20 @@ public class Batalla {
                 
             }
         }
+        else if(personaje.getMedalla().getCarga().equals("Reciclaje")){
+            for(JToggleButton parte:acciones){
+                if(!(parte.isVisible())){
+                    for(Medaparte medaparte:personaje.getArmadura()){
+                        
+                        medaparte.setDefensa(2*medaparte.getDefensa());
+                    }
+                    ;
+                personaje.setMedafuerza(true);
+                }
+                break;
+            }
+        
+        }
         
     }
     
@@ -305,12 +321,12 @@ public class Batalla {
             int daño= accion.get(0).getAtaque();
             int def=accion.get(1).getDefensa();
             
-//         // Verifica la precision de cada medaparte al atacar   
-//         int valorEntero = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
-//         if(valorEntero>accion.get(0).getPrecision()){
-//              personajeA.getMsj().add("El ataque de "+personajeA.getNombre()+" con "+accion.get(0).getNombre()+" falló");
-//             continue;
-//         }
+         // Verifica la precision de cada medaparte al atacar   
+         int valorEntero = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
+         if(valorEntero>accion.get(0).getPrecision()){
+              personajeA.getMsj().add("El ataque de "+personajeA.getNombre()+" con "+accion.get(0).getNombre()+" falló");
+             continue;
+         }
             //Se enarga de verificar el esquive del personaje objetivo
             if(Aesquive.equals("si")){
                 Aesquive="no";
@@ -335,7 +351,7 @@ public class Batalla {
                             
                             personajeO.setContraAtaque(personajeO.getContraAtaque()+contraAtaque.get(0).getAtaque()); 
                             
-                            personajeA.getMsj().add(personajeO.getNombre()+contraAtaques+" aassassdevuelve y anula el daño de los misiles rastreadores lanzados por "+personajeO.getNombreUsuatrio()+"");
+                            personajeA.getMsj().add(personajeO.getNombre()+" devuelve y anula el daño de los misiles rastreadores lanzados por "+personajeO.getNombreUsuatrio()+"");
                             defContraAtaque=true;
                             break;
                     
@@ -400,19 +416,42 @@ public class Batalla {
                          personajeA.getMsj().add(personajeA.getNombre()+" contraAtaca con "+personajeA.getContraAtaque()+ " de daños utilizando misiles antiaereos anti aeros a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());     
                     }
                 }
+                //Laser atomico
+                else if(accion.get(0).getHabilidad().equals("Laser atomico")){
+                     accion.get(1).setSalud(daño,0);
+                     dañoTotal+=daño;
+                    personajeA.getMsj().add(personajeA.getNombre()+" causa "+Integer.toString(daño)+" de daño con el Laser atomico de "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre()+" de "+personajeO.getNombre());
+                    }
+                //Cuchilla desmanteladora
+                else if(accion.get(0).getHabilidad().equals("Cuchilla desmanteladora ")){
+                    int valorEntero3 = (int) Math.floor(Math.random()*(100-1+1)+1);// Valor entre 100 y 1, ambos incluidos.
+                    if(valorEntero3<=30){
+                        int dañoC=accion.get(1).getSaludMax();
+                        accion.get(1).setSalud(dañoC, 0);
+                        dañoTotal+=daño;
+                        personajeA.getMsj().add(personajeA.getNombre()+" destruye la medaparte  "+accion.get(0).getNombre()+" de "+personajeO.getNombre()+" con cuchilla desmanteladora");
+                    }
+                    else{
+                        accion.get(1).setSalud(daño,def);
+                        personajeA.getMsj().add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre()+" de "+personajeO.getNombre());
+                        dañoTotal+=daño;
+                    }
+                    
+                }
                 
-                //Cuerpo a cuerpo o Disparo
+                //Cuerpo a cuerpo, Disparo, tiro certero, piez rapidos o piez de hierro
                 else{
                     
                     accion.get(1).setSalud(daño,def);
-
-                     personajeA.getMsj().add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getNombre()+" a "+accion.get(0).getNombre()+" de "+personajeO.getNombre());
+                    personajeA.getMsj().add(personajeA.getNombre()+" causa "+Integer.toString(daño-def)+" de daño con "+accion.get(1).getHabilidad()+" a "+accion.get(0).getNombre()+" de "+personajeO.getNombre());
                      dañoTotal+=daño;
+                     
                 }
+                
             }
             else{
 
-                 personajeA.getMsj().add(accion.get(1).getNombre()+" de "+personajeO.getNombre()+" gracias a su defensa ");
+                 personajeA.getMsj().add(accion.get(1).getNombre()+" no recibe daño de "+personajeO.getNombre()+" gracias a su defensa ");
             }
            
            
@@ -426,7 +465,7 @@ public class Batalla {
                 }
                 else{
                   dañoTotal-=defTotal;
-                  personajeA.getMsj().add("aqui si");
+                  personajeA.getMsj().add(personajeO.getNombre()+" recibe un daño de"+dañoTotal+" por parte de "+personajeA.getNombre());
                 }
             }
        

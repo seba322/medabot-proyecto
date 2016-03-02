@@ -81,21 +81,7 @@ public class ControladorAdministracion implements ActionListener {
                System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[0].getNombre());
                System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[1].getNombre());
                System.out.println("Lista NOO Modificadaa "+this.user.getPersonajes()[2].getNombre());
-            String comprobar= (String) this.vta.getJcPersonaje().getSelectedItem();
-            for(int i=0;i<this.user.getPersonajes().length;i++){
-            
-               if (comprobar.equals(this.user.getPersonajes()[i].getNombre())) {
-                   Medaboot[] clon =this.user.getPersonajes().clone();
-                   this.user.getPersonajes()[0]=clon[i];
-                   this.user.getPersonajes()[i]=clon[0];
-                   System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[0].getNombre());
-                    System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[1].getNombre());
-                     System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[2].getNombre());
-                   break;
-                   
-                   
-               }  
-            }
+
             if(modalidad.equals("menu")){
                 this.vm.setExtendedState(JFrame.NORMAL);   
                 this.vm.getContentPane().removeAll();
@@ -110,6 +96,7 @@ public class ControladorAdministracion implements ActionListener {
           
 
          if (ae.getSource().equals(this.vta.getBtSeleccionar())) {
+             this.vta.getBtGuardar().setEnabled(true);
          this.vta.getJcPiernaDE().removeAllItems();
          this.vta.getJcPiernaIZ().removeAllItems();
          this.vta.getJcBrazoIZ().removeAllItems();
@@ -276,6 +263,21 @@ public class ControladorAdministracion implements ActionListener {
                      Logger.getLogger(ControladorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
                  }
          }
+             String comprobar= (String) this.vta.getJcPersonaje().getSelectedItem(); 
+             for(int i=0;i<this.user.getPersonajes().length;i++){
+            
+               if (comprobar.equals(this.user.getPersonajes()[i].getNombre())) {
+                   Medaboot[] clon =this.user.getPersonajes().clone();
+                   this.user.getPersonajes()[0]=clon[i];
+                   this.user.getPersonajes()[i]=clon[0];
+                   System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[0].getNombre());
+                    System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[1].getNombre());
+                     System.out.println("Lista Modificadaa "+ this.user.getPersonajes()[2].getNombre());
+                   break;
+                   
+                   
+               }  
+            }
              String registroAcciones=" "+this.user.getNombreUsuario()+" a modificado su personaje  el dia "+user.mostrarHora();
              this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
               try {
@@ -289,25 +291,7 @@ public class ControladorAdministracion implements ActionListener {
     }
 
     
-       /* if (ie.getSource().equals(this.vta.getJcPersonaje())) {
-            String comprobar= (String) this.vta.getJcPersonaje().getSelectedItem();
-            
-         if (comprobar.equals(this.user.getPersonajes()[0].getNombre()))    {
-             
-               this.vta.getJcPiernaDE().addItem("kimbo1");
-        }    
-         
-         else if (comprobar.equals(this.user.getPersonajes()[1].getNombre())){
-        
-            this.vta.getJcPiernaDE().addItem("kimbo2");
-        }    
-        
-         else if (comprobar.equals(this.user.getPersonajes()[2].getNombre())){
-        
-             this.vta.getJcPiernaDE().addItem("kimbo3");
-        }    
-        
-       }*/
+   
         
         }
 

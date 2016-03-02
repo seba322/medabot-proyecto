@@ -80,6 +80,20 @@ public class Medaparte {
         return defensa;
     }
 
+    public void setEsquive(int esquive) {
+        this.esquive = esquive;
+    }
+
+    public void setPrecision(int precision) {
+        this.precision = precision;
+    }
+    
+
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+    
+
     public int getPh() {
         return ph;
     }

@@ -39,6 +39,7 @@ public class VistaFinalizarTorneo extends javax.swing.JPanel {
         lbGanador.setText("El ganador del Torneo es:");
 
         txtGanador.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        txtGanador.setDisabledTextColor(new java.awt.Color(0, 0, 204));
         txtGanador.setEnabled(false);
 
         btContinuar2.setText("Continuar");

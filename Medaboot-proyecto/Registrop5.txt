@@ -2,3 +2,4 @@
  p1 a Batallado con p5 el dia 01/03/2016 a las 11:02 PM
  p5 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:16 PM
  p5 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 11:08 AM
+ p5 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 05:09 PM

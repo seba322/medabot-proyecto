@@ -22,6 +22,7 @@ public class VistaRegistro1 extends javax.swing.JFrame {
      */
     public VistaRegistro1() {
         initComponents();
+        this.lbError2.setVisible(false);
         setVisible(true);
         setLocationRelativeTo(null);
         setTitle("Registro");
@@ -36,6 +37,11 @@ public class VistaRegistro1 extends javax.swing.JFrame {
     public JButton getBtRegistrarse() {
         return btRegistrarse;
     }
+
+    public JLabel getLbError2() {
+        return lbError2;
+    }
+    
 
     public JLabel getIngContra() {
         return ingContra;
@@ -80,6 +86,7 @@ public class VistaRegistro1 extends javax.swing.JFrame {
         btEntrar = new javax.swing.JButton();
         btRegistrarse = new javax.swing.JButton();
         ingError = new javax.swing.JLabel();
+        lbError2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +113,9 @@ public class VistaRegistro1 extends javax.swing.JFrame {
         ingError.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         ingError.setText("Datos incorrectos, ingresalos nuevamente.");
 
+        lbError2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbError2.setText("Este usuario ya esta registrado.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,20 +123,27 @@ public class VistaRegistro1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ingContra)
-                    .addComponent(ingUsuario))
-                .addGap(101, 101, 101)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsuario)
-                    .addComponent(txtContraseña))
-                .addGap(89, 89, 89))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(271, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ingError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                    .addComponent(btEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
-                .addGap(77, 77, 77))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ingContra)
+                            .addComponent(ingUsuario))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario)
+                            .addComponent(txtContraseña))
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 261, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(ingError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                                    .addComponent(btEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
+                                .addGap(77, 77, 77))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbError2)
+                                .addGap(168, 168, 168))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,13 +156,15 @@ public class VistaRegistro1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ingContra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
                 .addComponent(ingError, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
+                .addComponent(lbError2)
+                .addGap(18, 18, 18)
                 .addComponent(btEntrar)
                 .addGap(33, 33, 33)
                 .addComponent(btRegistrarse)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,6 +227,7 @@ public class VistaRegistro1 extends javax.swing.JFrame {
     private javax.swing.JLabel ingError;
     private javax.swing.JLabel ingUsuario;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbError2;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

@@ -209,8 +209,8 @@ public class VistaPreparacionTorneo extends javax.swing.JPanel {
         txtPart7 = new javax.swing.JTextField();
         txtPart8 = new javax.swing.JTextField();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(840, 740));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Preparacion de Torneo");
@@ -227,7 +227,6 @@ public class VistaPreparacionTorneo extends javax.swing.JPanel {
         jLabel2.setText("Administar Personaje");
 
         btAdm1.setText("1");
-        btAdm1.setEnabled(false);
 
         btAdm3.setText("3");
         btAdm3.setEnabled(false);
@@ -430,7 +429,7 @@ public class VistaPreparacionTorneo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(440, 440, 440)
                         .addComponent(jLabel3)))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

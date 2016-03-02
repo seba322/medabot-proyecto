@@ -70,6 +70,7 @@ public class VistaFinalB extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("El jugador  obtiene como recompensa la siguiente medaparte;");
 
+        txRecompensa.setDisabledTextColor(new java.awt.Color(0, 51, 204));
         txRecompensa.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N

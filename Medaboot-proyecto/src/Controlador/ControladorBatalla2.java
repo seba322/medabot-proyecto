@@ -117,8 +117,8 @@ public class ControladorBatalla2 implements ActionListener {
         
         
         
-        this.vb.getTxtPhabilidad1().setText("10");
-        this.vb.getTxtPhabilidad2().setText("10");
+        this.vb.getTxtPhabilidad1().setText(this.batalla.getJugador1().getPh());
+        this.vb.getTxtPhabilidad2().setText(this.batalla.getJugador2().getPh());
         this.vb.getTxtDatos1().setText(this.batalla.getJugador1().getEstadisticas());
         this.vb.getTxtDatos2().setText(this.batalla.getJugador2().getEstadisticas());
         if (this.batalla.getJugador1().getTipo().equals("Normal")){
@@ -145,7 +145,7 @@ public class ControladorBatalla2 implements ActionListener {
        
            
        this.vistaEmergente= new IntroBatalla();
-       this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+       this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno,this.acciones1);
        if (this.modalidad.equals("BatallaCpuVsCpu")){
            this.vb.getBtListo().setVisible(false);
 //           botonDisabled(acciones1, null);
@@ -156,7 +156,7 @@ public class ControladorBatalla2 implements ActionListener {
            this.vistaEmergente.getJBCancelar().addActionListener(this);
            this.vistaEmergente.setVisible(true);
        }
-       this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+       this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno,this.acciones2);
        
       if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("CPU1")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
@@ -404,7 +404,7 @@ public class ControladorBatalla2 implements ActionListener {
                   this.vb.getLbMedafuerza2().setVisible(false);
                   this.batalla.getJugador2().setMedafuerza(false);
             }
-          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno);
+          this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno,this.acciones2);
            if(this.batalla.getJugador2().getMedafuerza()){
                 System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador2().getLlamadoMeda());
                 this.vb.getLbMedafuerza2().setVisible(true);
@@ -452,8 +452,8 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.ataques.clear();
           this.ataques2.clear();
-          this.vb.getTxtPhabilidad1().setText("10");
-          this.vb.getTxtPhabilidad2().setText("10");
+          this.vb.getTxtPhabilidad1().setText(this.batalla.getJugador1().getPh());
+          this.vb.getTxtPhabilidad2().setText(this.batalla.getJugador2().getPh());
           
           botonDisabled(this.acciones2,null);
           botonEnabled(acciones1);
@@ -470,7 +470,7 @@ public class ControladorBatalla2 implements ActionListener {
                   this.vb.getLbMedafuerza1().setVisible(false);
                   this.batalla.getJugador1().setMedafuerza(false);
             }
-          this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno);
+          this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno,this.acciones1);
           if(this.batalla.getJugador1().getMedafuerza()){
                 System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador1().getLlamadoMeda());
                 this.vb.getLbMedafuerza1().setVisible(true);
@@ -589,8 +589,8 @@ public class ControladorBatalla2 implements ActionListener {
           System.out.println("La salud es:"+this.batalla.getJugador1().getSalud());
           this.ataques.clear();
           this.ataques2.clear();
-          this.vb.getTxtPhabilidad1().setText("10");
-          this.vb.getTxtPhabilidad2().setText("10");
+          this.vb.getTxtPhabilidad1().setText(this.batalla.getJugador1().getPh());
+          this.vb.getTxtPhabilidad2().setText(this.batalla.getJugador2().getPh());
           
           botonDisabled(this.acciones2,null);
           botonEnabled(acciones1);

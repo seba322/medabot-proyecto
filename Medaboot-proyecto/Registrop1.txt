@@ -67,3 +67,18 @@
  p1 a organizado un torneo  el dia 01/03/2016 a las 11:19 PM
  p1 a organizado un torneo  el dia 01/03/2016 a las 11:27 PM
  p1 a organizado un torneo  el dia 02/03/2016 a las 11:08 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:52 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:52 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:55 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:55 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:57 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 11:57 AM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 12:13 PM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 04:57 PM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 05:09 PM
+ p1 a organizado un torneo  el dia 02/03/2016 a las 05:09 PM
+ p1 a organizado un torneo  el dia 02/03/2016 a las 05:29 PM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 05:52 PM
+ p1 a Batallado con p2 el dia 02/03/2016 a las 05:52 PM
+ p1 a modificado su personaje  el dia 02/03/2016 a las 05:53 PM
+ p1 a Batallado con p2 el dia 02/03/2016 a las 08:39 PM

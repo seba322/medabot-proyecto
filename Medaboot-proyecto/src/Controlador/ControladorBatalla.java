@@ -27,18 +27,19 @@ public class ControladorBatalla implements ActionListener {
     private VistaMenuB vmb;
     private VistaBatalla vb;
     private VistaPreparacionBPj vtp;
-
+    private VistaAdmin vta;
     private VistaMenu vm;
     private Medaboot Cpu;
     private Usuario user2;
+    private Usuario user1;
     private String nombreUsuario;
     private String contraseña;
     private VistaRegistro1 vt11;
     private VistaPreparacionBPjvsCpu vtpc;
     private VistaPreparacionCpuvsCpu1 vtCpCp;
     private Medaboot Cpu1;
-    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC,VistaPreparacionCpuvsCpu1 vtCpCp){
-       
+    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC,VistaPreparacionCpuvsCpu1 vtCpCp) throws SQLException{
+        this.vta=new VistaAdmin();
         this.vm=vm;
         this.vb=vb;
         this.vmb=vmb;
@@ -48,9 +49,12 @@ public class ControladorBatalla implements ActionListener {
         this.nombreUsuario=nombreUsuario;
         this.contraseña=contraseña;
         this.user2=new Usuario();
+        this.user1=new Usuario(this.nombreUsuario,this.contraseña);
         this.vmb.getBtJugador().addActionListener(this);
         this.vmb.getBtCPU().addActionListener(this);
         this.vmb.getBtMaquina().addActionListener(this);
+        this.vtp.getBtADM1().addActionListener(this);
+        this.vtp.getBtADM2().addActionListener(this);
         this.vtp.getBtComenzar().addActionListener(this);
         this.vtp.getBtAtras().addActionListener(this);
         this.vmb.getBtAtras().addActionListener(this);
@@ -75,6 +79,7 @@ public class ControladorBatalla implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         
         if(ae.getSource().equals(this.vmb.getBtJugador())){
             
@@ -103,12 +108,47 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().repaint();
            
         }
+        //Permite acceder al administrador de personajes de usuario 1 en 
+        //batalla pj vs pj
+        else if(ae.getSource().equals(this.vtp.getBtADM1())){
+            this.vta=new VistaAdmin();
+            this.vta.setSize(1162, 654);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vta,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user1, this.vm, "batalla");
+            this.vta.getBtAtras().addActionListener(this);
+        }
+        //Permite acceder al administrador de personajes de usuario 2 en 
+        //batalla pj vs pj
+        else if(ae.getSource().equals(this.vtp.getBtADM2())){
+            this.vta=new VistaAdmin();
+            this.vta.setSize(1162, 654);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vta,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user2, this.vm, "batalla");
+            this.vta.getBtAtras().addActionListener(this);
+        }
+        //Permite volver al menu de preparacion batalla pj vs pj
+        // desde el panel de administracion
+        else if(ae.getSource().equals(this.vta.getBtAtras())){
+        
+             
+            this.vtp.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vtp,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+        }
         
         else if(ae.getSource().equals(this.vtp.getBtComenzar())){
             try {
-                Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
                 
-                Medaboot pj1= user1.getPersonajes()[0];
+                
+                Medaboot pj1= this.user1.getPersonajes()[0];
                 
                 Medaboot pj2= this.user2.getPersonajes()[0];
                 Batalla batalla= new Batalla(pj1,pj2);
@@ -127,9 +167,7 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
                 user1.escribirAcciones(registroAcciones);
                 this.user2.escribirAcciones(registroAcciones);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            }  catch (IOException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -262,39 +300,37 @@ public class ControladorBatalla implements ActionListener {
        
        
        }
-        
+        //Permite verificar si y registrar los datos del usuario 2 para batalla de
+       //pj vs pj
        else if(ae.getSource().equals(this.vt11.getBtEntrar())){
                     try {
                         String nombreUsuario2=this.vt11.getTxtUsuario().getText();
-                        
                         String contraseña2=this.vt11.getTxtContraseña().getText();
-                       ;
-                        
-                        
-                        if (this.user2.validarUsuario(nombreUsuario2, contraseña2)==true){
+                      if (this.user2.validarUsuario(nombreUsuario2, contraseña2)==true && !nombreUsuario2.equals(this.nombreUsuario)){
                             this.vtp.getBtComenzar().setEnabled(true);
+                            this.vtp.getBtADM1().setEnabled(true);
+                            this.vtp.getBtADM2().setEnabled(true);
                             this.user2=new Usuario(nombreUsuario2,contraseña2);
-                           
-                            
-                            
-                        }   
+                            this.vtp.getLbError().setVisible(false);
+                        }
+                      else{
+                          this.vtp.getLbError().setVisible(true);
+                      }
+                      
+                        
+                    
                         
                         
                         
-                        
-                        } catch (SQLException ex) {
+                        }
+                        catch (SQLException ex) {
                         Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                
-                
-                
-                
-                }
+                        }
+        } 
             
-            } 
-            
-       
     }
-    
+
+
+}
 
     

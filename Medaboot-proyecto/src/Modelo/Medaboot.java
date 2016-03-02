@@ -19,7 +19,7 @@ public class Medaboot {
     private Medalla medalla;
     private int salud;
     private int saludMax;
-    private int ph;
+    private String ph;
     private int llamadoMeda;
     private int contraAtaque;
     private String posicion;
@@ -42,6 +42,7 @@ public class Medaboot {
     
     public Medaboot (String nombre) throws SQLException{
         this.llamadoMeda=1;
+        this.ph="10";
         DBConection conexion=new DBConection();
         if(conexion.conectar()){
          String nombreComillas="'"+nombre+"'";
@@ -71,6 +72,30 @@ public class Medaboot {
          this.armadura.add(this.piernaIz);
          this.armadura.add(this.brazoDe);
          this.armadura.add(this.brazoIz);
+         if(this.medalla.getPotenciador().equals("Ataque")){
+            for(Medaparte parte:this.armadura){
+                parte.setAtaque(10);
+            }
+           
+        }
+        else if(this.medalla.getPotenciador().equals("Defensa")){
+            for(Medaparte parte:this.armadura){
+                parte.setDefensa(parte.getDefensa()+6);
+            }
+        }
+        else if(this.medalla.getPotenciador().equals("Esquive")){
+             for(Medaparte parte:this.armadura){
+                parte.setEsquive(10+parte.getEsquive());
+            }
+        }
+        else if(this.medalla.getPotenciador().equals("Precision")){
+            for(Medaparte parte:this.armadura){
+                parte.setPrecision(10+parte.getPrecision());
+            }
+        }
+        else if(this.medalla.getPotenciador().equals("Ph")){
+             setPh("12");
+        }
          System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"+this.armadura);
          this.defensa=this.brazoIz.getDefensa()+this.brazoDe.getDefensa()+this.piernaIz.getDefensa()+this.piernaDe.getDefensa()+this.cabeza.getDefensa();
          this.ataques.add(this.brazoIz.getAtaque());
@@ -94,6 +119,7 @@ public class Medaboot {
         this.msj=new ArrayList<String>();
         this.contraAtaque=0;
         this.posicion="";
+        
     }
 
     public String getNombre() {
@@ -101,6 +127,11 @@ public class Medaboot {
         return this.nombre;
     
     }
+
+    public void setPh(String ph) {
+        this.ph = ph;
+    }
+    
 
     public String getPosicion() {
         return posicion;
@@ -143,6 +174,7 @@ public class Medaboot {
     public Medaparte getPiernaIzq() {
         return this.piernaIz;
     }
+    
 
     public Medaparte getBrazoDer() {
         return this.brazoDe;
@@ -172,9 +204,11 @@ public class Medaboot {
         return salud;
     }
 
-    public int getPh() {
+    public String getPh() {
         return ph;
     }
+
+   
 
     public void setSalud(int dañoTotal) {
         this.salud = this.salud-dañoTotal;
@@ -199,9 +233,7 @@ public class Medaboot {
         this.salud+=suma;
     }
 
-    public void setPh(int ph) {
-        this.ph = ph;
-    }
+   
     public void setSaludF(){
         this.salud=saludMax;
     }
