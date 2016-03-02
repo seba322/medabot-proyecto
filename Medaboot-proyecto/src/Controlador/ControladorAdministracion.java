@@ -19,16 +19,18 @@ import javax.swing.JFrame;
 
 
 public class ControladorAdministracion implements ActionListener {
-    VistaAdmin vta;
-    Usuario user;
-    VistaMenu vm;
-    Medaboot numPersonaje;
+    private VistaAdmin vta;
+    private Usuario user;
+    private VistaMenu vm;
+    private Medaboot numPersonaje;
+    private String modalidad;
     
     
-    public ControladorAdministracion(VistaAdmin vta,Usuario user,VistaMenu vm){
+    public ControladorAdministracion(VistaAdmin vta,Usuario user,VistaMenu vm,String modalidad){
         this.vta=vta;
         this.vm=vm;
         this.user=user;
+        this.modalidad=modalidad;
         for(int i=0;i<this.user.getPersonajes().length;i++){
             this.vta.getJcPersonaje().addItem(this.user.getPersonajes()[i].getNombre());
           
@@ -94,14 +96,18 @@ public class ControladorAdministracion implements ActionListener {
                    
                }  
             }
+            if(modalidad.equals("menu")){
+                this.vm.setExtendedState(JFrame.NORMAL);   
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                
+            }
             
-            
-          this.vm.setExtendedState(JFrame.NORMAL);   
-          this.vm.getContentPane().removeAll();
-          this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
-          this.vm.getContentPane().revalidate();
-          this.vm.getContentPane().repaint();
+         
           }
+          
 
          if (ae.getSource().equals(this.vta.getBtSeleccionar())) {
          this.vta.getJcPiernaDE().removeAllItems();

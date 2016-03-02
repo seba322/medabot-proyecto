@@ -22,6 +22,7 @@ public class ControladorTorneo implements ActionListener{
     private VistaMenu vm;
     private Torneo torneo;
     private VistaRegistro1 vt11;
+    private VistaAdmin vta;
     private int usuarios;
     private int contadorGlobal;
     private int contadorCasillas;
@@ -31,6 +32,7 @@ public class ControladorTorneo implements ActionListener{
     private VistaFinalizarTorneo vft;
     private Batalla batalla;
     private ArrayList<Medaboot> perdedores;
+    private ArrayList<ArrayList> botones;
     private String modalidad;
     
     
@@ -38,9 +40,12 @@ public class ControladorTorneo implements ActionListener{
     public ControladorTorneo(VistaMenuTorneo vmt,VistaPreparacionTorneo vpt,VistaTranscursoTorneo vtt,VistaMenu vm,Torneo torneo){
         this.torneo=torneo;
        this.batalla=null;
+       this.vta=new VistaAdmin();
+       this.vt11=null;
         this.tipoTorneo="";
         this.modalidad="BatallaPj";
         this.perdedores=new ArrayList<Medaboot>();
+        this.botones=new ArrayList<ArrayList>();
         this.vf=new VistaFinalB();
         this.contadorGlobal=0;
         this.contadorCasillas=1;
@@ -51,6 +56,15 @@ public class ControladorTorneo implements ActionListener{
         this.vtt=vtt;
         this.vpct=new VistaPreparacionCpuTorneo();
         this.vm=vm;
+
+        this.vpt.getBtAdm1().addActionListener(this);
+        this.vpt.getBtAdm2().addActionListener(this);
+        this.vpt.getBtAdm3().addActionListener(this);
+        this.vpt.getBtAdm4().addActionListener(this);
+        this.vpt.getBtAdm5().addActionListener(this);
+        this.vpt.getBtAdm6().addActionListener(this);
+        this.vpt.getBtAdm7().addActionListener(this);
+        this.vpt.getBtAdm8().addActionListener(this);
         this.vft=new VistaFinalizarTorneo();
         this.vmt.getBtTnormal().addActionListener(this);
         this.vmt.getBtTavanzado().addActionListener(this);
@@ -68,7 +82,8 @@ public class ControladorTorneo implements ActionListener{
         this.vpct.getBtAtras().addActionListener(this);
         this.vf.getBtContinuar2().addActionListener(this);
         this.vpt.getBtAtras2().addActionListener(this);
-        this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
+        this.vpt.getLbPart1().setText(this.contadorParticipantes+") "+this.torneo.getUser().getNombreUsuario()+"("+this.usuarios+"):");
+        this.vpt.getTxtPart1().setText(this.torneo.getUser().getPersonajes()[0].getNombre());
     }
     
     
@@ -113,10 +128,14 @@ public class ControladorTorneo implements ActionListener{
                  if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
                     this.modalidad="BatallaCpuPj";
                 }
+                else if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") && this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU")){
+                    this.modalidad="BatallaCpuVsCpu";
+                }
+                 
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 ControladorBatalla2 ctb2= new ControladorBatalla2(this.batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,"");
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
-                vb.setSize(844, 584);
+                vb.setSize(1402, 684);
                 System.out.println(this.torneo.getCombatientes());
                 
                 this.vm.getContentPane().removeAll();
@@ -137,7 +156,7 @@ public class ControladorTorneo implements ActionListener{
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,this.tipoTorneo);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
-                vb.setSize(844, 584);
+                vb.setSize(1402, 684);
                 
                 System.out.println(this.torneo.getCombatientes());
                 System.out.println("ESTA ES MI SALUDDDDDDD"+this.torneo.getCombatientes().get(contadorGlobal).getSalud());
@@ -172,7 +191,7 @@ public class ControladorTorneo implements ActionListener{
                 
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,this.tipoTorneo);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
-                vb.setSize(844, 584);
+                vb.setSize(1402, 684);
                 System.out.println(this.torneo.getCombatientes());
                 
                 
@@ -255,7 +274,7 @@ public class ControladorTorneo implements ActionListener{
         
         //Cambiar a vista de preparacion torneo, cuando se pulsa el torneo normal
         else if(ae.getSource().equals(this.vmt.getBtTnormal())){
-            this.vpt.setSize(844, 584);
+            this.vpt.setSize(970, 780);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
@@ -264,7 +283,7 @@ public class ControladorTorneo implements ActionListener{
         //Cambiar a vista preparacion torneo, y permite que se sigan 
         //Las reglas del torneo avanzado, cambiando el tributo "tipoTorneo"
         else if(ae.getSource().equals(this.vmt.getBtTavanzado())){
-            this.vpt.setSize(844, 584);
+            this.vpt.setSize(970, 780);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
@@ -307,7 +326,7 @@ public class ControladorTorneo implements ActionListener{
         else if(ae.getSource().equals(this.vpct.getBtSeleccionar())){
             String cpu=(String) this.vpct.getiTCpu().getSelectedItem();
             try {
-                Medaboot cpuSelected=new Medaboot("'"+cpu+"'");
+                Medaboot cpuSelected=new Medaboot(cpu);
                 this.torneo.setCpu(cpuSelected);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,7 +343,54 @@ public class ControladorTorneo implements ActionListener{
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
             this.torneo.getPersonajes().add(this.torneo.getCpu());
-            this.vpt.getTxtParticipantes().append(Integer.toString(this.contadorParticipantes+1)+")"+":                                     "+this.torneo.getCpu().getNombre()+"\n");
+            //Permite rellenar la vista con el nombre de los participantes que se van agregando
+            switch(this.contadorParticipantes){
+                        case 1:
+                             this.vpt.getLbPart2().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
+                             this.vpt.getTxtPart2().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart2().setVisible(true);
+                             this.vpt.getTxtPart2().setVisible(true);
+                            break;
+                        case 2:
+                            
+                            this.vpt.getLbPart3().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
+                             this.vpt.getTxtPart3().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart3().setVisible(true);
+                             this.vpt.getTxtPart3().setVisible(true);
+                            break;
+                        case 3:
+                            this.vpt.getLbPart4().setText(this.contadorParticipantes+") CPU(PNJ) :");
+                             this.vpt.getTxtPart4().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart4().setVisible(true);
+                             this.vpt.getTxtPart4().setVisible(true);
+                            break;            
+                        case 4:
+                            this.vpt.getLbPart5().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
+                             this.vpt.getTxtPart5().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart5().setVisible(true);
+                             this.vpt.getTxtPart5().setVisible(true);
+                            break;
+                        case 5:
+                            this.vpt.getLbPart6().setText(this.contadorParticipantes+") CPU(PNJ) :");
+                             this.vpt.getTxtPart6().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart6().setVisible(true);
+                             this.vpt.getTxtPart6().setVisible(true);
+                            break;    
+                        case 6:
+                            this.vpt.getLbPart7().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
+                             this.vpt.getTxtPart7().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart7().setVisible(true);
+                             this.vpt.getTxtPart7().setVisible(true);
+                            break;   
+                        case 7:
+                            this.vpt.getLbPart8().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
+                             this.vpt.getTxtPart8().setText(this.torneo.getCpu().getNombre());
+                             this.vpt.getLbPart8().setVisible(true);
+                             this.vpt.getTxtPart8().setVisible(true);
+                            break; 
+                        default:
+                            break;
+                    }
             ++this.contadorParticipantes;
         }
         //Agregar el  usuario a la lista de usuarios participanes
@@ -337,15 +403,95 @@ public class ControladorTorneo implements ActionListener{
                     this.torneo.getParticipantes().add(usuarioN);
                     System.out.println(this.torneo.getParticipantes());
                     
-                    this.vpt.getTxtParticipantes().append(Integer.toString(this.contadorParticipantes+1)+")"+this.torneo.getParticipantes().get(usuarios).getNombreUsuario()+":                             "+this.torneo.getParticipantes().get(usuarios).getPersonajes()[0].getNombre()+"\n");
+                    switch(this.contadorParticipantes){
+                        case 1:
+                             this.vpt.getLbPart2().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart2().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                             this.vpt.getLbPart2().setVisible(true);
+                             this.vpt.getTxtPart2().setVisible(true);
+                            break;
+                        case 2:
+                            
+                            this.vpt.getLbPart3().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                            this.vpt.getTxtPart3().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                            this.vpt.getLbPart3().setVisible(true);
+                             this.vpt.getTxtPart3().setVisible(true);
+                            break;
+                        case 3:
+                            this.vpt.getLbPart4().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart4().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                            this.vpt.getLbPart4().setVisible(true);
+                             this.vpt.getTxtPart4().setVisible(true);
+                             break;            
+                        case 4:
+                            this.vpt.getLbPart5().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart5().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                            this.vpt.getLbPart5().setVisible(true);
+                             this.vpt.getTxtPart5().setVisible(true);
+                             break;
+                        case 5:
+                            this.vpt.getLbPart6().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart6().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());;
+                            this.vpt.getLbPart6().setVisible(true);
+                             this.vpt.getTxtPart6().setVisible(true);
+                             break;    
+                        case 6:
+                            this.vpt.getLbPart7().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart7().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                            this.vpt.getLbPart7().setVisible(true);
+                             this.vpt.getTxtPart7().setVisible(true);
+                             break;   
+                        case 7:
+                            this.vpt.getLbPart8().setText(this.contadorParticipantes+1+") "+this.torneo.getParticipantes().get(this.usuarios).getNombreUsuario()+"("+(this.usuarios+1)+"):");
+                             this.vpt.getTxtPart8().setText(this.torneo.getParticipantes().get(this.usuarios).getPersonajes()[0].getNombre());
+                            this.vpt.getLbPart8().setVisible(true);
+                             this.vpt.getTxtPart8().setVisible(true);
+                             break; 
+                        default:
+                            break;
+                    }
+                        
+                    
+                    
+
                     ++this.usuarios;
                     ++this.contadorParticipantes;
                     System.out.println(this.usuarios);
+                    //Habilita los botones de administracion de usuario para 
+                    //cada usuario que se registra
+                    switch(this.usuarios){
+                        
+                        case 2:
+                            this.vpt.getBtAdm1().setEnabled(true);
+                            this.vpt.getBtAdm2().setEnabled(true);
+                            break;
+                        case 3:
+                            this.vpt.getBtAdm3().setEnabled(true);
+                            break;
+                        case 4:
+                            this.vpt.getBtAdm4().setEnabled(true);
+                            break;            
+                        case 5:
+                            this.vpt.getBtAdm5().setEnabled(true);
+                            break;
+                        case 6:
+                            this.vpt.getBtAdm6().setEnabled(true);
+                            break;    
+                        case 7:
+                            this.vpt.getBtAdm7().setEnabled(true);
+                            break;   
+                        case 8:
+                            this.vpt.getBtAdm8().setEnabled(true);
+                            break; 
+                        default:
+                            break;
+                    }
                 
                 }
                 else{
                     System.out.println("ERROR");
-                    this.vpt.getBtRegistro().setEnabled(true); 
+                    this.vpt.getBtRegistro().setEnabled(true);
+                    this.vpt.getBtCPU().setEnabled(true);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,14 +520,14 @@ public class ControladorTorneo implements ActionListener{
             this.vpt.getBtRegistro().setEnabled(true);
             this.vpt.getBtLimpiar().setEnabled(false);
             this.vpt.getBtComenzar().setEnabled(false);
-            this.vpt.getTxtParticipantes().setText("");
+            //this.vpt.getTxtParticipantes().setText("");
             this.torneo.getCombatientes().clear();
             this.torneo.getParticipantes().clear();
             this.torneo.getParticipantes().add(this.torneo.getUser());
             this.usuarios=1;
             this.contadorParticipantes=1;
-            this.vpt.getTxtParticipantes().append("Usuario                              Personaje\n");
-            this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
+           // this.vpt.getTxtParticipantes().append("Usuario                              Personaje\n");
+            //this.vpt.getTxtParticipantes().append("1)"+this.torneo.getUser().getNombreUsuario()+":                             "+this.torneo.getUser().getPersonajes()[0].getNombre()+"\n");
         }
         else if(ae.getSource().equals(this.vtt.getBtTerminar())){
             this.vft.setSize(918, 651);
@@ -406,7 +552,46 @@ public class ControladorTorneo implements ActionListener{
                 this.vm.getBtOculto().setEnabled(true);
             }
         }
+        else if(ae.getSource().equals(this.vta.getBtAtras())){
+            this.vpt.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm1())){
+            this.vta=new VistaAdmin();
+            this.vta.setSize(1152, 600);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vta,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.torneo.getParticipantes().get(0), this.vm, "torneo");
+            this.vta.getBtAtras().addActionListener(this);
+            this.vpt.getTxtPart1().setText(this.torneo.getParticipantes().get(0).getPersonajes()[0].getNombre());
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm2())){
         
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm3())){
+        
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm4())){
+        
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm5())){
+        
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm6())){
+        
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm7())){
+        
+        }
+        else if(ae.getSource().equals(this.vpt.getBtAdm8())){
+        
+        }
     }
     
 }

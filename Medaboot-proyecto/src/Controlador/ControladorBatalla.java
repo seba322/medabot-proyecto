@@ -238,6 +238,7 @@ public class ControladorBatalla implements ActionListener {
                 this.vtCpCp.getTxtEstadisticas().append(Estadisicas);
                 this.vtCpCp.getTxtEstadisticas1().append(Estadisicas1);
                 this.vtCpCp.getBtComenzar().setEnabled(true);
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             }

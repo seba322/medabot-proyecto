@@ -353,7 +353,7 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
                if (player==1){
                vistaPH.getJtDefender1().doClick();}
                if (player==2){
-               vistaPH.getJtDefender1().doClick();}}
+               vistaPH.getJtDefender2().doClick();}}
        if (defensa.equals("si")){
          while(contadorPH>0){
            int posicion2 = jugador2.defensas.indexOf(ordenadorDef.get(0));

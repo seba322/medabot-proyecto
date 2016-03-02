@@ -49,3 +49,7 @@
  p1 a Batallado con p2 el dia 01/03/2016 a las 10:58 PM
  p1 a Batallado con p2 el dia 01/03/2016 a las 10:59 PM
  p1 a Batallado con p2 el dia 01/03/2016 a las 11:01 PM
+ p2 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:16 PM
+ p2 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:19 PM
+ p2 a participado en un torneo organizado por p1 el dia 01/03/2016 a las 11:27 PM
+ p2 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 11:08 AM

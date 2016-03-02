@@ -71,7 +71,7 @@ public class ControladorRegistro implements ActionListener  {
           contraseña=this.vt1.getTxtContraseña().getText();
           System.out.println("kimbo");
           try {
-              if((this.user.validarUsuario(nombreUsuario, contraseña))){
+              if(this.user.validarUsuario(nombreUsuario, contraseña) && !nombreUsuario.equals("CPU1")&& !nombreUsuario.equals("CPU3")&& !nombreUsuario.equals("CPU2")){
                   this.vt1.dispose();
                   
                   if(this.modalidad.equals("Ingreso")){
@@ -111,6 +111,7 @@ public class ControladorRegistro implements ActionListener  {
       else if(e.getSource().equals(this.vt2.getBtCrear())){
           
           
+          try {
               String nombreUsuario,contraseña,contraseñaC,nombreMedabot;
               nombreUsuario=this.vt2.getTxtUsuario2().getText();
               nombreMedabot=this.vt2.getTxtNombre().getText();
@@ -122,8 +123,8 @@ public class ControladorRegistro implements ActionListener  {
                   
               } 
               if((this.user.validarUsuario(nombreUsuario, contraseña,nombreMedabot)==true)){
-                 
-                
+                  
+                  
                   try {
                       this.user.crearUsuario(nombreUsuario, contraseña,nombreMedabot);
                   } catch (SQLException ex) {
@@ -163,6 +164,9 @@ public class ControladorRegistro implements ActionListener  {
               else{
                   this.vt2.getLbError2().setVisible(true);
               }
+          } catch (SQLException ex) {
+              Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
+          }
           
         }
     }

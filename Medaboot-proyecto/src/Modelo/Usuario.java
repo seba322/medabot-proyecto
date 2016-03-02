@@ -192,8 +192,30 @@ public class Usuario {
         return estado;
     }       
     
-    public boolean validarUsuario(String nombreUsuario, String contraseña, String nombreMedabot){
-        return true;
+    public boolean validarUsuario(String nombreUsuario, String contraseña, String nombreMedabot) throws SQLException{
+        boolean  estado = true;
+        DBConection conexion=new DBConection();
+        if(conexion.conectar()){
+            Statement stm=conexion.consultar();
+            String insertar= "SELECT NOMBRE,PERSONAJE FROM USUARIO";
+            ResultSet respuesta=stm.executeQuery(insertar);
+             while(respuesta.next()) {       
+                String nombre = respuesta.getString(1);
+                if(nombre.equals(nombreUsuario)){
+                    estado=false;
+                }
+                String nombreM=respuesta.getString(2);
+                if(nombreM.equals(nombreMedabot)){
+                    estado=false;
+                    break;
+                }
+                
+                String pass = respuesta.getString(2);
+             }
+             respuesta.close();
+                conexion.desconectar();
+        }
+        return estado;
                 // LLamar a la base de datos y preguntar si existen estos datos
                 //retornar true o false depeniendo del caso
    

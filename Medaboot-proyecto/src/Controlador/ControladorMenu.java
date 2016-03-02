@@ -125,7 +125,7 @@ public class ControladorMenu implements ActionListener {
             this.vm.getContentPane().add(vta,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
-            ControladorAdministracion cta= new ControladorAdministracion(vta,user,this.vm);
+            ControladorAdministracion cta= new ControladorAdministracion(vta,user,this.vm,"menu");
             
             
             
