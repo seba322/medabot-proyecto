@@ -22,6 +22,7 @@ public class Medaboot {
     private int ph;
     private int llamadoMeda;
     private int contraAtaque;
+    private String posicion;
    private boolean medaFuerza;
     private ArrayList<Medaparte> armadura;
     private Medaparte brazoIz;
@@ -92,6 +93,7 @@ public class Medaboot {
         this.medaFuerza=false;
         this.msj=new ArrayList<String>();
         this.contraAtaque=0;
+        this.posicion="";
     }
 
     public String getNombre() {
@@ -99,6 +101,16 @@ public class Medaboot {
         return this.nombre;
     
     }
+
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
+    
+    
 
     public int getContraAtaque() {
         return contraAtaque;

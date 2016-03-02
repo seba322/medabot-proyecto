@@ -16,7 +16,7 @@ public class Torneo {
     private ArrayList<Medaboot> personajes;
     private Medaboot cpu;
     public Torneo(Usuario user) throws SQLException{
-        this.cpu= new Medaboot("'CPU1'");
+        this.cpu= new Medaboot("CPU1");
         this.participantes=new ArrayList<Usuario>();
         this.combatientes= new ArrayList<Medaboot>();
         this.personajes= new ArrayList<Medaboot>();

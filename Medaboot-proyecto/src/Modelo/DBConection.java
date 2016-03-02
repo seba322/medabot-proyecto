@@ -10,7 +10,7 @@ import java.sql.*;
 public class DBConection {
     private static final String SERVIDOR = "localhost";
     private static final String PUERTO = "1527";
-    private static final String NOMBRE_BD = "medabot2";
+    private static final String NOMBRE_BD = "medabot";
     private static final String USUARIO = "kimbo";
     private static final String PASSWORD = "123";
     public static final String URL_CONEXION = "jdbc:derby://" + SERVIDOR + ":"+ PUERTO +"/"+ NOMBRE_BD +";user="+ USUARIO +";password=" + PASSWORD;

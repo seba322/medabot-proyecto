@@ -26,6 +26,7 @@ public class Batalla {
         this.estado="En Proceso";
         
         this.jugador1= jugador1;
+        this.jugador1.setPosicion("izquierda");
         this.jugador2=jugador2;
         this.personajes=new ArrayList();
         personajes.add(this.jugador1);
@@ -334,7 +335,7 @@ public class Batalla {
                             
                             personajeO.setContraAtaque(personajeO.getContraAtaque()+contraAtaque.get(0).getAtaque()); 
                             
-                            personajeA.getMsj().add(personajeO.getNombre()+" devuelve y anula el daño de los misiles rastreadores lanzados por "+personajeO.getNombreUsuatrio()+"");
+                            personajeA.getMsj().add(personajeO.getNombre()+contraAtaques+" aassassdevuelve y anula el daño de los misiles rastreadores lanzados por "+personajeO.getNombreUsuatrio()+"");
                             defContraAtaque=true;
                             break;
                     
@@ -376,16 +377,27 @@ public class Batalla {
                 }
                 //Daño de losanti 
                 else if(accion.get(0).getHabilidad().equals("Anti aereos")){
-                    for(ArrayList<Medaparte> contraAtaque:contraAtaques){
-                        if(contraAtaque.get(0).getHabilidad().equals("Misiles rastreadores")){
-                            accion.get(1).setSalud(personajeA.getContraAtaque(),def);
-
-                            
-                            dañoTotal+=personajeA.getContraAtaque();
-                            personajeA.getMsj().add(personajeA.getNombre()+" contraAtaca con "+personajeA.getContraAtaque()+ " de daños utilizando misiles antiaereos anti aeros a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());
-                        }  
-                        
-                        
+                    ArrayList<Medaparte> borrar=new ArrayList();
+                    if(personajeA.getPosicion().equals("izquierda")){
+                        for(ArrayList<Medaparte> contraA:contraAtaques){
+                           if(contraA.get(0).getHabilidad().equals("Misiles rastreadores")){
+                               accion.get(1).setSalud(contraA.get(0).getAtaque(),def);
+                               dañoTotal+=contraA.get(0).getAtaque();
+                               borrar=contraA;
+                               
+                                personajeA.getMsj().add(personajeA.getNombre()+" devuelve y anula el daño de los misiles rastreadores lanzados por "+personajeO.getNombreUsuatrio()+"");
+                                personajeA.getMsj().add(personajeA.getNombre()+" contraAtaca con "+contraA.get(0).getAtaque()+ " de daños utilizando misiles antiaereos anti aeros a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());
+                                break;
+                           }
+                           
+                        }
+                         contraAtaques.remove(borrar);
+                           
+                    }
+                    else{
+                        accion.get(1).setSalud(personajeA.getContraAtaque(),def);
+                        dañoTotal+=personajeA.getContraAtaque();
+                         personajeA.getMsj().add(personajeA.getNombre()+" contraAtaca con "+personajeA.getContraAtaque()+ " de daños utilizando misiles antiaereos anti aeros a "+accion.get(1).getNombre()+" de "+personajeO.getNombre());     
                     }
                 }
                 
