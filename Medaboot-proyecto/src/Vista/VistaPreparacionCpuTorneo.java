@@ -88,9 +88,9 @@ public class VistaPreparacionCpuTorneo extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(352, 352, 352)
+                .addGap(305, 305, 305)
                 .addComponent(btAtras)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addContainerGap(568, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -116,9 +116,9 @@ public class VistaPreparacionCpuTorneo extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(550, Short.MAX_VALUE)
+                .addContainerGap(504, Short.MAX_VALUE)
                 .addComponent(btAtras)
-                .addGap(105, 105, 105))
+                .addGap(151, 151, 151))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()

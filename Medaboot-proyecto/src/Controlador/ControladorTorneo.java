@@ -297,7 +297,8 @@ public class ControladorTorneo implements ActionListener{
         
         //Permite acceder a la pantalla para seleccionar una CPU
         else if(ae.getSource().equals(this.vpt.getBtCPU())){
-            this.vpct.setSize(844, 584);
+            this.vpct.getBtAtras().setEnabled(false);
+            this.vpct.setSize(932, 678);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vpct,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
@@ -316,6 +317,12 @@ public class ControladorTorneo implements ActionListener{
             try {
                 Medaboot cpuSelected=new Medaboot(cpu);
                 this.torneo.setCpu(cpuSelected);
+                this.vpct.getTxtEstadisticas().setText("");
+                 String estadisticas = "nombre :"+ cpuSelected.getNombre()+"\n"
+                        + "salud:"+cpuSelected.getSalud()+"\n"+"esquive:"+cpuSelected.getEsquive()+"\n"
+                        +"defensa:"+cpuSelected.getDefensa()+"\n"+"ataque:"+cpuSelected.getAtaque()+"\n";
+                 this.vpct.getTxtEstadisticas().append(estadisticas);
+                 this.vpct.getBtAtras().setEnabled(true);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorTorneo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -325,7 +332,7 @@ public class ControladorTorneo implements ActionListener{
         // Seleccionada a la lista de personajes participantes
         else if(ae.getSource().equals(this.vpct.getBtAtras())){
              
-            this.vpt.setSize(844, 584);
+            this.vpt.setSize(925, 757);
             this.vm.getContentPane().removeAll();
             this.vm.getContentPane().add(this.vpt,BorderLayout.CENTER);
             this.vm.getContentPane().revalidate();
@@ -347,7 +354,7 @@ public class ControladorTorneo implements ActionListener{
                              this.vpt.getTxtPart3().setVisible(true);
                             break;
                         case 3:
-                            this.vpt.getLbPart4().setText(this.contadorParticipantes+") CPU(PNJ) :");
+                            this.vpt.getLbPart4().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
                              this.vpt.getTxtPart4().setText(this.torneo.getCpu().getNombre());
                              this.vpt.getLbPart4().setVisible(true);
                              this.vpt.getTxtPart4().setVisible(true);
@@ -359,7 +366,7 @@ public class ControladorTorneo implements ActionListener{
                              this.vpt.getTxtPart5().setVisible(true);
                             break;
                         case 5:
-                            this.vpt.getLbPart6().setText(this.contadorParticipantes+") CPU(PNJ) :");
+                            this.vpt.getLbPart6().setText(this.contadorParticipantes+1+") CPU(PNJ) :");
                              this.vpt.getTxtPart6().setText(this.torneo.getCpu().getNombre());
                              this.vpt.getLbPart6().setVisible(true);
                              this.vpt.getTxtPart6().setVisible(true);
