@@ -460,7 +460,7 @@ public class ControladorTorneo implements ActionListener{
             this.vm.getContentPane().repaint();
              System.out.println(this.torneo.getUser().getNombreUsuario());
                 System.out.println(this.batalla.getGanador().getNombreUsuatrio());
-            if(this.torneo.getUser().getNombreUsuario().equals("'"+this.batalla.getGanador().getNombreUsuatrio()+"'")){
+            if(this.torneo.getUser().getNombreUsuario().equals(this.batalla.getGanador().getNombreUsuatrio())){
                 System.out.println(this.torneo.getUser().getNombreUsuario());
                 System.out.println(this.batalla.getGanador().getNombreUsuatrio());
                 this.vm.getBtOculto().setEnabled(true);

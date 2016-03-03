@@ -334,12 +334,12 @@ public class ControladorBatalla2 implements ActionListener {
                     if(valorEntero==1){
                         this.batalla.setGanador(this.batalla.getJugador1());
                         this.batalla.setPerdedor(this.batalla.getJugador2());
-                        finalizarBatallaAvanzado(this.batalla.getJugador1(), this.batalla.getJugador2());
+                        finalizarBatalla(this.batalla.getJugador1(), this.batalla.getJugador2());
                     }
                     else{
                         this.batalla.setGanador(this.batalla.getJugador2());
                         this.batalla.setPerdedor(this.batalla.getJugador1());
-                        finalizarBatallaAvanzado(this.batalla.getJugador2(), this.batalla.getJugador1());
+                        finalizarBatalla(this.batalla.getJugador2(), this.batalla.getJugador1());
                     }
                 }
            
