@@ -57,8 +57,9 @@ public class ControladorAdministracion implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         
         
-//          if(ae.getSource().equals(this.vta.getjBEstadisticas1())){
-//             this.vta.getjTextAdmin2().setText(this.numPersonaje.getEstadisticas());
+          if(ae.getSource().equals(this.vta.getjBEstadisticas1())){
+             this.vta.getjTextAdmin2().setText(this.numPersonaje.getEstadisticas());
+          }
           if(ae.getSource().equals(this.vta.getjBEstadisticas2())){
              this.vta.getjTextAdmin2().setText(this.numPersonaje.getBrazoDer().getEstadisticas());
           }

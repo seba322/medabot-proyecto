@@ -57,6 +57,10 @@ public class Medalla {
     public String getMedaFuerza() {
         return medaFuerza;
     }
-    
+    public String getEstadisticas(){
+        String estadisticas ="Nombre:"+this.nombre+"\n"+ "Carga:"+this.carga+"\n"
+               +"Potenciador:"+this.potenciador+"\n"+"Medafuerza:"+this.medaFuerza;
+       return estadisticas;
+    }
 }
 
