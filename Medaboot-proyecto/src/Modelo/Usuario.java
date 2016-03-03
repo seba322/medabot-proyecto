@@ -229,7 +229,7 @@ public class Usuario {
             String insertarMedabotB="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (150,'"+nombreMedabot+"B',"+"'"+nombreUsuario+"',"+"'"+"Cabeza Grado D (C)"+"',"+"'"+"Brazo Grado D (BI)"+"',"+"'"+"Brazo Grado D (BD)"+"',"+"'"+"Pierna Grado D (PI)"+"',"+"'"+"Pierna Grado D (PD)"+"',"+"'"+"Perro"+"',"+"10)";
             String insetarMedapartes="INSERT INTO MEDAPARTEUSUARIO( USUARIO ) VALUES('"+nombreUsuario+"')" ;       
             String insertarMedabotC="INSERT INTO MEDABOT( SALUDMAXIMA,NOMBRE,USUARIO,CABEZA,BRAZOIZQ,BRAZODER,PIERNAIZQ,PIERNADER,MEDALLA,IMAGEN) VALUES (150,'"+nombreMedabot+"C',"+"'"+nombreUsuario+"',"+"'"+"Cabeza Grado D (C)"+"',"+"'"+"Brazo Grado D (BI)"+"',"+"'"+"Brazo Grado D (BD)"+"',"+"'"+"Pierna Grado D (PI)"+"',"+"'"+"Pierna Grado D (PD)"+"',"+"'"+"Perro"+"',"+"10)";
-            String insertarMedallas="INSERT INTO MEDALLAUSUARIO(USUARIO,MEDALLA) VALUES ('"+nombreUsuario+"','Gato,Toro,Aguila') ";        
+            String insertarMedallas="INSERT INTO MEDALLAUSUARIO(USUARIO,MEDALLA) VALUES ('"+nombreUsuario+"','Gato,Toro,Aguila,Dragon') ";        
             int respuesta=stm.executeUpdate(insertar);
             int creacionA=stm.executeUpdate(insertarMedabotA);
             int creacionB=stm.executeUpdate(insertarMedabotB);
