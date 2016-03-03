@@ -84,3 +84,6 @@
  p1 a Batallado con p2 el dia 02/03/2016 a las 08:39 PM
 Se a registrado un nuevo usuario llamado jav1 el dia 02/03/2016 a las 08:52 PM
 Se a registrado un nuevo usuario llamado jav2 el dia 02/03/2016 a las 08:52 PM
+Se a registrado un nuevo usuario llamado pj1 el dia 02/03/2016 a las 10:47 PM
+ p1 a Batallado con CPU1 el dia 02/03/2016 a las 10:48 PM
+ p1 a Batallado con PJOCULTO el dia 02/03/2016 a las 10:55 PM

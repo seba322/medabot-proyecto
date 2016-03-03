@@ -29,9 +29,11 @@ public class ControladorBatalla implements ActionListener {
     private VistaPreparacionBPj vtp;
     private VistaAdmin vta;
     private VistaMenu vm;
+    private VistaPreparacionPjOculto vpjo;
     private Medaboot Cpu;
     private Usuario user2;
     private Usuario user1;
+    private boolean pjOculto;
     private String nombreUsuario;
     private String contraseña;
     private String tipoADM;
@@ -39,8 +41,9 @@ public class ControladorBatalla implements ActionListener {
     private VistaPreparacionBPjvsCpu vtpc;
     private VistaPreparacionCpuvsCpu1 vtCpCp;
     private Medaboot Cpu1;
-    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC,VistaPreparacionCpuvsCpu1 vtCpCp) throws SQLException{
+    public ControladorBatalla(VistaMenuB vmb,VistaBatalla vb,VistaPreparacionBPj vtp,VistaMenu vm,String nombreUsuario,String contraseña,VistaPreparacionBPjvsCpu vtpC,VistaPreparacionCpuvsCpu1 vtCpCp,VistaPreparacionPjOculto vpjo) throws SQLException{
         this.vta=new VistaAdmin();
+        this.vpjo=vpjo;
         this.vm=vm;
         this.vb=vb;
         this.vmb=vmb;
@@ -52,6 +55,10 @@ public class ControladorBatalla implements ActionListener {
         this.contraseña=contraseña;
         this.user2=new Usuario();
         this.user1=new Usuario(this.nombreUsuario,this.contraseña);
+        this.vpjo.getBtAtras().addActionListener(this);
+        this.vpjo.getBtAdministrarPj().addActionListener(this);
+        this.vpjo.getBtComenzar().addActionListener(this);
+        this.vpjo.getBtSelec().addActionListener(this);
         this.vmb.getBtJugador().addActionListener(this);
         this.vmb.getBtCPU().addActionListener(this);
         this.vmb.getBtMaquina().addActionListener(this);
@@ -93,6 +100,7 @@ public class ControladorBatalla implements ActionListener {
             
           
         }
+        //Cambia a la vista de preparacion de batalla pj vs CPU
         else if(ae.getSource().equals(this.vmb.getBtCPU())){
             this.vtpc.setSize(844, 584);
             this.vm.getContentPane().removeAll();
@@ -136,6 +144,7 @@ public class ControladorBatalla implements ActionListener {
             this.vta.getBtAtras().addActionListener(this);
             this.tipoADM="pjvspj";
         }
+        
         //Permite volver al menu de preparacion batalla pj vs pj
         // desde el panel de administracion
         else if(ae.getSource().equals(this.vta.getBtAtras())){
@@ -147,6 +156,14 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
             }
+            else if(this.tipoADM.equals("pjOculto")){
+                this.vpjo.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vpjo,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                
+            }
             else{
                 this.vtpc.setSize(844, 584);
                 this.vm.getContentPane().removeAll();
@@ -154,7 +171,9 @@ public class ControladorBatalla implements ActionListener {
                 this.vm.getContentPane().revalidate();
                 this.vm.getContentPane().repaint();
                 
+            
             }
+           
         }
         
         else if(ae.getSource().equals(this.vtp.getBtComenzar())){
@@ -202,6 +221,8 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().repaint();
             
         }
+        //Permite volver al menu de batalla desde preapracion de
+        // batalla de cpu vs cpu
         else if(ae.getSource().equals(this.vtCpCp.getBtAtras())){
           
             vmb.setSize(844, 584);
@@ -247,12 +268,12 @@ public class ControladorBatalla implements ActionListener {
             }
             
         }
-          
+         //Permite comenzar la batalla entre pj vs cpu
        else if (ae.getSource().equals(this.vtpc.getBtComenzar())){
            try {
-                Usuario user1=new Usuario(this.nombreUsuario,this.contraseña);
                 
-                Medaboot pj1= user1.getPersonajes()[0];
+                
+                Medaboot pj1= this.user1.getPersonajes()[0];
                 
                 Medaboot pj2= this.Cpu;
                 Batalla batalla= new Batalla(pj1,pj2);
@@ -270,15 +291,81 @@ public class ControladorBatalla implements ActionListener {
                 user1.escribirAcciones(registroAcciones);
                 
                 
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            }  catch (IOException ex) {
                 Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
             } 
        
        
        
        
+       }
+       //Permite seleccionar al pj Oculto para ver sus estadisticas
+       else if(ae.getSource().equals(this.vpjo.getBtSelec())){
+            try {
+                String  nombreCpu = (String) this.vpjo.getLtCpu().getSelectedItem();
+                Medaboot CpuSelecc = new Medaboot (nombreCpu);
+                this.Cpu=CpuSelecc;
+                this.vpjo.getTxtEstadisticas().setText("");
+                String Estadisicas = "nombre :"+ CpuSelecc.getNombre()+"\n"
+                        + "salud:"+CpuSelecc.getSalud()+"\n"+"esquive:"+CpuSelecc.getEsquive()+"\n"
+                        +"defensa:"+CpuSelecc.getDefensa()+"\n"+"ataque:"+CpuSelecc.getAtaque()+"\n";
+               
+                this.vpjo.getTxtEstadisticas().append(Estadisicas);
+                this.vpjo.getBtComenzar().setEnabled(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+        }
+       //Comienza la batalla entre el pjOculto y el usuario
+       else if(ae.getSource().equals(this.vpjo.getBtComenzar())){
+            try {
+                
+                
+                Medaboot pj1= this.user1.getPersonajes()[0];
+                
+                Medaboot pj2= this.Cpu;
+                Batalla batalla= new Batalla(pj1,pj2);
+                VistaFinalB vf= new VistaFinalB();
+                
+                ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,this.vb,this.vm,new VistaTranscursoTorneo(),"BatallaCpuPj","Batalla",vf,"");
+                this.vm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                this.vb.setSize(1402, 684);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vb,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                String registroAcciones=" "+user1.getNombreUsuario()+" a Batallado con "+this.Cpu.getNombre()+" el dia "+user1.mostrarHora();
+                this.vm.getTxtRegistroAcciones().append("\n"+registroAcciones);
+                user1.escribirAcciones(registroAcciones);
+                
+                
+            }  catch (IOException ex) {
+                Logger.getLogger(ControladorBatalla.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+           
+       }
+       //Permite volver desde el menu de preparacion de batalla con pj oculto
+       // al menu principal
+       else if(ae.getSource().equals(this.vpjo.getBtAtras())){
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vm.getjPanel1(),BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+       
+       }
+       //Administrar personaje en preparacion batalla de pj vs pjoculto
+       else if(ae.getSource().equals(this.vpjo.getBtAdministrarPj())){
+       
+           this.vta=new VistaAdmin();
+            this.vta.setSize(1162, 654);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vta,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user1, this.vm, "batalla");
+            this.vta.getBtAtras().addActionListener(this);
+            this.tipoADM="pjOculto";
        }
        
        else if (ae.getSource().equals(this.vtCpCp.getBtSeleccionar())){

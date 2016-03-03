@@ -74,6 +74,8 @@ public class ControladorMenu implements ActionListener {
             VistaPreparacionBPj vtp= new VistaPreparacionBPj();
             VistaPreparacionBPjvsCpu vtpc= new VistaPreparacionBPjvsCpu();
             VistaPreparacionCpuvsCpu1 vtCpCp= new VistaPreparacionCpuvsCpu1();
+            //Solo se aplica para pj oculto
+            VistaPreparacionPjOculto vpjo=new VistaPreparacionPjOculto();
            
             vmb.setSize(844, 584);
             this.vm.getContentPane().removeAll();
@@ -81,7 +83,7 @@ public class ControladorMenu implements ActionListener {
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
             try {
-                ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc,vtCpCp);
+                ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc,vtCpCp,vpjo);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -134,8 +136,27 @@ public class ControladorMenu implements ActionListener {
             
             
         }
+        //Se encarga de realizar la batalla contra el pj oculto
         else if (e.getSource().equals(this.vm.getBtOculto())){
-            //llamar a oculto
+            
+            VistaMenuB vmb= new VistaMenuB();
+            VistaBatalla vb= new VistaBatalla();
+            VistaPreparacionBPj vtp= new VistaPreparacionBPj();
+            VistaPreparacionBPjvsCpu vtpc= new VistaPreparacionBPjvsCpu();
+            VistaPreparacionCpuvsCpu1 vtCpCp= new VistaPreparacionCpuvsCpu1();
+            VistaPreparacionPjOculto vpjo= new VistaPreparacionPjOculto();
+            vpjo.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(vpjo,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            try {
+                ControladorBatalla ctb= new ControladorBatalla(vmb,vb,vtp,this.vm,this.nombreUsuario,this.contraseña,vtpc,vtCpCp,vpjo);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
         else if (e.getSource().equals(this.vm.getBtHistorial())){
             VistaHistorial vth=new VistaHistorial();
