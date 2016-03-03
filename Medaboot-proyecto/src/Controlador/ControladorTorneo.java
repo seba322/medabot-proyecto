@@ -156,6 +156,9 @@ public class ControladorTorneo implements ActionListener{
                  if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
                     this.modalidad="BatallaCpuPj";
                 }
+                 if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") && this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU")){
+                    this.modalidad="BatallaCpuVsCpu";
+                }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 ControladorBatalla2 ctb2= new ControladorBatalla2(batalla,vb,this.vm,this.vtt,this.modalidad,"Torneo",this.vf,this.tipoTorneo);
                 ctb2.getVf().getBtContinuar2().addActionListener(this);
@@ -186,6 +189,9 @@ public class ControladorTorneo implements ActionListener{
                 this.vf=new VistaFinalB();
                 if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") || this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU") ){
                     this.modalidad="BatallaCpuPj";
+                }
+                if(this.torneo.getCombatientes().get(contadorGlobal).getTipo().equals("CPU") && this.torneo.getCombatientes().get(contadorGlobal+1).getTipo().equals("CPU")){
+                    this.modalidad="BatallaCpuVsCpu";
                 }
                 this.batalla=new Batalla(this.torneo.getCombatientes().get(contadorGlobal),this.torneo.getCombatientes().get(contadorGlobal+1));
                 System.out.println("ESTE ES EL JUGADOR 1"+this.batalla.getJugador1().getNombre());

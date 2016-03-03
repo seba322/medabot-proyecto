@@ -89,3 +89,5 @@ Se a registrado un nuevo usuario llamado pj1 el dia 02/03/2016 a las 10:47 PM
  p1 a Batallado con PJOCULTO el dia 02/03/2016 a las 10:55 PM
  p1 a organizado un torneo  el dia 02/03/2016 a las 11:10 PM
  p1 a organizado un torneo  el dia 02/03/2016 a las 11:20 PM
+ p1 a organizado un torneo  el dia 02/03/2016 a las 11:31 PM
+ p1 a organizado un torneo  el dia 02/03/2016 a las 11:35 PM
