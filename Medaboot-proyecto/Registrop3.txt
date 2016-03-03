@@ -12,3 +12,5 @@
  p3 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 05:09 PM
  p3 a participado en un torneo organizado por p1 el dia 02/03/2016 a las 05:29 PM
  p3 a modificado su personaje  el dia 02/03/2016 a las 05:53 PM
+Se a registrado un nuevo usuario llamado jav1 el dia 02/03/2016 a las 08:52 PM
+Se a registrado un nuevo usuario llamado jav2 el dia 02/03/2016 a las 08:52 PM

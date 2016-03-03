@@ -34,6 +34,7 @@ public class ControladorBatalla implements ActionListener {
     private Usuario user1;
     private String nombreUsuario;
     private String contraseña;
+    private String tipoADM;
     private VistaRegistro1 vt11;
     private VistaPreparacionBPjvsCpu vtpc;
     private VistaPreparacionCpuvsCpu1 vtCpCp;
@@ -47,6 +48,7 @@ public class ControladorBatalla implements ActionListener {
         this.vtpc=vtpC;
         this.vtCpCp=vtCpCp;
         this.nombreUsuario=nombreUsuario;
+        this.tipoADM="pjvspj";
         this.contraseña=contraseña;
         this.user2=new Usuario();
         this.user1=new Usuario(this.nombreUsuario,this.contraseña);
@@ -119,6 +121,7 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().repaint();
             ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user1, this.vm, "batalla");
             this.vta.getBtAtras().addActionListener(this);
+            this.tipoADM="pjvspj";
         }
         //Permite acceder al administrador de personajes de usuario 2 en 
         //batalla pj vs pj
@@ -131,17 +134,27 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().repaint();
             ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user2, this.vm, "batalla");
             this.vta.getBtAtras().addActionListener(this);
+            this.tipoADM="pjvspj";
         }
         //Permite volver al menu de preparacion batalla pj vs pj
         // desde el panel de administracion
         else if(ae.getSource().equals(this.vta.getBtAtras())){
         
-             
-            this.vtp.setSize(844, 584);
-            this.vm.getContentPane().removeAll();
-            this.vm.getContentPane().add(this.vtp,BorderLayout.CENTER);
-            this.vm.getContentPane().revalidate();
-            this.vm.getContentPane().repaint();
+            if(this.tipoADM.equals("pjvspj")){ 
+                this.vtp.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vtp,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+            }
+            else{
+                this.vtpc.setSize(844, 584);
+                this.vm.getContentPane().removeAll();
+                this.vm.getContentPane().add(this.vtpc,BorderLayout.CENTER);
+                this.vm.getContentPane().revalidate();
+                this.vm.getContentPane().repaint();
+                
+            }
         }
         
         else if(ae.getSource().equals(this.vtp.getBtComenzar())){
@@ -197,6 +210,18 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().revalidate();
             this.vm.getContentPane().repaint();
             
+        }
+        // Administrar personaje en pj vs cpu
+        else if(ae.getSource().equals(this.vtpc.getBtAdministrarPj())){
+            this.vta=new VistaAdmin();
+            this.vta.setSize(1162, 654);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(this.vta,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            ControladorAdministracion cta =new ControladorAdministracion(this.vta, this.user1, this.vm, "batalla");
+            this.vta.getBtAtras().addActionListener(this);
+            this.tipoADM="pjvscpu";
         }
         else if(ae.getSource().equals(this.vtp.getBtRegistro2())){
              this.vt11=new VistaRegistro1();

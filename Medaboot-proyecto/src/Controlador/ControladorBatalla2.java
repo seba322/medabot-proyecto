@@ -145,7 +145,7 @@ public class ControladorBatalla2 implements ActionListener {
        
            
        this.vistaEmergente= new IntroBatalla();
-       this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno,this.acciones1);
+       this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno,this.acciones2);
        if (this.modalidad.equals("BatallaCpuVsCpu")){
            this.vb.getBtListo().setVisible(false);
 //           botonDisabled(acciones1, null);
@@ -156,7 +156,7 @@ public class ControladorBatalla2 implements ActionListener {
            this.vistaEmergente.getJBCancelar().addActionListener(this);
            this.vistaEmergente.setVisible(true);
        }
-       this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno,this.acciones2);
+       this.batalla.activarMedafuerza(this.batalla.getJugador1(),this.batalla.getJugador2(), this.numeroTurno,this.acciones1);
        
       if (this.modalidad.equals("BatallaCpuPj") && this.batalla.getJugador1().getNombre().equals("CPU1")){
            this.batalla.getJugador1().manejarCpu1(numeroTurno, acciones1, acciones2, this.batalla.getJugador2(), this.vb, this.defender2, this.esquivar2,1);
