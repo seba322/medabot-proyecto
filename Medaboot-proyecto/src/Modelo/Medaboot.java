@@ -457,7 +457,7 @@ public void manejarCpu1(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
        
        
        }
-       
+      
    
   
    
@@ -476,7 +476,7 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
          
          ArrayList <Integer> ordenadorAta=(ArrayList<Integer>) this.ataques.clone();
          ArrayList<Integer> ordenadorDef=(ArrayList<Integer>) jugador2.defensas.clone();
-          ArrayList<Integer> ordenadorEsq=(ArrayList<Integer>) jugador2.defensas.clone();
+          ArrayList<Integer> ordenadorEsq=(ArrayList<Integer>) jugador2.esquives.clone();
          Comparator<Integer> comparador = Collections.reverseOrder();
          Collections.sort(ordenadorAta, comparador);
          Collections.sort(ordenadorDef,comparador);
@@ -497,9 +497,9 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
                System.out.println("ESTE ES PH"+Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
                System.out.println("ESTE ES DEFENSA"+jugador2.defensas.indexOf(ordenadorDef.get(i)));
                int posicion2 = jugador2.defensas.indexOf(ordenadorDef.get(i));
-//               if ( botonesAtacante.get(posicion1).isVisible()){
-//                   posicion1=this.ataques.indexOf(ordenadorAta.get(i));
-//               }
+               if ( botonesAtacante.get(posicion1).isVisible()){
+                   posicion1=(int) Math.floor(Math.random()*(4-0+1)+0);
+               }
               if ( !(botonesObjetivo.get(posicion2).isVisible())){
                    int valorEntero = (int) Math.floor(Math.random()*(4-0+1)+0);
                    posicion2=valorEntero;
@@ -527,7 +527,7 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
     }
 
 
-   if (turno>0){
+   if (turno>1){
         
        if (this.esquive >= 0.5){
            if (player==1){
@@ -585,7 +585,7 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
                 
                     System.out.println("esta es la posicion 2"+posicion2);
                             
-                    botonesObjetivo.get(2).doClick();
+                    botonesObjetivo.get(i).doClick();
 
                 
                 vistaPH.getBtConfirmarA().doClick();
@@ -597,16 +597,14 @@ public void manejarCpu2(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
                contadorPH =Integer.parseInt(vistaPH.getTxtPhabilidad2().getText());}
                 System.out.println(Integer.parseInt(vistaPH.getTxtPhabilidad2().getText()));
                i+=1;
-               if (i>4){
-                   break;
-               }
+               
            }
            }
            
            
         }
        
-       
+      
        
        
        
@@ -711,7 +709,8 @@ public void manejarCpu3(int turno ,ArrayList<JToggleButton> botonesAtacante ,Arr
            for(int ataque : ordenadorAta){
                int posicion1 = this.ataques.indexOf(ataque);
                if (! botonesObjetivo.get(posicion2).isVisible()){
-                   posicion2+=1;
+                    int valorEntero = (int) Math.floor(Math.random()*(4-0+1)+0);
+                   posicion2=valorEntero;
                }
                 botonesAtacante.get(posicion1).doClick();
                 botonesObjetivo.get(posicion2).doClick();

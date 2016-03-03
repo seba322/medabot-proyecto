@@ -123,13 +123,13 @@ public class ControladorBatalla2 implements ActionListener {
         this.vb.getTxtDatos1().setText(this.batalla.getJugador1().getEstadisticas());
         this.vb.getTxtDatos2().setText(this.batalla.getJugador2().getEstadisticas());
         if (this.batalla.getJugador1().getTipo().equals("Normal")){
-        this.vb.getJLnombre1().setText(this.batalla.getJugador1().getNombre());
+        this.vb.getJLnombre1().setText(this.batalla.getJugador1().getNombre()+"(PJ)");
         }      
         else{
           this.vb.getJLnombre1().setText(this.batalla.getJugador1().getNombre()+"(NPC)");   
         }       
         if (this.batalla.getJugador2().getTipo().equals("Normal")){
-        this.vb.getJLnombre2().setText(this.batalla.getJugador2().getNombre());
+        this.vb.getJLnombre2().setText(this.batalla.getJugador2().getNombre()+"(PJ)");
         }      
         else{
           this.vb.getJLnombre2().setText(this.batalla.getJugador2().getNombre()+"(NPC)");   
@@ -407,6 +407,8 @@ public class ControladorBatalla2 implements ActionListener {
                   this.vb.getLbMedafuerza2().setVisible(false);
                   this.batalla.getJugador2().setMedafuerza(false);
             }
+            this.vb.getTxtDatos1().setText(this.batalla.getJugador1().getEstadisticas());
+        this.vb.getTxtDatos2().setText(this.batalla.getJugador2().getEstadisticas());
           this.batalla.activarMedafuerza(this.batalla.getJugador2(),this.batalla.getJugador1(), this.numeroTurno,this.acciones2);
            if(this.batalla.getJugador2().getMedafuerza()){
                 System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador2().getLlamadoMeda());
@@ -480,6 +482,8 @@ public class ControladorBatalla2 implements ActionListener {
                   this.vb.getLbMedafuerza1().setVisible(false);
                   this.batalla.getJugador1().setMedafuerza(false);
             }
+          this.vb.getTxtDatos1().setText(this.batalla.getJugador1().getEstadisticas());
+        this.vb.getTxtDatos2().setText(this.batalla.getJugador2().getEstadisticas());
           this.batalla.activarMedafuerza(this.batalla.getJugador1(), this.batalla.getJugador2(),this.numeroTurno,this.acciones1);
           if(this.batalla.getJugador1().getMedafuerza()){
                 System.out.println("\nLLamado de medafuerza "+this.batalla.getJugador1().getLlamadoMeda());
@@ -614,10 +618,10 @@ public class ControladorBatalla2 implements ActionListener {
           
           botonDisabled(this.acciones2,null);
           botonEnabled(acciones1);
-           this.esquivar1="";
-          this.esquivar2="";
-          this.defender1="";
-          this.defender2="";
+//           this.esquivar1="";
+//          this.esquivar2="";
+//          this.defender1="";
+//          this.defender2="";
           
           this.vb.getJtEsquivar1().setEnabled(true);
           this.vb.getJtDefender1().setEnabled(true);
@@ -629,7 +633,11 @@ public class ControladorBatalla2 implements ActionListener {
        
           comprobarMedapartes(this.batalla.getJugador1(),this.acciones1);
           comprobarMedapartes(this.batalla.getJugador2(),this.acciones2) ; 
-  
+     this.esquivar1="";
+          this.esquivar2="";
+          this.defender1="";
+          this.defender2="";
+          
           
          System.out.println("BATALLA CPU VS CPU : LLEGUE AQUII1 el contador es"+this.contador); 
           if (this.modalidad.equals("BatallaCpuVsCpu") && this.batalla.getJugador1().getNombre().equals("CPU1")){

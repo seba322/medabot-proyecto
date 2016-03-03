@@ -221,6 +221,15 @@ public class ControladorBatalla implements ActionListener {
             this.vm.getContentPane().repaint();
             
         }
+        else if(ae.getSource().equals(this.vtpc.getBtAtras())){
+          
+            vmb.setSize(844, 584);
+            this.vm.getContentPane().removeAll();
+            this.vm.getContentPane().add(vmb,BorderLayout.CENTER);
+            this.vm.getContentPane().revalidate();
+            this.vm.getContentPane().repaint();
+            
+        }
         //Permite volver al menu de batalla desde preapracion de
         // batalla de cpu vs cpu
         else if(ae.getSource().equals(this.vtCpCp.getBtAtras())){
